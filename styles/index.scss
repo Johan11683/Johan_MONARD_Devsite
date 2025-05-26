@@ -1,0 +1,14 @@
+@use "./variables";
+@use "./layout";
+@use "./components";
+@use "./responsive";
+
+html {
+  background-color: white;
+  color: black;
+}
+
+html.dark {
+  background-color: #111;
+  color: white;
+}

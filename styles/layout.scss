@@ -1,0 +1,140 @@
+@use "./variables";
+
+// =================================
+// =        GLOBAL RESET          =
+// =================================
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden; // 🔥 Évite les scrolls horizontaux
+  font-family: sans-serif;
+}
+
+
+// =================================
+// =             MAIN             =
+// =================================
+main {
+  max-width: variables.$container-width;
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1rem;
+
+  @media (max-width: 768px) {
+    padding-inline: 1.25rem;
+  }
+
+  @media (max-width: 480px) {
+    padding-inline: 1.5rem;
+  }
+
+  // Empêche les enfants de déborder
+  > * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+
+// =================================
+// =           HEADER             =
+// =================================
+.header {
+  width: 100%;
+  background-color: var(--bg);
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+
+  &__container {
+    max-width: variables.$container-width;
+    margin-inline: auto;
+    padding: 0 1rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+    }
+  }
+
+  &__logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  &__nav ul {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    @media (max-width: 768px) {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    li a {
+      text-decoration: none;
+      color: var(--text);
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    @media (max-width: 768px) {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  .lang-switch {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .toggle-group {
+    display: flex;
+    gap: 0.5rem;
+
+    button {
+      background: none;
+      border: 1px solid transparent;
+      padding: 0.25rem;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &.active {
+        border-color: #333;
+        background-color: rgba(100, 100, 100, 0.1);
+      }
+
+      img {
+        display: block;
+      }
+    }
+  }
+}
