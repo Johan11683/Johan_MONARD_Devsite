@@ -64,6 +64,14 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     cursor: grab;
   }
+  
+  title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+}
+
 
   .keen-slider {
     display: flex;

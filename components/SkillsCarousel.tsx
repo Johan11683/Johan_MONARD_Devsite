@@ -6,8 +6,11 @@ import { skills } from "@/data/skills";
 import Image from "next/image";
 import "keen-slider/keen-slider.min.css";
 import "@/styles/components.scss";
+import { useTranslation } from "react-i18next"; // ✅ ajout
 
 export default function SkillsCarousel() {
+  const { t } = useTranslation(); // ✅ hook i18n
+
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
@@ -34,7 +37,6 @@ export default function SkillsCarousel() {
 
   const [isHovered, setIsHovered] = useState(false);
 
-  // Défilement automatique (sauf sur hover)
   useEffect(() => {
     if (!instanceRef.current || isHovered) return;
 
@@ -45,13 +47,12 @@ export default function SkillsCarousel() {
     return () => clearInterval(interval);
   }, [instanceRef, isHovered]);
 
-  // Scroll horizontal à la molette
   useEffect(() => {
     const container = containerRef.current;
     if (!container || !instanceRef.current) return;
 
     const onWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaY) < Math.abs(e.deltaX)) return; // ignore scroll horizontal
+      if (Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
       e.preventDefault();
       if (e.deltaY > 0) {
         instanceRef.current?.next();
@@ -69,6 +70,8 @@ export default function SkillsCarousel() {
 
   return (
     <section className="skills-carousel">
+      <h2 className="skills-carousel__title">{t("skillsTitle")}</h2>
+
       <div
         ref={containerRef}
         className="skills-carousel__wrapper"

@@ -9,6 +9,7 @@ i18n
   .init({
     lng: "fr",
     fallbackLng: "fr",
+    defaultNS: "common",
     interpolation: {
       escapeValue: false,
     },
