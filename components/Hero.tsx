@@ -2,20 +2,21 @@
 
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
+import Link from "next/link";
 import "@/styles/components.scss";
 
 export default function Hero() {
   const { t } = useTranslation("common");
 
   return (
-    <section className="hero">
+    <section id="welcome" className="hero">
       <div className="hero__container">
         <div className="hero__text">
           <h1>{t("hero_title")}</h1>
           <p className="hero__subtitle">{t("hero_subtitle")}</p>
-          <a href="#projects" className="hero__cta">
+          <Link href="#projects" className="hero__cta">
             {t("cta_projects")}
-          </a>
+          </Link>
         </div>
 
         <div className="hero__image">

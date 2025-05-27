@@ -2,5 +2,13 @@
   "hero_title": "Welcome, I'm Johan 👋",
   "hero_subtitle": "Web developer passionate about code and combat",
   "cta_projects": "See my projects ↓",
-  "skillsTitle": "My skills"
+  "skillsTitle": "My skills",
+  "footer": {
+    "welcome": "Welcome",
+    "skills": "My skills",
+    "projects": "My projects",
+    "contact": "Contact me"
+  },
+  "contactTitle": "Contact me",
+  "dlmoncv": "Download my Resume"
 }

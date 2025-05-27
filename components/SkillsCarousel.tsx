@@ -69,7 +69,7 @@ export default function SkillsCarousel() {
   }, [instanceRef]);
 
   return (
-    <section className="skills-carousel">
+    <section id="skills" className="skills-carousel">
       <h2 className="skills-carousel__title">{t("skillsTitle")}</h2>
 
       <div

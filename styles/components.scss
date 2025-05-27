@@ -1,5 +1,8 @@
 @use "./variables";
 
+// =======================
+// =       HERO         =
+// =======================
 .hero {
   padding: 4rem 1rem;
 
@@ -52,6 +55,9 @@
   }
 }
 
+// ============================
+// =      SKILLS CAROUSEL     =
+// ============================
 .skills-carousel {
   &__wrapper {
     max-width: variables.$container-width;
@@ -64,14 +70,13 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     cursor: grab;
   }
-  
-  title {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  font-weight: bold;
-}
 
+  &__title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+  }
 
   .keen-slider {
     display: flex;
@@ -98,6 +103,77 @@
 
     p {
       font-weight: 500;
+    }
+  }
+}
+
+// ============================
+// =     CONTACT SECTION      =
+// ============================
+.contact-section {
+  max-width: variables.$container-width;
+  margin: 0 auto 3rem auto;
+
+  &__title {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 2rem;
+    background: #aaa;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  &__column {
+    flex: 1;
+    max-width: 33%;
+    text-align: left;
+
+    &:nth-child(2) {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    &:nth-child(3) {
+      text-align: right;
+    }
+
+    p {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    @media (max-width: 768px) {
+      position: static !important;
+      transform: none !important;
+      max-width: 100%;
+      text-align: center !important;
     }
   }
 }
