@@ -55,6 +55,13 @@ section {
 // ================================
 // =           HEADER             =
 // ================================
+
+.glove-cursor {
+  cursor: url("/images/glove_pointer.png") 16 16, auto;
+}
+
+
+
 .header {
   width: 100%;
   background-color: var(--bg);

@@ -31,16 +31,15 @@ export default function Header() {
     <header className="header">
       <div className="header__container layout-container">
         <div className="header__logo">
-          <Link href="/">Johan.dev</Link>
+          <Link href="/" className="glove-cursor">
+            Punch.Dev
+          </Link>
         </div>
 
         <nav className="header__nav">
           <ul>
             <li>
-              <Link href="/">{language === "fr" ? "Accueil" : "Home"}</Link>
-            </li>
-            <li>
-              <Link href="/about">{language === "fr" ? "À propos" : "About"}</Link>
+              <Link href="/about" className="glove-cursor">{language === "fr" ? "À propos de moi" : "About me"}</Link>
             </li>
             <li>
               <Link href="/projects">{language === "fr" ? "Projets" : "Projects"}</Link>
