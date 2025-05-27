@@ -10,5 +10,7 @@
     "contact": "Contact me"
   },
   "contactTitle": "Contact me",
-  "dlmoncv": "Download my Resume"
+  "dlmoncv": "Download my Resume",
+  "projectsTitle": "My projects",
+  "seeProject": "See project"
 }
