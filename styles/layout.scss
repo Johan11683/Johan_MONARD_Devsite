@@ -41,7 +41,7 @@ body {
 // =             MAIN             =
 // ================================
 main {
-  width: 100%; // full width
+  width: 100%;
   > * {
     max-width: 100%;
     box-sizing: border-box;
@@ -53,20 +53,23 @@ section {
 }
 
 // ================================
-// =           HEADER             =
+// =           CURSEUR            =
 // ================================
-
 .glove-cursor {
   cursor: url("/images/glove_pointer.png") 16 16, auto;
 }
 
-
-
+// ================================
+// =           HEADER             =
+// ================================
 .header {
-  width: 100%;
-  background-color: var(--bg);
-  border-bottom: 1px solid #ccc;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--card-border);
   padding: 1rem 0;
+  position: relative;
+  z-index: 10;
 
   &__container {
     @extend .layout-container;
@@ -76,22 +79,32 @@ section {
 
     @media (max-width: 768px) {
       flex-direction: column;
+      gap: 0.5rem;
       text-align: center;
-      gap: 1rem;
     }
   }
 
   &__logo {
-    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
     font-size: 1.5rem;
+    font-weight: bold;
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+
+      &:hover {
+        text-shadow: 0 0 3px var(--accent), 0 0 6px var(--accent);
+      }
+    }
   }
 
   &__nav ul {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
+    list-style: none;
     padding: 0;
     margin: 0;
-    list-style: none;
 
     @media (max-width: 768px) {
       flex-wrap: wrap;
@@ -99,8 +112,36 @@ section {
     }
 
     li a {
-      text-decoration: none;
+      position: relative;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
       color: var(--text);
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: var(--accent);
+        text-shadow: 0 0 1px var(--accent), 0 0 1px var(--accent);
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 100%;
+        height: 2px;
+        background: var(--accent);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover::after {
+        transform: scaleX(1);
+      }
     }
   }
 
@@ -113,62 +154,96 @@ section {
       flex-wrap: wrap;
       justify-content: center;
     }
-  }
-
-  .lang-switch {
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-
-  .toggle-group {
-    display: flex;
-    gap: 0.5rem;
 
     button {
       background: none;
-      border: 1px solid transparent;
-      padding: 0.25rem;
+      border: 1px solid var(--card-border);
+      padding: 0.4rem 0.6rem;
       border-radius: 4px;
       cursor: pointer;
+      transition: border-color 0.2s ease;
 
-      &.active {
-        border-color: #333;
-        background-color: rgba(100, 100, 100, 0.1);
-      }
-
-      img {
-        display: block;
+      &.active,
+      &:hover {
+        border-color: var(--accent);
       }
     }
+
+    img {
+      display: block;
+    }
+  }
+  .header__brand {
+  display: flex;
+  align-items: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--accent);
+  text-decoration: none;
+
+  &:hover {
+    text-shadow: 0 0 4px var(--accent);
+  }
+
+  img {
+    display: inline-block;
   }
 }
+
+}
+
 
 // ================================
 // =           FOOTER             =
 // ================================
 .site-footer {
-  width: 100%;
-  background-color: #222;
-  color: #fff;
-  padding: 1rem 0;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background-color: var(--card-bg);
+  color: var(--text);
+  padding: 1.5rem 0;
   text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.95rem;
+  border-top: 1px solid var(--card-border);
+  box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.05);
 
   .footer-nav {
     @extend .layout-container;
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 2.5rem;
     flex-wrap: wrap;
+    padding: 0.5rem;
 
     a {
-      color: #fff;
+      position: relative;
+      color: var(--text);
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      transition: color 0.3s ease;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 0%;
+        height: 2px;
+        background-color: var(--accent);
+        transition: width 0.3s ease;
+      }
 
       &:hover {
-        text-decoration: underline;
+        color: var(--accent);
+
+        &::after {
+          width: 100%;
+        }
       }
     }
   }
 }
+

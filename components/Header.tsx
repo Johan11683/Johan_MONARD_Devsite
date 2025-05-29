@@ -31,18 +31,25 @@ export default function Header() {
     <header className="header">
       <div className="header__container layout-container">
         <div className="header__logo">
-          <Link href="/" className="glove-cursor">
+          <Link href="/" className="glove-cursor header__brand">
+            <Image
+              src="/images/logos/punch.dev.webp"
+              alt="Punch.Dev logo"
+              width={60}
+              height={85}
+              style={{ marginRight: "0.5rem" }}
+            />
             Punch.Dev
-          </Link>
+        </Link>
         </div>
 
         <nav className="header__nav">
           <ul>
             <li>
-              <Link href="/about" className="glove-cursor">{language === "fr" ? "À propos de moi" : "About me"}</Link>
+              <Link href="/about" className="glove-cursor">{language === "fr" ? "Mon profil" : "About me"}</Link>
             </li>
             <li>
-              <Link href="/projects">{language === "fr" ? "Projets" : "Projects"}</Link>
+              <Link href="/projects">{language === "fr" ? "Mes réalisations" : "Projects"}</Link>
             </li>
           </ul>
         </nav>

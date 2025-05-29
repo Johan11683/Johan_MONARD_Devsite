@@ -5,8 +5,12 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Johan | Développeur Web",
-  description: "Site CV interactif de Johan Monard",
+  description: "Portfolio de développeur web interactif de Johan Monard",
+  icons: {
+    icon: "/favicon.png", // placé dans /public
+  },
 };
+
 
 export default function RootLayout({
   children,

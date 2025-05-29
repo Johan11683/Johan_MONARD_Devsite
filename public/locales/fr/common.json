@@ -1,6 +1,6 @@
 {
-  "hero_title": "Bienvenue, je suis Johan 👋",
-  "hero_subtitle": "Développeur web passionné, entre code et combat",
+  "hero_title": "Bienvenue, je suis Johan",
+  "hero_subtitle": "Développeur web full-stack junior basé à Bordeaux, je conçois des sites modernes, rapides et accessibles. Formé aux technologies comme HTML, CSS, JavaScript, React, Node.js, MongoDB, je sais construire des interfaces dynamiques, des APIs sécurisées et des sites bien référencés.\n\nPassionné par l’expérience utilisateur et le code propre, je transforme les idées en solutions efficaces, responsive et performantes. Je suis prêt à relever vos défis techniques.",
   "cta_projects": "Voir mes projets ↓",
   "skillsTitle": "Mes compétences",
   "footer": {

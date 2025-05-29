@@ -1,16 +1,16 @@
 {
-  "hero_title": "Welcome, I'm Johan 👋",
-  "hero_subtitle": "Web developer passionate about code and combat",
-  "cta_projects": "See my projects ↓",
+  "hero_title": "Hi, I'm Johan",
+  "hero_subtitle": "Junior full-stack web developer based in Bordeaux, I create modern, fast, and accessible websites. Trained in technologies like HTML, CSS, JavaScript, React, Node.js, and MongoDB, I build dynamic interfaces, secure APIs, and SEO-friendly platforms.\n\nPassionate about user experience and clean code, I turn ideas into responsive, high-performance digital solutions. I'm ready to take on your technical challenges.",
+  "cta_projects": "View my projects ↓",
   "skillsTitle": "My skills",
   "footer": {
     "welcome": "Welcome",
-    "skills": "My skills",
-    "projects": "My projects",
-    "contact": "Contact me"
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
   },
   "contactTitle": "Contact me",
-  "dlmoncv": "Download my Resume",
+  "dlmoncv": "Download my CV",
   "projectsTitle": "My projects",
-  "seeProject": "See project"
+  "seeProject": "View project"
 }

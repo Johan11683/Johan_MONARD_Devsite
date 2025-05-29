@@ -26,6 +26,7 @@ export default function Hero() {
             width={160}
             height={160}
             className="hero__profile-pic"
+            priority
           />
         </div>
       </div>

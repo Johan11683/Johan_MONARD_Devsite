@@ -1,10 +1,12 @@
 @use "./variables";
 
 // =======================
-// =       HERO         =
+// =        HERO         =
 // =======================
 .hero {
   padding: 4rem 1rem;
+  background-color: var(--bg);
+  color: var(--text);
 
   &__container {
     max-width: variables.$container-width;
@@ -30,27 +32,28 @@
 
   &__profile-pic {
     border-radius: 50%;
-    border: 2px solid #333;
+    border: 2px solid var(--card-border);
     object-fit: cover;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
 
   &__subtitle {
     margin: 1rem 0;
-    color: var(--text-subtle, #aaa);
+    color: var(--text-subtle, #888);
   }
 
   &__cta {
     display: inline-block;
     margin-top: 1rem;
     padding: 0.75rem 1.5rem;
-    background-color: #333;
-    color: white;
+    background-color: var(--accent);
+    color: #000;
     border-radius: 8px;
     text-decoration: none;
+    font-weight: 600;
 
     &:hover {
-      background-color: #555;
+      filter: brightness(1.1);
     }
   }
 }
@@ -64,10 +67,10 @@
     margin: 0 auto;
     padding: 1rem;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--card-border);
     border-radius: 12px;
-    background: whitesmoke;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    background: var(--card-bg);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     cursor: grab;
   }
 
@@ -76,6 +79,7 @@
     font-size: 2rem;
     margin-bottom: 1.5rem;
     font-weight: bold;
+    color: var(--text);
   }
 
   .keen-slider {
@@ -92,13 +96,29 @@
   .skill-card {
     flex: 1 0 auto;
     padding: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: #aaa;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
     border-radius: 8px;
     text-align: center;
+    font-family: "Orbitron", sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--text);
+    transition: box-shadow 0.3s ease, border 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 0 8px var(--accent);
+      border-color: var(--accent);
+    }
 
     img {
       margin-bottom: 0.5rem;
+      width: auto;
+      height: 80px;
+      object-fit: contain;
+      border-radius: 8px;
+      background-color: var(--logo-bg);
+      padding: 0.5rem;
     }
 
     p {
@@ -110,7 +130,6 @@
 // ============================
 // =     PROJECT GRID         =
 // ============================
-
 .project-grid {
   margin-bottom: 3rem;
 
@@ -119,6 +138,7 @@
     font-size: 2rem;
     margin-bottom: 2rem;
     font-weight: bold;
+    color: var(--text);
   }
 
   &__wrapper {
@@ -131,17 +151,17 @@
 // ============================
 // =     PROJECT CARD         =
 // ============================
-
 .project-card {
   display: block;
   padding: 1rem;
-  background: #aaa;
+  background: var(--card-bg);
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-decoration: none;
-  color: inherit;
+  color: var(--text);
   transition: transform 0.2s ease;
   text-align: center;
+  border: 1px solid var(--card-border);
 
   &:hover {
     transform: translateY(-5px);
@@ -169,13 +189,11 @@
     }
 
     p {
-      color: #555;
+      color: var(--text-subtle, #777);
       font-size: 0.95rem;
     }
   }
 }
-
-
 
 // ============================
 // =     CONTACT SECTION      =
@@ -189,61 +207,71 @@
     font-size: 1.8rem;
     font-weight: bold;
     margin-bottom: 2rem;
+    color: var(--text);
   }
 
-  &__wrapper {
+  &__row {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
     padding: 2rem;
-    background: #aaa;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    position: relative;
-
-    @media (max-width: 768px) {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-  }
-
-  &__column {
-    flex: 1;
-    max-width: 33%;
-    text-align: left;
-
-    &:nth-child(2) {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-    }
-
-    &:nth-child(3) {
-      text-align: right;
-    }
-
-    p {
-      margin: 0.5rem 0;
-      font-size: 1rem;
-    }
 
     a {
-      color: inherit;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       text-decoration: none;
+      color: var(--text);
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 500;
+      transition: transform 0.2s ease, filter 0.2s ease;
 
       &:hover {
-        text-decoration: underline;
+        transform: scale(1.05);
+        filter: brightness(1.2);
+      }
+
+      img {
+        display: block;
+        object-fit: contain;
+      }
+
+      img.github-logo {
+        filter: none;
+
+        html.dark & {
+          filter: invert(1);
+        }
+      }
+
+      span {
+        font-size: 1rem;
+        display: inline-block;
       }
     }
 
-    @media (max-width: 768px) {
-      position: static !important;
-      transform: none !important;
-      max-width: 100%;
-      text-align: center !important;
+    // Style spécifique : grandes icônes seules (GitHub, LinkedIn, CV)
+    a:not(:has(span)) {
+      img {
+        height: 60px;
+        width: auto;
+      }
+    }
+
+    // Style spécifique : tel/mail avec texte
+    a:has(span) {
+      img {
+        height: 24px;
+        width: 24px;
+      }
+      
     }
   }
 }
+
