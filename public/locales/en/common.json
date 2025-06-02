@@ -12,5 +12,57 @@
   "contactTitle": "Contact me",
   "dlmoncv": "Download my CV",
   "projectsTitle": "My projects",
-  "seeProject": "View project"
+  "seeProject": "View project",
+  "tape": {
+    "title": "Tale of the Tape",
+    "subtitle": "Me vs Code",
+    "leftTitle": "ME",
+    "rightTitle": "DEV",
+    "me": "Me",
+    "code": "Code",
+    "skill": "Skill",
+    "person": "Person",
+    "dev": "Dev",
+    "age": {
+      "label": "Age",
+      "me": "30 years old",
+      "code": "Forever young"
+    },
+    "experience": {
+      "label": "Experience",
+      "me": "Intensive full-stack training",
+      "code": "Evolving, logical"
+    },
+    "endurance": {
+      "label": "Endurance",
+      "me": "Training + Baby + Projects",
+      "code": "Tests, errors, retries"
+    },
+    "organisation": {
+      "label": "Organisation",
+      "me": "Agile method, Kanban",
+      "code": "Components, structure"
+    },
+    "problemSolving": {
+      "label": "Problem solving",
+      "me": "Perseverance, logic",
+      "code": "Constant debugging"
+    },
+    "adaptability": {
+      "label": "Adaptability",
+      "me": "Front + Back + UI/UX",
+      "code": "Evolving ecosystem"
+    },
+    "discipline": {
+      "label": "Discipline",
+      "me": "Daily effort",
+      "code": "Strict syntax"
+    },
+    "vision": {
+      "label": "Vision",
+      "me": "Clear goals",
+      "code": "Readability, modularity"
+    },
+    "note": "This journey would not have been possible without the valuable help of AI, which helped me progress, understand, and code independently."
+  }
 }

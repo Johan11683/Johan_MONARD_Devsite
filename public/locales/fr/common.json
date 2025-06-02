@@ -12,5 +12,57 @@
   "contactTitle": "Me contacter",
   "dlmoncv": "Télécharger mon CV",
   "projectsTitle": "Mes projets",
-  "seeProject": "Voir le projet"
+  "seeProject": "Voir le projet",
+  "tape": {
+    "title": "Tale of the Tape",
+    "subtitle": "Moi vs Code",
+    "leftTitle": "MOI",
+    "rightTitle": "DEV",
+    "me": "Moi",
+    "code": "Code",
+    "skill": "Compétence",
+    "person": "Perso",
+    "dev": "Dev",
+    "age": {
+      "label": "Âge",
+      "me": "30 ans",
+      "code": "Toujours neuf"
+    },
+    "experience": {
+      "label": "Expérience",
+      "me": "Formation full-stack intensive",
+      "code": "Évolutif, logique"
+    },
+    "endurance": {
+      "label": "Endurance",
+      "me": "Formation + Bébé + Projets",
+      "code": "Tests, erreurs, relances"
+    },
+    "organisation": {
+      "label": "Organisation",
+      "me": "Méthodo agile, Kanban",
+      "code": "Composants, structure"
+    },
+    "problemSolving": {
+      "label": "Résolution de problème",
+      "me": "Persévérance, logique",
+      "code": "Debugging constant"
+    },
+    "adaptability": {
+      "label": "Adaptabilité",
+      "me": "Front + Back + UI/UX",
+      "code": "Écosystème évolutif"
+    },
+    "discipline": {
+      "label": "Discipline",
+      "me": "Travail quotidien",
+      "code": "Syntaxe stricte"
+    },
+    "vision": {
+      "label": "Vision",
+      "me": "Clarté des objectifs",
+      "code": "Lisibilité, modularité"
+    },
+    "note": "Ce parcours n’aurait pas été possible sans l’aide précieuse de l’IA, qui m’a permis de progresser, comprendre, et coder en toute autonomie."
+  }
 }
