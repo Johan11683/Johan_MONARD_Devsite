@@ -37,62 +37,57 @@ export default function TaleOfTheTape() {
   ];
 
   return (
-    <section className="tape-wrapper">
+    <section className="tape-wrapper" aria-labelledby="tape-title">
       <div
         className="tape"
         ref={tapeRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
+        role="table"
       >
-        <div className="tape__vs-badge">VS</div>
-
-        <div className="tape__header">
-          <h2>{t("tape.title")}</h2>
-          <h3>
-            {t("tape.subtitle") !== "tape.subtitle"
-              ? t("tape.subtitle")
-              : "Soft Skills Showdown"}
-          </h3>
+        <div className="tape__vs-badge" aria-hidden="true">
+          VS
         </div>
 
-        {/* Version desktop */}
-        <div className="tape__table">
-          <div className="tape__row tape__row--header">
-            <div className="tape__cell tape__cell--left tape__cell--label-side">
+        <header className="tape__header">
+          <h2 id="tape-title">{t("tape.title")}</h2>
+          <h3>{t("tape.subtitle") || "Soft Skills Showdown"}</h3>
+        </header>
+
+        {/* Desktop */}
+        <div className="tape__table" role="rowgroup">
+          <div className="tape__row tape__row--header" role="row">
+            <div className="tape__cell tape__cell--left tape__cell--label-side" role="columnheader">
               {t("tape.leftTitle") || "MOI"}
             </div>
-            <div className="tape__cell tape__cell--label"></div>
-            <div className="tape__cell tape__cell--right tape__cell--label-side">
+            <div className="tape__cell tape__cell--label" role="columnheader"></div>
+            <div className="tape__cell tape__cell--right tape__cell--label-side" role="columnheader">
               {t("tape.rightTitle") || "DEV"}
             </div>
           </div>
 
           {rows.map((key) => (
-            <div className="tape__row" key={key}>
-              <div className="tape__cell tape__cell--left">
+            <div className="tape__row" key={key} role="row">
+              <div className="tape__cell tape__cell--left" role="cell">
                 {t(`tape.${key}.me`)}
               </div>
-              <div className="tape__cell tape__cell--label">
+              <div className="tape__cell tape__cell--label" role="rowheader">
                 {t(`tape.${key}.label`)}
               </div>
-              <div className="tape__cell tape__cell--right">
+              <div className="tape__cell tape__cell--right" role="cell">
                 {t(`tape.${key}.code`)}
               </div>
             </div>
           ))}
         </div>
 
-        {/* Version mobile */}
+        {/* Mobile */}
         <div className="tape__mobile">
           {rows.map((key) => (
             <div className="tape__row-mobile" key={key}>
               <div className="tape__label">{t(`tape.${key}.label`)}</div>
-              <div className="tape__cell tape__cell--left">
-                {t(`tape.${key}.me`)}
-              </div>
-              <div className="tape__cell tape__cell--right">
-                {t(`tape.${key}.code`)}
-              </div>
+              <div className="tape__cell tape__cell--left">{t(`tape.${key}.me`)}</div>
+              <div className="tape__cell tape__cell--right">{t(`tape.${key}.code`)}</div>
             </div>
           ))}
         </div>
