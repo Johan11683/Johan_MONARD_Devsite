@@ -18,7 +18,7 @@ export default function ThemeToggle() {
   };
 
   return (
-    <div className="toggle-group">
+    <div className="toggle-group theme-toggle">
       <button
         onClick={() => setAndApplyTheme("light")}
         className={theme === "light" ? "active" : ""}

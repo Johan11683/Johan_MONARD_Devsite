@@ -85,16 +85,29 @@ section {
   }
 
   &__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-family: 'Orbitron', sans-serif;
     font-size: 1.5rem;
     font-weight: bold;
+    color: var(--logo-color);
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
 
     a {
-      color: var(--accent);
+      display: flex;
+      align-items: center;
+      color: var(--logo-color);
       text-decoration: none;
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
 
       &:hover {
-        text-shadow: 0 0 3px var(--accent), 0 0 6px var(--accent);
+        text-shadow: 0 0 3px var(--logo-color), 0 0 6px var(--logo-color);
+      }
+
+      img {
+        width: 40px;
+        height: auto;
       }
     }
   }
@@ -155,44 +168,36 @@ section {
       justify-content: center;
     }
 
-    button {
-      background: none;
-      border: 1px solid var(--card-border);
-      padding: 0.4rem 0.6rem;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: border-color 0.2s ease;
+    .toggle-group {
+      display: flex;
+      gap: 0.5rem;
 
-      &.active,
-      &:hover {
-        border-color: var(--accent);
+      button {
+        width: 32px;
+        height: 32px;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        background: none;
+        border: 1px solid var(--card-border);
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 0;
+
+        &.active,
+        &:hover {
+          border-color: var(--accent);
+        }
+      }
+
+      img {
+        width: 20px;
+        height: 20px;
+        display: block;
       }
     }
-
-    img {
-      display: block;
-    }
-  }
-  .header__brand {
-  display: flex;
-  align-items: center;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--accent);
-  text-decoration: none;
-
-  &:hover {
-    text-shadow: 0 0 4px var(--accent);
-  }
-
-  img {
-    display: inline-block;
   }
 }
-
-}
-
 
 // ================================
 // =           FOOTER             =
@@ -246,4 +251,3 @@ section {
     }
   }
 }
-

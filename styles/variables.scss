@@ -1,1 +1,14 @@
 $container-width: 1400px;
+:root {
+  --bg: #f5f7fa;
+  --text: #1c1c1c;
+  --accent: #00bcd4;
+  --logo-color: #0099cc;
+}
+
+html.dark {
+  --bg: #0f0f0f;
+  --text: #f0f0f0;
+  --accent: #00bcd4;
+  --logo-color: #00eaff;
+}

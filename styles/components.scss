@@ -24,6 +24,9 @@
 
   &__text {
     flex: 1;
+    background-color: rgba(0, 0, 0, 0.035);
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
   }
 
   &__image {
@@ -189,7 +192,7 @@
     }
 
     p {
-      color: var(--text-subtle, #777);
+      color: var(--text, #777);
       font-size: 0.95rem;
     }
   }
