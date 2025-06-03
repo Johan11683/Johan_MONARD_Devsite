@@ -6,10 +6,10 @@ import { skills } from "@/data/skills";
 import Image from "next/image";
 import "keen-slider/keen-slider.min.css";
 import "@/styles/components.scss";
-import { useTranslation } from "react-i18next"; // ✅ ajout
+import { useTranslation } from "react-i18next";
 
 export default function SkillsCarousel() {
-  const { t } = useTranslation(); // ✅ hook i18n
+  const { t } = useTranslation();
 
   const containerRef = useRef<HTMLDivElement | null>(null);
 

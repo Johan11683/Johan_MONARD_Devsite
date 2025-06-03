@@ -1,7 +1,7 @@
 {
-  "hero_title": "Hi, I'm Johan",
-  "hero_subtitle": "Junior full-stack web developer based in Bordeaux, I create modern, fast, and accessible websites. Trained in technologies like HTML, CSS, JavaScript, React, Node.js, and MongoDB, I build dynamic interfaces, secure APIs, and SEO-friendly platforms.\n\nPassionate about user experience and clean code, I turn ideas into responsive, high-performance digital solutions. I'm ready to take on your technical challenges.",
-  "cta_projects": "View my projects ↓",
+  "hero_title": "Welcome, I'm Johan",
+  "hero_subtitle": "I'm a junior full-stack web developer based in Bordeaux, building modern, fast, and accessible websites. Trained in HTML, CSS, JavaScript, React, Node.js, and MongoDB, I create dynamic interfaces, secure APIs, and SEO-optimized platforms.\n\nDriven, curious, and detail-oriented, I turn ideas into efficient, responsive, and user-friendly solutions. Ready to tackle your technical challenges, I move forward with method and passion.",
+  "cta_projects": "See my projects ↓",
   "skillsTitle": "My skills",
   "footer": {
     "welcome": "Welcome",
@@ -10,9 +10,24 @@
     "contact": "Contact"
   },
   "contactTitle": "Contact me",
-  "dlmoncv": "Download my CV",
+  "dlmoncv": "Download my resume",
   "projectsTitle": "My projects",
   "seeProject": "View project",
+
+"projects": {
+  "cannelle": {
+    "title": "Cannelle Brunch",
+    "descriptionTitle": "Showcase site for brunch deliveries in Bordeaux",
+    "descriptionContent": "Built with React and Sass.\nThe project required high responsiveness: minimal mockups, tight deadlines, and a strong focus on mobile adaptation."
+  },
+  "nina": {
+    "title": "SEO - Nina Carducci",
+    "descriptionTitle": "OpenClassrooms training project: SEO optimization for a photographer's portfolio site",
+    "descriptionContent": "Work on HTML tags, semantic content, accessibility, and performance (Lighthouse 90+ goal).\nConstraints: improving an existing structure without rebuilding it from scratch."
+  }
+},
+
+
   "tape": {
     "title": "Tale of the Tape",
     "subtitle": "Me vs Code",
@@ -21,48 +36,78 @@
     "me": "Me",
     "code": "Code",
     "skill": "Skill",
-    "person": "Person",
-    "dev": "Dev",
+    "person": "Personal",
+    "dev": "Technical",
     "age": {
       "label": "Age",
       "me": "30 years old",
-      "code": "Forever young"
+      "code": "Forever learning"
     },
     "experience": {
       "label": "Experience",
-      "me": "Intensive full-stack training",
-      "code": "Evolving, logical"
+      "me": "Quick learner, fully committed",
+      "code": "Strict methodologies"
     },
     "endurance": {
       "label": "Endurance",
-      "me": "Training + Baby + Projects",
-      "code": "Tests, errors, retries"
+      "me": "Persistent and resilient",
+      "code": "Bugs, tests, retries"
     },
     "organisation": {
-      "label": "Organisation",
-      "me": "Agile method, Kanban",
-      "code": "Components, structure"
+      "label": "Organization",
+      "me": "Structured and disciplined",
+      "code": "Modular architecture"
     },
     "problemSolving": {
       "label": "Problem solving",
-      "me": "Perseverance, logic",
-      "code": "Constant debugging"
+      "me": "Calm, logical, creative",
+      "code": "Step-by-step debugging"
     },
     "adaptability": {
       "label": "Adaptability",
-      "me": "Front + Back + UI/UX",
-      "code": "Evolving ecosystem"
+      "me": "Curious, always ready",
+      "code": "Front / Back / UI"
     },
     "discipline": {
       "label": "Discipline",
-      "me": "Daily effort",
+      "me": "Consistent work ethic",
       "code": "Strict syntax"
     },
     "vision": {
       "label": "Vision",
-      "me": "Clear goals",
-      "code": "Readability, modularity"
+      "me": "Practical mindset, human impact",
+      "code": "Performance and clarity"
     },
-    "note": "This journey would not have been possible without the valuable help of AI, which helped me progress, understand, and code independently."
+    "note": "Code is a tough opponent—but also a worthy sparring partner. I move forward with patience, willpower, and passion to master every line."
+  },
+
+  "contactModal": {
+  "title": "Send a message",
+  "email": "Your email",
+  "subject": "Subject",
+  "message": "Message",
+  "send": "Send",
+  "close": "Close modal",
+  "success": "Message ready to be sent!",
+  "errors": {
+    "required": "All fields are required.",
+    "invalidEmail": "Invalid email address."
   }
+},
+"contactPage": {
+  "title": "Contact",
+  "emailLabel": "Your email",
+  "subjectLabel": "Subject",
+  "messageLabel": "Message",
+  "sendButton": "Send",
+  "errors": {
+    "requiredFields": "All fields are required.",
+    "invalidEmail": "Please enter a valid email address."
+  },
+  "success": {
+    "readyToSend": "Message ready to be sent!"
+  }
+}
+
+
 }

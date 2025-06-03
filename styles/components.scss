@@ -41,7 +41,7 @@
 
   &__subtitle {
     margin: 1rem 0;
-    color: var(--text-subtle, #888);
+    color: var(--text-subtle);
   }
 
   &__cta {
@@ -155,25 +155,28 @@
 // ============================
 .project-card {
   display: block;
-  padding: 1rem;
+  padding: 1.5rem;
   background: var(--card-bg);
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
   text-decoration: none;
   color: var(--text);
-  transition: transform 0.2s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   text-align: center;
   border: 1px solid var(--card-border);
+  outline: none;
 
-  &:hover {
-    transform: translateY(-5px);
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   }
 
   &__image {
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
     margin: 0 auto 1rem;
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
 
     img {
@@ -185,14 +188,64 @@
   }
 
   &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+
     h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+  }
+
+  &__desc-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+
+  &__desc {
+    font-size: 0.85rem;
+    color: var(--text);
+    line-height: 1.6;
+    opacity: 0.95;
+    max-width: 90%;
+    padding: 0.25rem 0 0.5rem;
+    white-space: pre-line;
+  }
+
+  &__link {
+    margin-top: 0.75rem;
+    font-weight: 600;
+    color: var(--link-color);
+    font-size: 0.9rem;
+    text-decoration: none;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
     }
 
-    p {
-      color: var(--text, #777);
-      font-size: 0.95rem;
+    &:hover::after,
+    &:focus-visible::after {
+      transform: scaleX(1);
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: var(--accent-hover, #00ffff);
     }
   }
 }
@@ -200,6 +253,7 @@
 // ============================
 // =     CONTACT SECTION      =
 // ============================
+
 .contact-section {
   max-width: variables.$container-width;
   margin: 0 auto 3rem auto;
@@ -224,10 +278,16 @@
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
-    a {
+    // Tous les liens : style uniforme
+    a,
+    button.contact-link {
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
       text-decoration: none;
       color: var(--text);
       font-family: 'Orbitron', sans-serif;
@@ -242,6 +302,7 @@
       img {
         display: block;
         object-fit: contain;
+        transition: transform 0.2s ease;
       }
 
       img.github-logo {
@@ -258,22 +319,25 @@
       }
     }
 
-    // Style spécifique : grandes icônes seules (GitHub, LinkedIn, CV)
+    // Icônes grandes (GitHub, LinkedIn, CV)
     a:not(:has(span)) {
       img {
         height: 60px;
         width: auto;
       }
+
+      &:hover img {
+        transform: scale(1.05);
+      }
     }
 
-    // Style spécifique : tel/mail avec texte
-    a:has(span) {
+    // Icônes avec texte (e-mail / téléphone)
+    a:has(span),
+    button.contact-link {
       img {
         height: 24px;
         width: 24px;
       }
-      
     }
   }
 }
-

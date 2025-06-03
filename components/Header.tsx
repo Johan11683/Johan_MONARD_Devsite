@@ -10,7 +10,6 @@ import "@/styles/layout.scss";
 export default function Header() {
   const [language, setLanguage] = useState<"fr" | "en">(i18n.language as "fr" | "en");
 
-  // Écoute les changements de langue (utile si changée ailleurs)
   useEffect(() => {
     const syncLang = () => {
       const currentLang = i18n.language as "fr" | "en";
@@ -31,7 +30,7 @@ export default function Header() {
     <header className="header">
       <div className="header__container layout-container">
         <div className="header__logo">
-          <Link href="/" className="glove-cursor header__brand">
+          <Link href="/" className="glove-cursor header__brand" aria-label="Accueil Punch.Dev">
             <Image
               src="/images/logos/punch.dev.webp"
               alt="Punch.Dev logo"
@@ -40,16 +39,20 @@ export default function Header() {
               style={{ marginRight: "0.5rem" }}
             />
             Punch.Dev
-        </Link>
+          </Link>
         </div>
 
-        <nav className="header__nav">
+        <nav className="header__nav" role="navigation" aria-label="Navigation principale">
           <ul>
             <li>
-              <Link href="/about" className="glove-cursor">{language === "fr" ? "Mon profil" : "About me"}</Link>
+              <Link href="/about" className="glove-cursor">
+                {language === "fr" ? "Mon profil" : "About me"}
+              </Link>
             </li>
             <li>
-              <Link href="/projects">{language === "fr" ? "Mes réalisations" : "Projects"}</Link>
+              <Link href="/contact" className="glove-cursor">
+                {language === "fr" ? "Contact" : "Contact"}
+              </Link>
             </li>
           </ul>
         </nav>

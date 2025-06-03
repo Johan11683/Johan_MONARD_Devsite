@@ -9,12 +9,16 @@ export default function Hero() {
   const { t } = useTranslation("common");
 
   return (
-    <section id="welcome" className="hero">
+    <section id="welcome" className="hero" aria-label="Section d’introduction : bienvenue">
       <div className="hero__container">
         <div className="hero__text">
           <h1>{t("hero_title")}</h1>
           <p className="hero__subtitle">{t("hero_subtitle")}</p>
-          <Link href="#projects" className="hero__cta">
+          <Link
+            href="#projects"
+            className="hero__cta"
+            aria-label="Voir la section de mes projets"
+          >
             {t("cta_projects")}
           </Link>
         </div>
@@ -22,11 +26,12 @@ export default function Hero() {
         <div className="hero__image">
           <Image
             src="/images/profile-pic.webp"
-            alt="Photo de Johan"
+            alt="Photo de profil de Johan"
             width={160}
             height={160}
             className="hero__profile-pic"
             priority
+            fetchPriority="high"
           />
         </div>
       </div>

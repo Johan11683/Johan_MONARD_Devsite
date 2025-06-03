@@ -9,6 +9,7 @@ $container-width: 1400px;
   --card-border: #e0e0e0;
   --logo-bg: transparent;
   --text-subtle: #6e6e6e;
+  --link-color: #0d47a1;
 }
 
 html.dark {
@@ -20,4 +21,5 @@ html.dark {
   --card-border: #333333;
   --logo-bg: #ffffff;
   --text-subtle: #d7d7d7;
+  --link-color: #64b5f6;
 }
