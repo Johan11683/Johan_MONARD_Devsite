@@ -1,0 +1,101 @@
+/* [project]/styles/contactModal.scss.css [app-client] (css) */
+.modal-overlay {
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+  background: #00000080;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  font-family: inherit;
+  position: relative;
+  box-shadow: 0 12px 24px #00000026;
+}
+
+.modal-content h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.modal-content label {
+  margin-bottom: .25rem;
+  font-size: .9rem;
+  font-weight: 600;
+  display: block;
+}
+
+.modal-content input, .modal-content textarea {
+  border: 1px solid var(--card-border);
+  background: var(--bg);
+  width: 100%;
+  color: var(--text);
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  padding: .75rem;
+  font-size: 1rem;
+}
+
+.modal-content input:focus, .modal-content textarea:focus {
+  outline: 2px solid var(--accent);
+  border-color: var(--accent);
+}
+
+.modal-content textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.modal-content button[type="submit"] {
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  margin: 0 auto;
+  padding: .75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background .3s;
+  display: block;
+}
+
+.modal-content button[type="submit"]:hover, .modal-content button[type="submit"]:focus {
+  background: var(--accent-hover, #0ff);
+}
+
+.modal-close {
+  color: var(--text-subtle);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.modal-close:hover {
+  color: var(--text);
+}
+
+.modal-close:focus {
+  outline: 2px solid var(--accent);
+  border-radius: 50%;
+}
+
+/*# sourceMappingURL=styles_contactModal_scss_css_f9ee138c._.single.css.map*/

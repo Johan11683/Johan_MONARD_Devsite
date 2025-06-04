@@ -1,0 +1,275 @@
+/* [project]/styles/tape.scss.css [app-client] (css) */
+.tape-wrapper {
+  perspective: 1200px;
+  box-sizing: border-box;
+  justify-content: center;
+  width: 100%;
+  padding-inline: clamp(.5rem, 2vw, 1.25rem);
+  display: flex;
+}
+
+.tape {
+  box-sizing: border-box;
+  background-color: var(--card-bg);
+  border: 3px solid var(--accent);
+  width: 100%;
+  max-width: 720px;
+  font-family: var(--font-oswald), "Orbitron", sans-serif;
+  text-transform: uppercase;
+  color: var(--text);
+  border-radius: 8px;
+  margin: 4rem auto;
+  padding-inline: 0;
+  transition: transform .5s, box-shadow .4s, scale .3s;
+  box-shadow: 0 10px 30px #00ffff1a;
+}
+
+.tape:hover {
+  scale: 1.015;
+}
+
+.tape__header {
+  text-align: center;
+  border-bottom: 2px solid var(--card-border);
+  background: none;
+  padding: 1rem;
+}
+
+.tape__header h2 {
+  color: var(--accent);
+  text-shadow: 0 0 5px #0ff3;
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.tape__header h3 {
+  color: var(--text);
+  opacity: .75;
+  text-transform: none;
+  margin-top: .3rem;
+  font-size: .85rem;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.tape__table {
+  display: block;
+}
+
+@media (width <= 600px) {
+  .tape__table {
+    display: none;
+  }
+}
+
+.tape__row {
+  text-align: center;
+  border-bottom: 1px solid var(--card-border);
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
+  display: grid;
+  overflow: hidden;
+}
+
+.tape__row:last-child {
+  border-bottom: none;
+}
+
+.tape__row--header {
+  color: var(--accent);
+  font-size: .85rem;
+  font-weight: bold;
+}
+
+.tape__cell {
+  padding: .8rem .6rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.tape__cell--left {
+  text-align: left;
+  background: linear-gradient(to right, #008cff40, #0000);
+  width: 100%;
+  padding-left: 1rem;
+}
+
+.tape__cell--right {
+  text-align: right;
+  background: linear-gradient(to left, #ff3c3c40, #0000);
+  width: 100%;
+  padding-right: 1rem;
+}
+
+.tape__cell--label {
+  opacity: .7;
+  color: var(--text);
+  text-transform: none;
+  font-size: .75rem;
+  font-weight: 400;
+}
+
+.tape__cell--label-side {
+  color: var(--accent);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+@media (width <= 600px) {
+  .tape__cell--left, .tape__cell--right {
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.tape__mobile {
+  display: none;
+}
+
+@media (width <= 600px) {
+  .tape__mobile {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    display: flex;
+  }
+}
+
+.tape__row-mobile {
+  border: 1px solid var(--card-border);
+  background-color: var(--card-bg);
+  text-align: center;
+  border-radius: 8px;
+  flex-direction: column;
+  gap: .5rem;
+  padding: .75rem;
+  display: flex;
+  box-shadow: 0 2px 10px #00ffff0d;
+}
+
+.tape__label {
+  opacity: .7;
+  color: var(--accent);
+  text-transform: none;
+  font-size: .75rem;
+  font-weight: 500;
+}
+
+.tape__note {
+  text-align: center;
+  color: var(--text);
+  background-color: var(--card-bg);
+  border-top: 2px solid var(--card-border);
+  opacity: .75;
+  padding: 1rem;
+  font-size: .75rem;
+  font-style: italic;
+}
+
+.tape__vs-badge {
+  text-align: center;
+  background-color: var(--accent);
+  color: var(--bg);
+  z-index: 2;
+  letter-spacing: 1px;
+  border-radius: 999px;
+  width: fit-content;
+  margin: 0 auto -1.2rem;
+  padding: .4rem 1rem;
+  font-family: Orbitron, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  transition: transform .4s;
+  position: relative;
+  transform: translateY(-1.2rem);
+  box-shadow: 0 0 8px #0ff9;
+}
+
+.tape__vs-badge:hover {
+  transform: translateY(-1.2rem)rotateZ(-5deg)scale(1.05);
+}
+
+@media (width <= 360px) {
+  .tape {
+    padding-inline: .5rem;
+  }
+
+  .tape__cell {
+    padding: .6rem .4rem;
+    font-size: .85rem;
+  }
+
+  .tape__vs-badge {
+    padding: .3rem .75rem;
+    font-size: 1rem;
+  }
+
+  .tape__header h2 {
+    font-size: 1.2rem;
+  }
+
+  .tape__header h3 {
+    font-size: .75rem;
+  }
+}
+
+
+/* [project]/styles/avatars.module.scss.module.css [app-client] (css) */
+.avatars-module-scss-module__QXDAZq__aboutLayout {
+  justify-content: center;
+  margin-top: 2rem;
+  display: flex;
+}
+
+.avatars-module-scss-module__QXDAZq__avatarContainer {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+}
+
+@media (width <= 768px) {
+  .avatars-module-scss-module__QXDAZq__avatarContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.avatars-module-scss-module__QXDAZq__avatar {
+  border-radius: 1rem;
+  flex-shrink: 0;
+  max-width: 180px;
+  padding: 1rem;
+  transition: transform .3s;
+}
+
+@media (width <= 1024px) {
+  .avatars-module-scss-module__QXDAZq__avatar {
+    display: none;
+  }
+}
+
+.avatars-module-scss-module__QXDAZq__avatar:hover {
+  transform: scale(1.05);
+}
+
+.avatars-module-scss-module__QXDAZq__avatar img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.avatars-module-scss-module__QXDAZq__taleContainer {
+  flex: 1;
+  justify-content: center;
+  min-width: 300px;
+  display: flex;
+}
+
+
+/*# sourceMappingURL=styles_f72f92db._.css.map*/

@@ -1,0 +1,25 @@
+$container-width: 1400px;
+
+:root {
+  --bg: #f5f7fa;
+  --text: #1c1c1c;
+  --accent: #00bcd4;
+  --logo-color: #0099cc;
+  --card-bg: #ffffff;
+  --card-border: #e0e0e0;
+  --logo-bg: transparent;
+  --text-subtle: #6e6e6e;
+  --link-color: #0d47a1;
+}
+
+html.dark {
+  --bg: #0f0f0f;
+  --text: #f0f0f0;
+  --accent: #00bcd4;
+  --logo-color: #00f7ff;
+  --card-bg: #1a1a1a;
+  --card-border: #333333;
+  --logo-bg: #ffffff;
+  --text-subtle: #d7d7d7;
+  --link-color: #64b5f6;
+}

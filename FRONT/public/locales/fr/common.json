@@ -1,0 +1,109 @@
+{
+  "hero_title": "Bienvenue, je suis Johan",
+  "hero_subtitle": "Développeur web full-stack junior basé à Bordeaux, je conçois des sites modernes, rapides et accessibles. Formé aux technologies comme HTML, CSS, JavaScript, React, Node.js, MongoDB, je construis des interfaces dynamiques, des APIs sécurisées et des sites bien référencés.\n\nDéterminé, curieux et rigoureux, je transforme les idées en solutions performantes, responsive et accessibles. Prêt à affronter les défis techniques, j’avance avec méthode et passion.",
+  "cta_projects": "Voir mes projets ↓",
+  "skillsTitle": "Mes compétences",
+  "footer": {
+    "welcome": "Bienvenue",
+    "skills": "Mes compétences",
+    "projects": "Mes réalisations",
+    "contact": "Me contacter"
+  },
+  "contactTitle": "Me contacter",
+  "dlmoncv": "Télécharger mon CV",
+  "projectsTitle": "Mes réalisations",
+  "seeProject": "Voir le projet",
+  "projects": {
+    "cannelle": {
+      "title": "Cannelle Brunch",
+      "descriptionTitle": "Site vitrine pour des livraisons de brunch à Bordeaux",
+      "descriptionContent": "Réalisé avec React et Sass.\nLe projet a nécessité une forte réactivité : peu de maquettes, un délai serré, et une attention particulière à l’adaptabilité mobile."
+    },
+    "nina": {
+      "title": "SEO - Nina Carducci",
+      "descriptionTitle": "Projet de la formation Openclassrooms : optimisation SEO d’un site vitrine",
+      "descriptionContent": "Travail sur les balises HTML, le contenu sémantique, l’accessibilité, et les performances (objectif Lighthouse 90+).\nContraintes : structure existante à corriger sans tout refaire."
+    }
+  },
+  "tape": {
+    "title": "Tale of the Tape",
+    "subtitle": "Moi vs Code",
+    "leftTitle": "MOI",
+    "rightTitle": "DEV",
+    "me": "Moi",
+    "code": "Code",
+    "skill": "Compétence",
+    "person": "Perso",
+    "dev": "Dev",
+    "age": {
+      "label": "Âge",
+      "me": "30 ans",
+      "code": "Éternel apprenti"
+    },
+    "experience": {
+      "label": "Expérience",
+      "me": "Apprend vite, donne tout",
+      "code": "Méthodes rigoureuses"
+    },
+    "endurance": {
+      "label": "Endurance",
+      "me": "Tenace, persévérant",
+      "code": "Bugs, tests, relances"
+    },
+    "organisation": {
+      "label": "Organisation",
+      "me": "Structuré, discipliné",
+      "code": "Architecture modulaire"
+    },
+    "problemSolving": {
+      "label": "Résolution de problème",
+      "me": "Calme, logique, créatif",
+      "code": "Débogage méthodique"
+    },
+    "adaptability": {
+      "label": "Adaptabilité",
+      "me": "Curieux, toujours partant",
+      "code": "Front / Back / UI"
+    },
+    "discipline": {
+      "label": "Discipline",
+      "me": "Rigueur quotidienne",
+      "code": "Syntaxe stricte"
+    },
+    "vision": {
+      "label": "Vision",
+      "me": "Sens du concret, impact humain",
+      "code": "Performance, maintenabilité"
+    },
+    "note": "Le code est un adversaire coriace, mais aussi un partenaire de jeu. J’avance avec patience, force de volonté, et passion pour en maîtriser chaque aspect."
+  },
+  "contactModal": {
+    "title": "Envoyer un message",
+    "email": "Votre email",
+    "subject": "Objet",
+    "message": "Message",
+    "send": "Envoyer",
+    "close": "Fermer la modale",
+    "success": "Message envoyé avec succès !",
+    "sending": "Envoi...",
+    "errors": {
+      "required": "Tous les champs sont requis.",
+      "invalidEmail": "L'adresse email est invalide."
+    }
+  },
+  "contactPage": {
+    "title": "Contact",
+    "emailLabel": "Votre email",
+    "subjectLabel": "Objet",
+    "messageLabel": "Message",
+    "sendButton": "Envoyer",
+    
+    "errors": {
+      "requiredFields": "Tous les champs sont requis.",
+      "invalidEmail": "Veuillez entrer une adresse e-mail valide."
+    },
+    "success": {
+      "readyToSend": "Message envoyé avec succès !"
+    }
+  }
+}
