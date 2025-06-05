@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import ContactModal from "./ContactModale";
+// import ContactModal from "./ContactModale";
 import { usePathname } from "next/navigation";
 
 export default function ContactSection() {
@@ -11,7 +11,6 @@ export default function ContactSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const pathname = usePathname();
 
-  // 🛑 Ne rend rien si on est déjà sur la page de contact
   if (pathname === "/contact") return null;
 
   return (
