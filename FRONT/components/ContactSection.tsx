@@ -1,12 +1,17 @@
 "use client";
+
 import { useState } from "react";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import ContactModal from "./ContactModale";
+import { usePathname } from "next/navigation"; // ← important !
 
 export default function ContactSection() {
   const { t } = useTranslation("common");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const pathname = usePathname(); // ← détecte l’URL active
+
+  const isOnContactPage = pathname === "/contact";
 
   return (
     <section id="contact" className="contact-section">
@@ -18,7 +23,11 @@ export default function ContactSection() {
           <span>(+33) 7.77.84.26.12</span>
         </a>
 
-        <button onClick={() => setIsModalOpen(true)} className="contact-link" title="Email">
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="contact-link"
+          title="Email"
+        >
           <Image src="/images/logos/mail.png" alt="Email" width={12} height={12} />
           <span>monard.johan@yahoo.fr</span>
         </button>
@@ -36,7 +45,9 @@ export default function ContactSection() {
         </a>
       </div>
 
-      <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      {!isOnContactPage && (
+        <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      )}
     </section>
   );
 }
