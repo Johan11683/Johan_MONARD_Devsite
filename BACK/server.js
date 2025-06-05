@@ -8,13 +8,16 @@ import contactRoutes from "./routes/contact.js";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT;
 
 app.use(helmet());
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://johan-monard-devsite.vercel.app/"],
+    origin: [
+      "http://localhost:3000",
+      "https://johan-monard-devsite.vercel.app",
+    ],
     methods: ["POST"],
   })
 );
@@ -27,8 +30,8 @@ const limiter = rateLimit({
 app.use("/api/contact", limiter);
 
 app.use(express.json());
-
 app.use("/api/contact", contactRoutes);
 
 app.listen(PORT, () => {
+  console.log(`✅ Server is running on port ${PORT}`);
 });
