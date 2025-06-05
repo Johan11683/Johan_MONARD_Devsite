@@ -1,46 +1,52 @@
-export default function Head() {
-  return (
-    <>
-      <title>Punch.Dev – Portfolio de Johan Monard</title>
-      <meta name="description" content="Développeur web fullstack à Bordeaux. Sites modernes, React, Node.js, MongoDB, SEO, APIs sécurisées." />
-      <link rel="icon" href="/favicon.png" />
+import type { Metadata } from "next";
 
-      {/* JSON-LD - schema.org */}
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Person",
-            name: "Johan Monard",
-            alternateName: "Punch.Dev",
-            url: "https://www.punch.dev",
-            jobTitle: "Développeur web fullstack",
-            image: "https://www.punch.dev/images/opengraph-cover.png",
-            worksFor: {
-              "@type": "Organization",
-              name: "Freelance",
-            },
-            sameAs: [
-              "https://www.linkedin.com/in/johan-monard-a94b251b6",
-              "https://github.com/Johan11683",
-            ],
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            name: "Punch.Dev",
-            url: "https://www.punch.dev",
-          }),
-        }}
-      />
-    </>
-  );
-}
+export const metadata: Metadata = {
+  title: "Punch.Dev – Portfolio de Johan Monard",
+  description: "Développeur web fullstack à Bordeaux. Projets modernes, APIs sécurisées, React, Node.js, MongoDB.",
+  metadataBase: new URL("https://johan-monard-devsite.vercel.app"),
+
+  alternates: {
+    canonical: "https://johan-monard-devsite.vercel.app",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
+  openGraph: {
+    title: "Punch.Dev – Portfolio de Johan Monard",
+    description: "Découvrez mon site CV interactif en React et Next.js. Interfaces modernes, APIs sécurisées, SEO optimisé.",
+    url: "https://johan-monard-devsite.vercel.app",
+    siteName: "Punch.Dev",
+    images: [
+      {
+        url: "https://johan-monard-devsite.vercel.app/images/opengraph-cover.png",
+        width: 1200,
+        height: 630,
+        alt: "Punch.Dev - Johan Monard Portfolio",
+      },
+    ],
+    locale: "fr_FR",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Punch.Dev – Portfolio de Johan Monard",
+    description: "Développeur web à Bordeaux, React, Node.js, SEO, APIs sécurisées.",
+    images: ["https://johan-monard-devsite.vercel.app/images/logos/punch.dev.webp"],
+    // site: "@TonPseudoTwitter", // décommente si tu veux lier ton compte Twitter
+  },
+
+  icons: {
+    icon: "/favicon.png",
+  },
+};

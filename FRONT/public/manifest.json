@@ -1,0 +1,16 @@
+{
+  "name": "Punch.Dev – Johan Monard",
+  "short_name": "Punch.Dev",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0cbcd3",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
