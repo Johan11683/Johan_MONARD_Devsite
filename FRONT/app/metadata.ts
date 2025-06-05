@@ -43,7 +43,6 @@ export const metadata: Metadata = {
     title: "Punch.Dev – Portfolio de Johan Monard",
     description: "Développeur web à Bordeaux, React, Node.js, SEO, APIs sécurisées.",
     images: ["https://johan-monard-devsite.vercel.app/images/logos/punch.dev.webp"],
-    // site: "@TonPseudoTwitter", // décommente si tu veux lier ton compte Twitter
   },
 
   icons: {
