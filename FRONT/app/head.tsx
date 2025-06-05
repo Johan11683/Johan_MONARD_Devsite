@@ -1,14 +1,19 @@
 export default function Head() {
   return (
     <>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      {/* Obligatoire pour la validation Google */}
       <meta
         name="google-site-verification"
         content="D7cRf1xM3jguO-OXqil81PA_SyLe005TNVD0HY7WmBY"
       />
+
+      {/* Balises standards */}
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="robots" content="index, follow" />
       <link rel="icon" href="/favicon.png" />
       <link rel="manifest" href="/manifest.json" />
       <meta name="theme-color" content="#0cbcd3" />
+      <link rel="canonical" href="https://johan-monard-devsite.vercel.app" />
 
       {/* Schema.org: Profil de personne */}
       <script
