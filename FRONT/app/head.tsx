@@ -25,7 +25,7 @@ export default function Head() {
             url: "https://johan-monard-devsite.vercel.app",
             jobTitle: "Développeur web fullstack",
             image:
-              "https://johan-monard-devsite.vercel.app/images/opengraph-cover.png",
+              "https://johan-monard-devsite.vercel.app/images/logos/punch.dev.webp",
             worksFor: {
               "@type": "Organization",
               name: "Freelance",

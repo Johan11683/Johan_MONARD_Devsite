@@ -10,7 +10,7 @@ __turbopack_context__.s({
 });
 async function sendContactMessage(data) {
     try {
-        const response = await fetch("http://localhost:4000/api/contact", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

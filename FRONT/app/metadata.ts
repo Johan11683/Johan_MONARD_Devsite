@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: "Punch.Dev",
     images: [
       {
-        url: "https://johan-monard-devsite.vercel.app/images/opengraph-cover.png",
+        url: "https://johan-monard-devsite.vercel.app/images/logos/punch.dev.webp",
         width: 1200,
         height: 630,
         alt: "Punch.Dev - Johan Monard Portfolio",

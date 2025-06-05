@@ -39,6 +39,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     setIsSubmitting(true);
 
     if (!email.trim() || !subject.trim() || !message.trim()) {
