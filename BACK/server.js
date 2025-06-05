@@ -14,7 +14,7 @@ app.use(helmet());
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://ton-site.vercel.app"],
+    origin: ["http://localhost:3000", "https://johan-monard-devsite.vercel.app/"],
     methods: ["POST"],
   })
 );
