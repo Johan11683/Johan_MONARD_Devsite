@@ -26,7 +26,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-            <Head>
+      <Head>
+        <meta
+          name="google-site-verification"
+          content="D7cRf1xM3jguO-OXqil81PA_SyLe005TNVD0HY7WmBY"
+        />
         <link
           rel="preload"
           href="/fonts/orbitron/Orbitron-Regular.woff2"
