@@ -3,11 +3,16 @@ export default function Head() {
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="robots" content="index, follow" />
+      <meta
+        name="google-site-verification"
+        content="D7cRf1xM3jguO-OXqil81PA_SyLe005TNVD0HY7WmBY"
+      />
       <link rel="icon" href="/favicon.png" />
       <link rel="manifest" href="/manifest.json" />
       <meta name="theme-color" content="#0cbcd3" />
       <link rel="canonical" href="https://johan-monard-devsite.vercel.app" />
 
+      {/* Schema.org: Profil de personne */}
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -19,7 +24,8 @@ export default function Head() {
             alternateName: "Punch.Dev",
             url: "https://johan-monard-devsite.vercel.app",
             jobTitle: "Développeur web fullstack",
-            image: "https://johan-monard-devsite.vercel.app/images/opengraph-cover.png",
+            image:
+              "https://johan-monard-devsite.vercel.app/images/opengraph-cover.png",
             worksFor: {
               "@type": "Organization",
               name: "Freelance",
@@ -32,6 +38,7 @@ export default function Head() {
         }}
       />
 
+      {/* Schema.org: Site web */}
       <script
         type="application/ld+json"
         suppressHydrationWarning
