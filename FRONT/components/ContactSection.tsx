@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import ContactModal from "./ContactModale";
+import { ContactModal } from "./ContactModale";
 import { usePathname } from "next/navigation";
 
 export default function ContactSection() {
