@@ -6,22 +6,21 @@ dotenv.config();
 export const sendContactMail = async (req, res) => {
   const { email, subject, message } = req.body;
 
-  console.log("Nouveau message :", req.body);
-
   if (!email || !subject || !message) {
     return res.status(400).json({ error: "Tous les champs sont requis." });
   }
 
   try {
     const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST,
-      port: process.env.EMAIL_PORT,
-      secure: true,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
+  host: "smtp.mail.yahoo.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
@@ -31,7 +30,6 @@ export const sendContactMail = async (req, res) => {
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log("📩 Email envoyé :", info.messageId);
 
     res.status(200).json({ message: "Message envoyé avec succès." });
   } catch (err) {
