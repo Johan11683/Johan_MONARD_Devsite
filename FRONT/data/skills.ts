@@ -1,7 +1,7 @@
 export const skills = [
   { name: "HTML", logo: "/images/logos/HTML5_logo.png" },
   { name: "CSS", logo: "/images/logos/CSS-logo.png" },
-  { name: "Sass", logo: "/images/logos/Sass_logo.png" },
+  { name: "Sass", logo: "/images/logos/Sass_Logo.png" },
   { name: "JavaScript", logo: "/images/logos/JS_logo.png" },
   { name: "React", logo: "/images/logos/react-logo.png" },
   { name: "Node.js", logo: "/images/logos/node-js.png" },
