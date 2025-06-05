@@ -20,6 +20,4 @@ export const skills = [
   { name: "SEO", logo: "/images/logos/seo.png" },
   { name : "Trello", logo: "/images/logos/trello.png" },
   { name: "methode agile", logo: "/images/logos/agile.png" },
-
-  
 ];

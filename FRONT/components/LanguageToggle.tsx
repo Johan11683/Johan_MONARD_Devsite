@@ -7,7 +7,6 @@ export default function LanguageToggle() {
 
   const handleLang = (l: "fr" | "en") => {
     setLang(l);
-    // Ici tu déclencheras le changement de langue avec i18n plus tard
   };
 
   return (

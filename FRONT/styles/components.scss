@@ -278,7 +278,6 @@
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
-    // Tous les liens : style uniforme
     a,
     button.contact-link {
       display: flex;
@@ -319,7 +318,6 @@
       }
     }
 
-    // Icônes grandes (GitHub, LinkedIn, CV)
     a:not(:has(span)) {
       img {
         height: 60px;
@@ -331,7 +329,6 @@
       }
     }
 
-    // Icônes avec texte (e-mail / téléphone)
     a:has(span),
     button.contact-link {
       img {
