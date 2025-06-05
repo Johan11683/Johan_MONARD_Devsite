@@ -11,7 +11,7 @@ export default function ContactSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const pathname = usePathname();
 
-  if (pathname === "/contact") return null;
+  const isOnContactPage = pathname === "/contact";
 
   return (
     <section id="contact" className="contact-section">
@@ -23,20 +23,39 @@ export default function ContactSection() {
           <span>(+33) 7.77.84.26.12</span>
         </a>
 
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="contact-link"
-          title="Email"
-        >
-          <Image src="/images/logos/mail.png" alt="Email" width={12} height={12} />
-          <span>monard.johan@yahoo.fr</span>
-        </button>
+        {/* ↙️ N'affiche le bouton email que si on n'est PAS sur /contact */}
+        {!isOnContactPage && (
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="contact-link"
+            title="Email"
+          >
+            <Image src="/images/logos/mail.png" alt="Email" width={12} height={12} />
+            <span>monard.johan@yahoo.fr</span>
+          </button>
+        )}
 
-        <a href="https://github.com/Johan11683" target="_blank" rel="noopener noreferrer" title="GitHub">
-          <Image className="github-logo" src="/images/logos/github.png" alt="GitHub" width={48} height={48} />
+        <a
+          href="https://github.com/Johan11683"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="GitHub"
+        >
+          <Image
+            className="github-logo"
+            src="/images/logos/github.png"
+            alt="GitHub"
+            width={48}
+            height={48}
+          />
         </a>
 
-        <a href="https://www.linkedin.com/in/johan-monard-a94b251b6" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+        <a
+          href="https://www.linkedin.com/in/johan-monard-a94b251b6"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="LinkedIn"
+        >
           <Image src="/images/logos/linkedin.png" alt="LinkedIn" width={48} height={48} />
         </a>
 
@@ -45,7 +64,10 @@ export default function ContactSection() {
         </a>
       </div>
 
-      <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      {/* ↙️ N'affiche la modale que si on n'est PAS sur /contact */}
+      {!isOnContactPage && (
+        <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      )}
     </section>
   );
 }
