@@ -1,13 +1,6 @@
 export default function Head() {
   return (
     <>
-      {/* Obligatoire pour la validation Google */}
-      <meta
-        name="google-site-verification"
-        content="D7cRf1xM3jguO-OXqil81PA_SyLe005TNVD0HY7WmBY"
-      />
-
-      {/* Balises standards */}
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="robots" content="index, follow" />
       <link rel="icon" href="/favicon.png" />
@@ -15,7 +8,6 @@ export default function Head() {
       <meta name="theme-color" content="#0cbcd3" />
       <link rel="canonical" href="https://johan-monard-devsite.vercel.app" />
 
-      {/* Schema.org: Profil de personne */}
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -40,7 +32,6 @@ export default function Head() {
         }}
       />
 
-      {/* Schema.org: Site web */}
       <script
         type="application/ld+json"
         suppressHydrationWarning
