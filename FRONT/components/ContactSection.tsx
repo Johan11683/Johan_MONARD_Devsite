@@ -4,14 +4,15 @@ import { useState } from "react";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import ContactModal from "./ContactModale";
-import { usePathname } from "next/navigation"; // ← important !
+import { usePathname } from "next/navigation";
 
 export default function ContactSection() {
   const { t } = useTranslation("common");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const pathname = usePathname(); // ← détecte l’URL active
+  const pathname = usePathname();
 
-  const isOnContactPage = pathname === "/contact";
+  // 🛑 Ne rend rien si on est déjà sur la page de contact
+  if (pathname === "/contact") return null;
 
   return (
     <section id="contact" className="contact-section">
@@ -45,9 +46,7 @@ export default function ContactSection() {
         </a>
       </div>
 
-      {!isOnContactPage && (
-        <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      )}
+      <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 }
