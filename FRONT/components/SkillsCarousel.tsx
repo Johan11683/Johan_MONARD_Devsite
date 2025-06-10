@@ -12,6 +12,18 @@ export default function SkillsCarousel() {
   const { t } = useTranslation();
 
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(true); // ➕ Nouvel état
+
+  // ➕ Vérifie la largeur de l'écran
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 1025);
+    };
+    handleResize(); // Initialisation
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     loop: true,
@@ -35,18 +47,18 @@ export default function SkillsCarousel() {
     },
   });
 
-  const [isHovered, setIsHovered] = useState(false);
-
+  // 🔁 Défilement auto uniquement sur desktop
   useEffect(() => {
-    if (!instanceRef.current || isHovered) return;
+    if (!instanceRef.current || isHovered || !isDesktop) return;
 
     const interval = setInterval(() => {
       instanceRef.current?.next();
     }, 2000);
 
     return () => clearInterval(interval);
-  }, [instanceRef, isHovered]);
+  }, [instanceRef, isHovered, isDesktop]);
 
+  // 🖱️ Défilement au scroll (inchangé)
   useEffect(() => {
     const container = containerRef.current;
     if (!container || !instanceRef.current) return;
@@ -62,7 +74,6 @@ export default function SkillsCarousel() {
     };
 
     container.addEventListener("wheel", onWheel, { passive: false });
-
     return () => {
       container.removeEventListener("wheel", onWheel);
     };

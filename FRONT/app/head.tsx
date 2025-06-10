@@ -21,11 +21,11 @@ export default function Head() {
             "@context": "https://schema.org",
             "@type": "Person",
             name: "Johan Monard",
-            alternateName: "Punch.Dev",
+            alternateName: "Devhook",
             url: "https://johan-monard-devsite.vercel.app",
             jobTitle: "Développeur web fullstack",
             image:
-              "https://johan-monard-devsite.vercel.app/images/logos/punch.dev.webp",
+              "https://johan-monard-devsite.vercel.app/images/logos/devhook.webp",
             worksFor: {
               "@type": "Organization",
               name: "Freelance",
@@ -46,7 +46,7 @@ export default function Head() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebSite",
-            name: "Punch.Dev",
+            name: "devhook",
             url: "https://johan-monard-devsite.vercel.app",
           }),
         }}

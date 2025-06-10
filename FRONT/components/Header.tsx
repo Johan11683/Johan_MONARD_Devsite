@@ -30,15 +30,15 @@ export default function Header() {
     <header className="header">
       <div className="header__container layout-container">
         <div className="header__logo">
-          <Link href="/" className="glove-cursor header__brand" aria-label="Accueil Punch.Dev">
+          <Link href="/" className="glove-cursor header__brand" aria-label="Accueil devhook">
             <Image
-              src="/images/logos/punch.dev.webp"
-              alt="Punch.Dev logo"
+              src="/images/logos/devhook.webp"
+              alt="devhook logo"
               width={60}
               height={85}
               style={{ marginRight: "0.5rem" }}
             />
-            Punch.Dev
+            Devhook
           </Link>
         </div>
 

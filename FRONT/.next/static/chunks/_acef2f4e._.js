@@ -779,6 +779,23 @@ function SkillsCarousel() {
     _s();
     const { t } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$i18next$2f$dist$2f$es$2f$useTranslation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTranslation"])();
     const containerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const [isHovered, setIsHovered] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [isDesktop, setIsDesktop] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true); // ➕ Nouvel état
+    // ➕ Vérifie la largeur de l'écran
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "SkillsCarousel.useEffect": ()=>{
+            const handleResize = {
+                "SkillsCarousel.useEffect.handleResize": ()=>{
+                    setIsDesktop(window.innerWidth >= 1025);
+                }
+            }["SkillsCarousel.useEffect.handleResize"];
+            handleResize(); // Initialisation
+            window.addEventListener("resize", handleResize);
+            return ({
+                "SkillsCarousel.useEffect": ()=>window.removeEventListener("resize", handleResize)
+            })["SkillsCarousel.useEffect"];
+        }
+    }["SkillsCarousel.useEffect"], []);
     const [sliderRef, instanceRef] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$keen$2d$slider$2f$react$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useKeenSlider"])({
         loop: true,
         slides: {
@@ -812,10 +829,10 @@ function SkillsCarousel() {
             }
         }
     });
-    const [isHovered, setIsHovered] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    // 🔁 Défilement auto uniquement sur desktop
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "SkillsCarousel.useEffect": ()=>{
-            if (!instanceRef.current || isHovered) return;
+            if (!instanceRef.current || isHovered || !isDesktop) return;
             const interval = setInterval({
                 "SkillsCarousel.useEffect.interval": ()=>{
                     instanceRef.current?.next();
@@ -827,8 +844,10 @@ function SkillsCarousel() {
         }
     }["SkillsCarousel.useEffect"], [
         instanceRef,
-        isHovered
+        isHovered,
+        isDesktop
     ]);
+    // 🖱️ Défilement au scroll (inchangé)
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "SkillsCarousel.useEffect": ()=>{
             const container = containerRef.current;
@@ -865,7 +884,7 @@ function SkillsCarousel() {
                 children: t("skillsTitle")
             }, void 0, false, {
                 fileName: "[project]/components/SkillsCarousel.tsx",
-                lineNumber: 73,
+                lineNumber: 84,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -886,40 +905,40 @@ function SkillsCarousel() {
                                     height: 60
                                 }, void 0, false, {
                                     fileName: "[project]/components/SkillsCarousel.tsx",
-                                    lineNumber: 84,
+                                    lineNumber: 95,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     children: skill.name
                                 }, void 0, false, {
                                     fileName: "[project]/components/SkillsCarousel.tsx",
-                                    lineNumber: 90,
+                                    lineNumber: 101,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, i, true, {
                             fileName: "[project]/components/SkillsCarousel.tsx",
-                            lineNumber: 83,
+                            lineNumber: 94,
                             columnNumber: 13
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/components/SkillsCarousel.tsx",
-                    lineNumber: 81,
+                    lineNumber: 92,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/SkillsCarousel.tsx",
-                lineNumber: 75,
+                lineNumber: 86,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/SkillsCarousel.tsx",
-        lineNumber: 72,
+        lineNumber: 83,
         columnNumber: 5
     }, this);
 }
-_s(SkillsCarousel, "IvS2u0XjbkzbloqJqEAXQJm5TzI=", false, function() {
+_s(SkillsCarousel, "5W/IxwmytlKIAMo/xReWY+UzDZs=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$i18next$2f$dist$2f$es$2f$useTranslation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTranslation"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$keen$2d$slider$2f$react$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useKeenSlider"]
