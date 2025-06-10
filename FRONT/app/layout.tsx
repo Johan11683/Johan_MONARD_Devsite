@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Johan | Développeur Web",
   description: "Portfolio de développeur web interactif de Johan Monard",
   icons: {
-    icon: "/favicon.png",
+    icon: "/images/logos/devhook.webp",
   },
 };
 

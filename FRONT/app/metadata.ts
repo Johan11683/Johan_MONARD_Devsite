@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "devhook – Portfolio de Johan Monard",
   description: "Développeur web fullstack à Bordeaux. Projets modernes, APIs sécurisées, React, Node.js, MongoDB.",
-  metadataBase: new URL("https://johan-monard-devsite.vercel.app"),
+  metadataBase: new URL("https://www.devhook.fr"),
 
   alternates: {
-    canonical: "https://johan-monard-devsite.vercel.app",
+    canonical: "https://www.devhook.fr",
   },
 
   robots: {
@@ -24,11 +24,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "devhook – Portfolio de Johan Monard",
     description: "Découvrez mon site CV interactif en React et Next.js. Interfaces modernes, APIs sécurisées, SEO optimisé.",
-    url: "https://johan-monard-devsite.vercel.app",
+    url: "https://www.devhook.fr",
     siteName: "devhook",
     images: [
       {
-        url: "https://johan-monard-devsite.vercel.app/images/logos/devhook.webp",
+        url: "https://www.devhook.fr/images/logos/og-cover.webp",
         width: 1200,
         height: 630,
         alt: "devhook - Johan Monard Portfolio",
@@ -42,11 +42,11 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "devhook – Portfolio de Johan Monard",
     description: "Développeur web à Bordeaux, React, Node.js, SEO, APIs sécurisées.",
-    images: ["https://johan-monard-devsite.vercel.app/images/logos/devhook.webp"],
+    images: ["https://www.devhook.fr/images/logos/og-cover.webp"],
   },
 
   icons: {
-    icon: "/favicon.png",
+    icon: "/images/logos/og-cover.webp",
   },
 
   verification: {
