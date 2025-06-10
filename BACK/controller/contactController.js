@@ -39,7 +39,7 @@ export const sendContactMail = async (req, res) => {
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_TO,
-      subject: `[Punch.Dev] ${subject}`,
+      subject: `[Devhook] ${subject}`,
       text: `Message de ${email} :\n\n${message}`,
     };
 
