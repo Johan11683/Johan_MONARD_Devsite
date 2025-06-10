@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mon Site CV – Portfolio interactif de développeur web
+Projet personnel de fin de formation – OpenClassrooms
+Objectif : Créer un site vitrine interactif pour présenter mon parcours, mes projets, mes compétences et ma personnalité de manière originale et professionnelle.
 
-## Getting Started
+# Contexte
+Dans ce projet, j’ai conçu un site CV complet avec Next.js (React framework) et une partie back-end intégrée pour l’envoi sécurisé d’e-mails.
 
-First, run the development server:
+Le site vise à valoriser mon profil de développeur full-stack débutant, à travers :
+- Une interface moderne et animée
+- Une section originale "Tale of the Tape" inspirée de la boxe
+- Un carrousel de compétences
+- Une galerie de projets avec descriptions
+- Un formulaire de contact sécurisé et fonctionnel
+- Une performance et accessibilité optimisées
 
+Technologies utilisées
+- Next.js (React + API routes)
+- TypeScript
+- Sass (SCSS)
+- Framer Motion (animations)
+- Keen Slider (carrousel)
+- i18next (traduction multilingue)
+- Nodemailer (envoi d’e-mails côté back-end)
+- Helmet, cors, rate-limiter-flexible (sécurité)
+- Vercel + Render (déploiement)
+
+
+Fonctionnalités principales
+- Application Next.js avec rendering optimisé
+- Navigation fluide et responsive
+- Mode sombre/clair avec animation
+- Carrousel horizontal pour les compétences techniques
+- Section "Tale of the Tape" (soft skills présentés de manière originale)
+
+Formulaire de contact avec :
+- Validation des champs
+- Envoi via API route sécurisée
+- Nodemailer pour transmettre le message
+- Protection contre les bots / flood
+- Traduction FR/EN avec i18n et switch de langue
+
+Sécurité renforcée :
+- Headers sécurisés avec Helmet
+- Limitation du spam avec rate-limiter-flexible
+- Protection CORS
+- Accessibilité, SEO et performances web maîtrisées
+- Objectif Lighthouse
+
+
+Lancer le projet en local
 ```bash
+
+git clone https://github.com/Johan11683/Johan_MONARD_Devsite.git
+cd FRONT
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+cd BACK
+npm install
+node server
+``` 
+Ce que j’ai appris
+- Développement complet avec Next.js (frontend + backend)
+- Gestion du routage, du SSR et des API routes avec Next
+- Intégration et sécurisation d’un formulaire de contact avec Nodemailer
+- Intégration i18n pour le multilingue
+- Optimisation des performances Lighthouse
+- Utilisation d’animations CSS (SCSS)
+- Création d’UI dynamiques avec Sass et composants React
+- Sécurisation de l’API avec Helmet, CORS, et anti-spam
+- Déploiement professionnel sur Vercel et Render
+- Nom de domaine (OVH)
