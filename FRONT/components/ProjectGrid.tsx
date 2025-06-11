@@ -18,7 +18,7 @@ export default function ProjectGrid() {
       <div className="project-grid__wrapper">
         <ProjectCard
           title="Cannelle Brunch"
-          link="https://www.instagram.com/cannelle.brunch/"
+          link="https://johan11683.github.io/Cannelle-Brunch/"
           image="/images/projects/cannelle_logo.webp"
           descriptionKey="projects.cannelle"
         />
