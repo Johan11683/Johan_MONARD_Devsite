@@ -15,6 +15,7 @@ export const skills = [
   { name: "API REST", logo: "/images/logos/apirest.png" },
   { name: "Postman", logo: "/images/logos/postman.png" },
   { name: "Vercel", logo: "/images/logos/vercel.png" },
+  { name: "Render", logo: "/images/logos/render.png" },
   { name: "i18n", logo: "/images/logos/i18n.png" },
   { name: "responsive", logo: "/images/logos/responsive.png" },
   { name: "SEO", logo: "/images/logos/seo.png" },
