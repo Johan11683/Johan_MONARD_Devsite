@@ -18,8 +18,8 @@ app.use(
   cors({
     origin: ["http://localhost:3000",
   "https://johan-monard-devsite.vercel.app",
-  "https://www.devhook.fr",           // ← AJOUTE CECI
-  "https://devhook.fr",              // ← (utile aussi si tu enlèves le www)
+  "https://www.devhook.fr",
+  "https://devhook.fr",
   "https://johan-monard-devsite.onrender.com"],
   methods: ["GET","POST","OPTIONS"],
   })
