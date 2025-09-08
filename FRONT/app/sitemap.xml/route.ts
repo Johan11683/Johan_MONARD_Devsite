@@ -2,13 +2,13 @@ export async function GET() {
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://johan-monard-devsite.vercel.app/</loc>
+    <loc>https://devhook.fr/</loc>
   </url>
   <url>
-    <loc>https://johan-monard-devsite.vercel.app/about</loc>
+    <loc>https://devhook.fr/about</loc>
   </url>
   <url>
-    <loc>https://johan-monard-devsite.vercel.app/contact</loc>
+    <loc>https://devhook.fr/contact</loc>
   </url>
 </urlset>`;
 

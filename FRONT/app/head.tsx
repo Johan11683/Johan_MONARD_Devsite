@@ -10,7 +10,7 @@ export default function Head() {
       <link rel="icon" type="image/webp" href="/images/logos/devhook.webp" />
       <link rel="manifest" href="/manifest.json" />
       <meta name="theme-color" content="#0cbcd3" />
-      <link rel="canonical" href="https://www.devhook.fr" />
+      <link rel="canonical" href="https://devhook.fr/" />
 
       {/* Schema.org: Profil de personne */}
       <script
