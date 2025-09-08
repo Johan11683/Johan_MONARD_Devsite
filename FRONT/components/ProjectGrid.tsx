@@ -24,7 +24,7 @@ export default function ProjectGrid() {
         />
         <ProjectCard
           title="Nina Carducci | Photographie"
-          link="https://johan11683.github.io/Projet-4/"
+          link="https://johan11683.github.io/Site-vitrine-Photographe/"
           image="/images/projects/camera.webp"
           descriptionKey="projects.nina"
         />
