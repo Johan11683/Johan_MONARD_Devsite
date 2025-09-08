@@ -12,6 +12,21 @@ export default function Head() {
       <meta name="theme-color" content="#0cbcd3" />
       <link rel="canonical" href="https://devhook.fr/" />
 
+      <link
+        rel="preload"
+        href="/fonts/orbitron/Orbitron-Regular.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href="/fonts/inter/Inter-Regular.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+
       {/* Schema.org: Profil de personne */}
       <script
         type="application/ld+json"
@@ -24,8 +39,7 @@ export default function Head() {
             alternateName: "Devhook",
             url: "https://www.devhook.fr",
             jobTitle: "Développeur web fullstack",
-            image:
-              "https://www.devhook.fr/images/logos/devhook.webp",
+            image: "https://www.devhook.fr/images/logos/devhook.webp",
             worksFor: {
               "@type": "Organization",
               name: "Freelance",
