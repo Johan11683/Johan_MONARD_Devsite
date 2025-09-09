@@ -75,6 +75,14 @@ section {
   position: relative;
   z-index: 10;
 
+  .flag-icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+}
+
+
   &__container {
     @extend .layout-container;
     display: flex;

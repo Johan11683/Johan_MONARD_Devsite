@@ -61,19 +61,37 @@ export default function Header() {
           <ThemeToggle />
 
           <div className="lang-switch toggle-group">
-            <button
-              onClick={() => handleLanguageChange("fr")}
-              className={language === "fr" ? "active" : ""}
-            >
-              <Image src="/images/fr-flag.webp" alt="FR" width={24} height={24} />
-            </button>
-            <button
-              onClick={() => handleLanguageChange("en")}
-              className={language === "en" ? "active" : ""}
-            >
-              <Image src="/images/uk-flag.webp" alt="EN" width={24} height={24} />
-            </button>
-          </div>
+  <button
+    onClick={() => handleLanguageChange("fr")}
+    className={language === "fr" ? "active" : ""}
+  >
+    <span className="flag-icon">
+      <Image
+        src="/images/fr-flag.webp"
+        alt="FR"
+        fill
+        sizes="24px"
+        style={{ objectFit: "contain" }}
+      />
+    </span>
+  </button>
+
+  <button
+    onClick={() => handleLanguageChange("en")}
+    className={language === "en" ? "active" : ""}
+  >
+    <span className="flag-icon">
+      <Image
+        src="/images/uk-flag.webp"
+        alt="EN"
+        fill
+        sizes="24px"
+        style={{ objectFit: "contain" }}
+      />
+    </span>
+  </button>
+</div>
+
         </div>
       </div>
     </header>
