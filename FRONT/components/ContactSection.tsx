@@ -59,7 +59,7 @@ export default function ContactSection() {
           <Image src="/images/logos/linkedin.png" alt="LinkedIn" width={48} height={48} />
         </a>
 
-        <a href="/docs/CV_MONARD_Johan_DevFS2025.pdf" download title="Télécharger mon CV">
+        <a href="/docs/CV_MONARD_Johan_Fullstack_React-Node.pdf" download title="Télécharger mon CV">
           <Image src="/images/logos/cv.png" alt="CV" width={48} height={48} />
         </a>
       </div>

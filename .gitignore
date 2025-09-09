@@ -44,3 +44,7 @@ next-env.d.ts
 node_modules/
 FRONT/node_modules/
 BACK/node_modules/
+
+# Next.js subprojects
+FRONT/.next/
+BACK/.next/
