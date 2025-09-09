@@ -43,8 +43,14 @@ Sécurité renforcée :
 - Headers sécurisés avec Helmet
 - Limitation du spam avec rate-limiter-flexible
 - Protection CORS
+
+Performances et optimisations
 - Accessibilité, SEO et performances web maîtrisées
 - Objectif Lighthouse
+
+  LIGHTHOUSE MOBILE & DESKTOP <img width="305" height="101" alt="image" src="https://github.com/user-attachments/assets/4a0a5356-4061-43a9-8201-2f6a4788409f" />
+  WAVE <img width="263" height="82" alt="image" src="https://github.com/user-attachments/assets/2ab7d5d7-0c4b-4aa3-af97-e82a30cee97f" />
+
 
 
 Lancer le projet en local
