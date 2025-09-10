@@ -14,17 +14,23 @@
   "projectsTitle": "Mes réalisations",
   "seeProject": "Voir le projet",
   "projects": {
-    "cannelle": {
-      "title": "Cannelle Brunch",
-      "descriptionTitle": "Site vitrine pour des livraisons de brunch à Bordeaux",
-      "descriptionContent": "Réalisé avec React et Sass.\nLe projet a nécessité une forte réactivité : peu de maquettes, un délai serré, et une attention particulière à l’adaptabilité mobile."
-    },
-    "nina": {
-      "title": "SEO - Nina Carducci",
-      "descriptionTitle": "Projet de la formation Openclassrooms : optimisation SEO d’un site vitrine",
-      "descriptionContent": "Travail sur les balises HTML, le contenu sémantique, l’accessibilité, et les performances (objectif Lighthouse 90+).\nContraintes : structure existante à corriger sans tout refaire."
-    }
+  "cannelle": {
+    "title": "Cannelle Brunch",
+    "descriptionTitle": "Site vitrine pour des livraisons de brunch à Bordeaux",
+    "descriptionContent": "Réalisé avec React et Sass.\nLe projet a nécessité une forte réactivité : peu de maquettes, un délai serré, et une attention particulière à l’adaptabilité mobile."
   },
+  "nina": {
+    "title": "SEO - Nina Carducci",
+    "descriptionTitle": "Projet de la formation Openclassrooms : optimisation SEO d’un site vitrine",
+    "descriptionContent": "Travail sur les balises HTML, le contenu sémantique, l’accessibilité, et les performances (objectif Lighthouse 90+).\nContraintes : structure existante à corriger sans tout refaire."
+  },
+  "timer": {
+    "title": "Rounds Timer",
+    "descriptionTitle": "Projet personnel : un minuteur de rounds de boxe",
+    "descriptionContent": "Développé avec React, TypeScript et Sass.\nPermet de configurer les rounds, temps de repos et joue des sons.\nDéployé sur GitHub Pages comme test rapide de Cursor (codage assisté par IA)."
+  }
+}
+,
   "tape": {
     "title": "Tale of the Tape",
     "subtitle": "Moi vs Code",

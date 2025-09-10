@@ -28,6 +28,12 @@ export default function ProjectGrid() {
           image="/images/projects/camera.webp"
           descriptionKey="projects.nina"
         />
+        <ProjectCard
+          title="Rounds Timer"
+          link="https://johan11683.github.io/ROUNDS-TIMER/"
+          image="/images/projects/chrono.webp"
+          descriptionKey="projects.timer"
+        />
       </div>
     </section>
   );

@@ -24,6 +24,11 @@
     "title": "SEO - Nina Carducci",
     "descriptionTitle": "OpenClassrooms training project: SEO optimization for a photographer's portfolio site",
     "descriptionContent": "Work on HTML tags, semantic content, accessibility, and performance (Lighthouse 90+ goal).\nConstraints: improving an existing structure without rebuilding it from scratch."
+  },
+  "timer": {
+    "title": "Rounds Timer",
+    "descriptionTitle": "Personal project: a boxing round timer",
+    "descriptionContent": "Developed with React, TypeScript, and Sass.\nLets you configure rounds, rest times, countdowns, and plays sounds.\nDeployed on GitHub Pages as a quick test of Cursor (AI-assisted coding)."
   }
 },
 
