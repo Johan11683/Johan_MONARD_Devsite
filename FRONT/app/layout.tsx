@@ -1,23 +1,18 @@
+// layout.tsx
 import "../styles/index.scss";
-import type { Metadata } from "next";
+import { metadata } from "./metadata"; // ✅ import du metadata complet
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Oswald } from "next/font/google";
 import Head from "next/head";
-
-export const metadata: Metadata = {
-  title: "Johan | Développeur Web",
-  description: "Portfolio de développeur web interactif de Johan Monard",
-  icons: {
-    icon: "/images/logos/devhook.webp",
-  },
-};
 
 const oswald = Oswald({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   variable: "--font-oswald",
 });
+
+export { metadata };
 
 export default function RootLayout({
   children,
