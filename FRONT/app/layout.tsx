@@ -1,6 +1,6 @@
 // layout.tsx
 import "../styles/index.scss";
-import { metadata } from "./metadata"; // ✅ import du metadata complet
+import { metadata } from "./metadata";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Oswald } from "next/font/google";

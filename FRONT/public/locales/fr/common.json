@@ -26,8 +26,8 @@
   },
   "timer": {
     "title": "Rounds Timer",
-    "descriptionTitle": "Projet personnel : un minuteur de rounds de boxe",
-    "descriptionContent": "Développé avec React, TypeScript et Sass.\nPermet de configurer les rounds, temps de repos et joue des sons.\nDéployé sur GitHub Pages comme test rapide de Cursor (codage assisté par IA)."
+    "descriptionTitle": "Projet personnel : un minuteur de rounds de boxe pensé pour mobile",
+    "descriptionContent": "Développé avec React, TypeScript et Sass.\nTimer configurable (durée, nombre de rounds, repos) déployé sur GitHub Pages.\nProjet conçu comme test de AI coding avec Cursor/ChatGPT5 : IA pour générer l’ossature, mais j'ai géré les specs, l'organisation et la validation.\nPremière expérience de tests automatisés avec Jest & Playwright."
   }
 }
 ,
