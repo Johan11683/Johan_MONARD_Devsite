@@ -28,7 +28,14 @@
     "title": "Rounds Timer",
     "descriptionTitle": "Projet personnel : un minuteur de rounds de boxe pensé pour mobile",
     "descriptionContent": "Développé avec React, TypeScript et Sass.\nTimer configurable (durée, nombre de rounds, repos) déployé sur GitHub Pages.\nProjet conçu comme test de AI coding avec Cursor/ChatGPT5 : IA pour générer l’ossature, mais j'ai géré les specs, l'organisation et la validation.\nPremière expérience de tests automatisés avec Jest & Playwright."
-  }
+  },
+"deckbuilder": {
+  "title": "Deckbuilder Magic (MTG)",
+  "descriptionTitle": "Projet personnel : Deckbuilder Magic The Gathering",
+  "descriptionContent": "Développée avec React (Next), Sass et MongoDB. Déployée sur Vercel (front) et Render (back).\nAprès Authentification (jwt, bcrypt) permet d’ajouter, supprimer et modifier des decks et des cartes.\nIntègre l’API Scryfall pour récupérer les données officielles des cartes.\nCe projet servira de base à un boardgame en ligne inspiré de MTG, sans règles officielles ('no ruling')."
+}
+
+
 }
 ,
   "tape": {

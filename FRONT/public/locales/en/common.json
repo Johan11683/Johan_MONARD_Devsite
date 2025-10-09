@@ -25,10 +25,10 @@
     "descriptionTitle": "OpenClassrooms training project: SEO optimization for a photographer's portfolio site",
     "descriptionContent": "Work on HTML tags, semantic content, accessibility, and performance (Lighthouse 90+ goal).\nConstraints: improving an existing structure without rebuilding it from scratch."
   },
-  "timer": {
-    "title": "Rounds Timer",
-    "descriptionTitle": "Personal project: a boxing round timer designed for mobile",
-    "descriptionContent": "Built with React, TypeScript and Sass.\nConfigurable timer (duration, rounds, rest) deployed on GitHub Pages.\nDesigned as an AI coding test with Cursor/ChatGPT5: AI generated the scaffolding, while I handled specs, organization, and validation.\nFirst experience with automated tests using Jest & Playwright."
+  "deckbuilder": {
+    "title": "Deckbuilder Magic (MTG)",
+    "descriptionTitle": "Personal project: Magic: The Gathering Deckbuilder",
+    "descriptionContent": "Web application built with React (Next), Sass, and MongoDB. Authentication handled with JWT and bcrypt, database with MongoDB, deployment on Vercel (frontend) and Render (backend).\nAfter login, users can add, delete, and edit decks and cards.\nIntegrates the Scryfall API to fetch official Magic card data.\nThis project will serve as the foundation for an online boardgame inspired by MTG, without official rules ('no ruling')."
   }
 },
 
