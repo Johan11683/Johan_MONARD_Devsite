@@ -36,7 +36,7 @@ export default function ProjectGrid() {
         />
         <ProjectCard
           title="Deckbuilder Magic (MTG)"
-          link="https://deckbuiler-mtg.vercel.app/"
+          link="https://deckbuilder-mtg.vercel.app/"
           image="/images/projects/deckbuilder_mtg.webp"
           descriptionKey="projects.deckbuilder"
         />
