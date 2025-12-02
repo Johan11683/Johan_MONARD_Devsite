@@ -6,6 +6,7 @@ import Link from 'next/link';
 import styles from './Header.module.scss';
 
 const navItems = [
+  { href: '#benefit', label: 'Prestation' },
   { href: '#projects', label: 'Réalisations' },
   { href: '#prices', label: 'Tarifs' },
   { href: '#about', label: 'À propos' },

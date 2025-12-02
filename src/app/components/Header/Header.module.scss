@@ -3,8 +3,9 @@
 
 /* === TOP BAR === */
 .topBar {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
   z-index: 50;
   height: 2px;
   width: 100%;
@@ -13,12 +14,15 @@
 
 /* === HEADER === */
 .header {
-  position: sticky;
-  top: 2px;
+  position: fixed;
+  top: 2px;          // juste sous la topBar
+  left: 0;
+  width: 100%;
   z-index: 40;
   background: rgba($color-primary, 0.95);
   backdrop-filter: blur(8px);
 }
+
 
 /* === INNER WRAPPER === */
 .inner {

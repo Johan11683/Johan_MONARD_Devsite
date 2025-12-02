@@ -2,9 +2,20 @@
 @use '../../styles/mixins' as *;
 
 .benefit {
+  position: relative;
   background: $color-bg;
   color: $color-text;
-  padding-block: 7rem; // +1rem
+  padding-block: 6rem 5rem; // haut / bas de la section
+}
+
+.separator {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background: $color-accent;
+  clip-path: polygon(0 0, 100% 55%, 100% 100%, 0 100%);
+  margin-bottom: 3rem;
 }
 
 .inner {
@@ -22,9 +33,9 @@
 
 .kicker {
   display: inline-block;
-  padding: 0.25rem 1rem; // +padding
+  padding: 0.25rem 1rem;
   border-radius: 999px;
-  font-size: 1.05rem;   // +0.1rem
+  font-size: 1.05rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   background: rgba($color-accent, 0.18);
@@ -37,7 +48,7 @@
   font-weight: 700;
   font-size: 2.9rem;
   line-height: 1.12;
-  color: $color-primary;
+  color: $color-accent;
   margin-bottom: 1rem;
 }
 
@@ -63,9 +74,10 @@
   }
 
   // < 475px : 1 card
-  @include down ($bp-mobile) {
+  @include down($bp-mobile) {
     grid-template-columns: 1fr;
   }
+
 }
 
 .cardTitle {

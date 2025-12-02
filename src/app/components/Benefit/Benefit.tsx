@@ -107,6 +107,7 @@ export default function Benefit() {
           </a>
         </footer>
       </div>
+      <div className={styles.separator} />
     </section>
   );
 }

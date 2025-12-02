@@ -1,0 +1,81 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.separator {
+  position: absolute;
+  bottom: -50px;         // chevauche proprement la section suivante
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background: $color-accent;
+  clip-path: polygon(0 0, 100% 55%, 100% 100%, 0 100%);
+  margin-bottom: 3rem;
+  pointer-events: none;  // évite tout bug de clic
+}
+
+/* IMPORTANT : Projects doit être positionné en relatif */
+.projects {
+  position: relative;  // ok !
+  background: $color-bg;
+  color: $color-text;
+  padding-block: 5rem 6rem; // on ajoute de la marge en haut
+}
+
+.kicker {
+  display: inline-block;
+  padding: 0.25rem 1rem;
+  border-radius: 999px;
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba($color-accent, 0.18);
+  color: $color-primary;
+  margin-bottom: 1rem;
+}
+
+
+/* Header de la section */
+.intro {
+  @include container;
+  text-align: center;
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.title {
+  font-size: 2.9rem;
+  font-weight: 700;
+  color: $color-accent;
+  margin-bottom: 1rem;
+
+  @include down($bp-mobile) {
+    font-size: 2.2rem;
+  }
+}
+
+.subtitle {
+  font-size: 1.7rem;
+  line-height: 1.7;
+  color: $color-primary;
+  max-width: 700px;
+  margin-inline: auto;
+
+  @include down($bp-mobile) {
+    font-size: 1.2rem;
+  }
+}
+
+/* Chaque projet = bloc vertical aéré mais sans 100vh */
+.projectSection {
+  padding-block: 1rem;
+  display: flex;
+  align-items: center;
+
+  @include down($bp-tablet) {
+    padding-block: 2.25rem;
+  }
+
+  @include down($bp-mobile) {
+    padding-block: 2rem;
+  }
+}

@@ -12,7 +12,10 @@ html,
 body {
   margin: 0;
   padding: 0;
+  max-width: 100%;
+  overflow-x: hidden; // ← coupe tout scroll horizontal parasite
 }
+
 
 html {
   scroll-behavior: smooth;
@@ -24,6 +27,7 @@ body {
   line-height: $line-height-base;
   background: $color-bg;
   color: $color-text;
+    padding-top: 74px; 
 }
 
 /* Typo globale */
@@ -61,22 +65,5 @@ a {
 
 /* Sections */
 section {
-  padding-block: 4rem;
+  padding-block: 3rem;
 }
-
-// /* ===== CACHER LES SCROLLBARS PARTOUT ===== */
-
-// /* Chrome, Edge, Safari */
-// html::-webkit-scrollbar,
-// body::-webkit-scrollbar,
-// *::-webkit-scrollbar {
-//   width: 0 !important;
-//   height: 0 !important;
-// }
-
-// /* Firefox */
-// html,
-// body {
-//   scrollbar-width: none;      // masque la scrollbar
-//   -ms-overflow-style: none;   // pour IE/Edge legacy
-// }
