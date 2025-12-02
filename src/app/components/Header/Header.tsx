@@ -34,7 +34,7 @@ export default function Header() {
           {/* Logo à gauche */}
           <Link href="#hero" className={styles.brand} onClick={handleNavClick}>
             <Image
-              src="/logo.png"
+              src="/logoGold.webp"
               alt="Logo Devhook"
               width={50}
               height={15}
