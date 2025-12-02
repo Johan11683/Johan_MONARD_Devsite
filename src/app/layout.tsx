@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: 'Création de Sites Vitrines',
   description: 'Johan MONARD Création de sites vitrines pour TPE & PME',
   icons: {
-    icon: '/favicon.png',
+    icon: '/favicon.ico',
   },
   openGraph: {
     title: 'Johan MONARD',
