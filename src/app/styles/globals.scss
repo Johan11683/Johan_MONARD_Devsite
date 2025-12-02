@@ -1,0 +1,82 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+/* Reset basique */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-sans;
+  font-size: $base-font-size;
+  line-height: $line-height-base;
+  background: $color-bg;
+  color: $color-text;
+}
+
+/* Typo globale */
+h1,
+h2,
+h3 {
+  font-family: $font-sans;
+  font-weight: 700;
+  margin: 0 0 0.4em;
+  color: $color-text;
+}
+
+h1 {
+  @include fluid-type(2rem, 3rem);
+}
+
+h2 {
+  @include fluid-type(1.6rem, 2.3rem);
+}
+
+h3 {
+  @include fluid-type(1.3rem, 1.7rem);
+}
+
+p {
+  margin: 0 0 1rem;
+  color: $color-text-muted;
+}
+
+/* Liens */
+a {
+  color: $color-primary;
+  text-decoration: none;
+}
+
+/* Sections */
+section {
+  padding-block: 4rem;
+}
+
+/* ===== CACHER LES SCROLLBARS PARTOUT ===== */
+
+/* Chrome, Edge, Safari */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Firefox */
+html,
+body {
+  scrollbar-width: none;      // masque la scrollbar
+  -ms-overflow-style: none;   // pour IE/Edge legacy
+}

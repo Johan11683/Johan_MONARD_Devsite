@@ -1,0 +1,33 @@
+@use './variables' as *;
+
+/* Conteneur centré */
+@mixin container {
+  max-width: $container-width;
+  margin: 0 auto;
+  padding-inline: $gutter;
+}
+
+/* Flex helpers */
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Media queries simples (mobile-first possible) */
+@mixin down($breakpoint) {
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+/* Typo fluide avec clamp */
+@mixin fluid-type($min, $max) {
+  font-size: clamp(#{$min}, 1rem + 1vw, #{$max});
+}
