@@ -1,4 +1,3 @@
-// import About from '../components/About/About';
 // import Contact from '../components/Contact/Contact';
 // import Footer from '../components/Footer/Footer';
 
@@ -7,6 +6,7 @@ import Hero from './components/Hero/Hero';
 import Benefit from './components/Benefit/Benefit';
 import ProjectsLayout from './components/ProjectsLayout/ProjectsLayout'
 import Prices from './components/Prices/Prices'
+import About from './components/About/About';
 
 
 export default function HomePage() {
@@ -19,8 +19,8 @@ export default function HomePage() {
          <Benefit />
         <ProjectsLayout />
         <Prices />
-        {/*<About />
-        <Contact /> */}
+        <About />
+        {/* <Contact /> */}
       </main>
 
       {/* <Footer /> */}

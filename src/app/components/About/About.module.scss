@@ -1,0 +1,150 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.about {
+  background: $color-bg;
+  color: $color-text;
+  padding-block: 5rem 3rem; // on enlève la logique "pour le separator absolute"
+}
+
+.inner {
+  @include container;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+  gap: 3rem;
+  align-items: center;
+
+  @include down($bp-tablet) {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* === COLONNE PHOTO === */
+
+.photoColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.photoWrapper {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+  background: #000;
+
+  @include down($bp-mobile) {
+    width: 210px;
+    height: 210px;
+  }
+}
+
+.photo {
+  object-fit: cover;
+  object-position: center 10%; // tu peux jouer avec 15–20% si tu veux encore descendre
+}
+
+.photoCaption {
+  margin-top: 1rem;
+  font-size: 1.05rem;
+  color: $color-text-muted;
+}
+
+/* === COLONNE TEXTE === */
+
+.textColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @include down($bp-mobile) {
+    text-align: left;
+  }
+}
+
+.kicker {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba($color-accent, 0.18);
+  color: $color-primary;
+  margin-bottom: 0.4rem;
+}
+
+.title {
+  font-family: $font-sans;
+  font-weight: 700;
+  font-size: 2.6rem;
+  line-height: 1.15;
+  color: $color-accent;
+  margin-bottom: 0.5rem;
+
+  @include down($bp-mobile) {
+    font-size: 2.1rem;
+  }
+}
+
+.lead {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: $color-primary;
+}
+
+.text {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: $color-text-muted;
+}
+
+/* === LISTE DES POINTS FORTS === */
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.listItem {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: $color-text-muted;
+  position: relative;
+  padding-left: 1.4rem;
+
+  &::before {
+    content: '•';
+    position: absolute;
+    left: 0.2rem;
+    top: 0;
+    color: $color-accent;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+
+  strong {
+    color: $color-primary;
+    font-weight: 600;
+  }
+}
+
+/* === SEPARATOR EN BAS (SIMPLE, PLUS D'ABSOLUTE) === */
+
+.separator {
+  width: 100%;
+  height: 80px;
+  background: $color-accent;
+  clip-path: polygon(0 0, 100% 60%, 100% 100%, 0 100%);
+  margin-top: 6.7rem;
+}
