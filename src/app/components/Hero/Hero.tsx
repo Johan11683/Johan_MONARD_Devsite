@@ -10,7 +10,7 @@ export default function Hero() {
           </h1>
 
           <p className={styles.subtitle}>
-            Je crée des sites à votre image afin de développer votre visibilité sur en ligne.
+            Je crée des sites à votre image afin de développer votre visibilité en ligne.
           </p>
 
           <a href="#prices" className={styles.pricesLink}>

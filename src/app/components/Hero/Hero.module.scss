@@ -95,7 +95,7 @@
     opacity: 0.85;
     pointer-events: none;
 
-    /* 4 côtés complets, pas de 50% */
+    /* 4 côtés complets*/
     background:
       linear-gradient(to right, $color-accent, $color-accent) 0 0,          // haut
       linear-gradient(to right, $color-accent, $color-accent) 100% 100%,    // bas
@@ -109,7 +109,7 @@
   }
 
   &:hover::before {
-    background-size: 95% 3px, 95% 3px, 2px 95%, 2px 95%;  // tout le tour
+    background-size: 95% 3px, 95% 3px, 2px 95%, 2px 95%;  // tout le tour sauf petit mm
   }
 
 }
@@ -136,26 +136,78 @@
 
 /* === RESPONSIVE === */
 
+/* TABLETTE : fond fixe désactivé + un peu plus de respi */
 @include down($bp-tablet) {
   .hero {
     background-attachment: scroll;
+    padding-block: 6rem 4rem;
+  }
+
+  .heroContent {
+    max-width: 560px;
   }
 }
 
+/* MOBILE : tout plus gros et centré */
 @include down($bp-mobile) {
+  .hero {
+    padding-block: 5.5rem 3.5rem;
+    text-align: center;
+  }
+
+  .heroContent {
+    margin-inline: auto;
+  }
+
   .title {
-    @include fluid-type(2.4rem, 3rem);
+    // plus grand et compact
+    @include fluid-type(3.3rem, 3.7rem);
+    line-height: 1.15;
   }
 
   .subtitle {
-    @include fluid-type(1.1rem, 1.3rem);
+    @include fluid-type(1.7rem, 1.5rem);
+    line-height: 1.5;
+    max-width: 30rem;
+    margin-inline: auto;
+    margin-top: 1rem;
+ 
+  }
+
+  @include down($bp-mobile) {
+  .title,
+  .subtitle,
+  .tagline {
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8);
+  }
+}
+
+
+  .tagline {
+    // si tu as un petit texte sous le sous-titre
+    @include fluid-type(1.1rem, 1.2rem);
+    margin-top: 0.75rem;
+  }
+
+  .ctaGroup {
+    // groupe de boutons / lien
+    margin-top: 1.8rem;
+    gap: 0.9rem;
+
+    button,
+    a {
+      font-size: 1.1rem;
+      padding: 0.9rem 1.6rem;
+    }
   }
 
   .pricesInner {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    line-height: 1.6;
   }
 
   .arrow {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
+    margin-top: 1.8rem;
   }
 }
