@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 
 import styles from './Benefit.module.scss';
 
@@ -19,15 +20,36 @@ export default function Benefit() {
 
         <div className={styles.grid}>
           <article className={styles.card}>
-            <h3 className={styles.cardTitle}>Compréhensible en un coup d&apos;œil</h3>
-            <p className={styles.cardText}>
-              On va droit au but : qui vous êtes, ce que vous proposez, comment vous contacter.
-              En un coup d&apos;œil votre client trouve l&apos;essentiel.
-            </p>
-          </article>
+            <h3 className={styles.cardTitle}>
+                <Image
+                src="/images/recherche.png"
+                alt=""
+                width={32}
+                height={32}
+                className={styles.icon}
+                aria-hidden="true"
+                />
+                Compréhensible en un coup d&apos;œil
+            </h3>
+
+  <p className={styles.cardText}>
+    On va droit au but : qui vous êtes, ce que vous proposez, comment vous contacter.
+    En un coup d&apos;œil votre client trouve l&apos;essentiel.
+  </p>
+</article>
+
 
           <article className={styles.card}>
-            <h3 className={styles.cardTitle}>Pensé pour vos clients</h3>
+            <h3 className={styles.cardTitle}>
+                <Image
+                src="/images/supporter.png"
+                alt=""
+                width={32}
+                height={32}
+                className={styles.icon}
+                aria-hidden="true"
+                />
+                Pensé pour vos clients</h3>
             <p className={styles.cardText}>
               J&apos;écris vos textes avec des mots simples, des titres clairs et une mise en page
               qui donne envie de lire. L&apos;objectif : inspirer confiance et donner envie de passer à l&apos;action.
@@ -35,7 +57,16 @@ export default function Benefit() {
           </article>
 
           <article className={styles.card}>
-            <h3 className={styles.cardTitle}>Une prestation transparente</h3>
+            <h3 className={styles.cardTitle}>
+                <Image
+                src="/images/contracter.png"
+                alt=""
+                width={32}
+                height={32}
+                className={styles.icon}
+                aria-hidden="true"
+                />
+                Une prestation transparente</h3>
             <p className={styles.cardText}>
               Tout est posé noir sur blanc dès le départ : tarif, délais, étapes. Pas de frais cachés, 
               pas de surprise en cours de route. Une fois le design validé ensemble, vous n’avez presque rien à gérer. Votre temps est précieux.
@@ -45,7 +76,16 @@ export default function Benefit() {
           </article>
 
           <article className={styles.card}>
-            <h3 className={styles.cardTitle}>Vous êtes propriétaire du site</h3>
+            <h3 className={styles.cardTitle}>
+                <Image
+                src="/images/proprietaire.png"
+                alt=""
+                width={32}
+                height={32}
+                className={styles.icon}
+                aria-hidden="true"
+                />
+                Vous êtes propriétaire du site</h3>
             <p className={styles.cardText}>
               Votre site est hébergé gratuitement sur 
               <a href="https://vercel.com" target="_blank" rel="noopener noreferrer"> Vercel</a>,
@@ -60,7 +100,7 @@ export default function Benefit() {
         <footer className={styles.footer}>
           <p className={styles.footerText}>
             Concrètement, on part de votre réalité : votre métier, vos clients, vos mots. 
-            Je m&apos;occupe de traduire tout ça en un site propre, rapide et professionnel.
+            Je m&apos;occupe de traduire tout ça en un site propre, rapide et professionnel. <br/> Un site qui travaille pour vous.
           </p>
           <a href="#contact" className={styles.footerLink}>
             Discuter de votre projet
