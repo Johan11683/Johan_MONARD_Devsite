@@ -1,0 +1,85 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.footer {
+  background: rgba($color-primary, 0.98);
+  color: rgba($color-bg, 0.75);
+  margin-top: 20px; // au cas où
+}
+
+/* fine barre d’accent, comme la topBar du header */
+.accentBar {
+  height: 2px;
+  width: 100%;
+  background: $color-accent;
+}
+
+/* wrapper principal, même logique que le header */
+.inner {
+  @include container;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-block: 1rem 1.2rem;
+  font-size: 0.9rem;
+
+  @include down($bp-mobile) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+}
+
+/* bloc gauche : “marque” très discret */
+.brandBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.brandName {
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: rgba($color-bg, 0.85);
+}
+
+.brandBaseline {
+  font-size: 0.85rem;
+  color: rgba($color-bg, 0.6);
+}
+
+/* bloc droit : meta + lien légal */
+.metaBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+  text-align: right;
+
+  @include down($bp-mobile) {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+.copy {
+  font-size: 0.8rem;
+  color: rgba($color-bg, 0.6);
+}
+
+.legalLink {
+  font-size: 0.85rem;
+  color: rgba($color-bg, 0.8);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+
+  &:hover {
+    color: $color-accent;
+    border-color: rgba($color-accent, 0.7);
+    transform: translateY(-1px);
+  }
+}

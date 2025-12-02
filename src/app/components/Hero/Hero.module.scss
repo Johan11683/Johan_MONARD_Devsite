@@ -1,5 +1,7 @@
 @use '../../styles/variables' as *;
 @use '../../styles/mixins' as *;
+@use 'sass:color';
+
 
 /* === HERO === */
 
@@ -82,7 +84,7 @@
     transform 0.3s ease;
 
   &:hover {
-    color: lighten($color-accent, 8%);
+    color: color.adjust($color-accent, $lightness: 8%);
     transform: translateY(-2px);
   }
 

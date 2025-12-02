@@ -1,0 +1,222 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use 'sass:color';
+
+
+.contact {
+  background: $color-bg;
+  color: $color-text;
+  padding-block: 4.5rem 4rem;
+  scroll-margin-top: 6rem; // pour l’ancre #contact avec le header sticky
+}
+
+.separator {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background: $color-accent;
+  clip-path: polygon(0 0, 100% 55%, 100% 100%, 0 100%);
+  margin-bottom: 3rem;
+}
+
+.inner {
+  @include container;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+  gap: 3.5rem;
+  align-items: flex-start;
+
+  @include down($bp-tablet) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+/* === COLONNE INFOS === */
+
+.infoColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.kicker {
+  display: inline-flex;
+  max-width: 90px;
+  padding: 0.25rem 1rem;
+  border-radius: 999px;
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba($color-accent, 0.18);
+  color: $color-primary;
+}
+
+.title {
+  font-family: $font-sans;
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 1.15;
+  color: $color-accent;
+  margin-bottom: 0.3rem;
+
+  @include down($bp-mobile) {
+    font-size: 2.1rem;
+  }
+}
+
+.lead {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: $color-primary;
+}
+
+.contactList {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contactItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.contactLabel {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $color-text-muted;
+}
+
+.contactLink {
+  font-size: 1.2rem;
+  color: $color-primary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.contactText {
+  font-size: 1.1rem;
+  color: $color-text-muted;
+}
+
+/* === COLONNE FORMULAIRE === */
+
+.formColumn {
+  background: $color-bg-alt;
+  border-radius: 1.4rem;
+  padding: 2.2rem 2rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.06);
+  border: 1px solid $color-border;
+
+  @include down($bp-mobile) {
+    padding: 2rem 1.4rem;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: $color-primary;
+}
+
+.input {
+  border-radius: 0.8rem;
+  border: 1px solid $color-border;
+  padding: 0.85rem 1rem;
+  font: inherit;
+  background: #fff;
+  color: $color-text;
+  outline: none;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+
+  &:focus-visible {
+    border-color: $color-accent;
+    box-shadow: 0 0 0 2px rgba($color-accent, 0.25);
+    background: #fffef8;
+  }
+}
+
+.textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+/* === BOUTON === */
+
+.submitButton {
+  margin-top: 0.4rem;
+  align-self: flex-start;
+  padding: 0.9rem 2.2rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: $color-primary;
+  color: $color-bg;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    opacity 0.25s ease;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.2);
+    background: color.adjust($color-primary, $lightness: -4%);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: default;
+  }
+}
+
+/* === STATUTS === */
+
+.statusSuccess,
+.statusError {
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+}
+
+.statusSuccess {
+  color: $color-success;
+}
+
+.statusError {
+  color: $color-error;
+}
+
+.inlineLink {
+  color: $color-primary;
+  text-decoration: underline;
+}

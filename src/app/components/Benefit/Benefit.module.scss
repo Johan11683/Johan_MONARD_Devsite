@@ -1,5 +1,7 @@
 @use '../../styles/variables' as *;
 @use '../../styles/mixins' as *;
+@use 'sass:color';
+
 
 .benefit {
   position: relative;
@@ -148,7 +150,7 @@
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
-    background: darken($color-primary, 4%);
+    background: color.adjust($color-primary, $lightness: -4%);
   }
 }
 
