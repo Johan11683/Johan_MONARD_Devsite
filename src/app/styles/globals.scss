@@ -64,19 +64,19 @@ section {
   padding-block: 4rem;
 }
 
-/* ===== CACHER LES SCROLLBARS PARTOUT ===== */
+// /* ===== CACHER LES SCROLLBARS PARTOUT ===== */
 
-/* Chrome, Edge, Safari */
-html::-webkit-scrollbar,
-body::-webkit-scrollbar,
-*::-webkit-scrollbar {
-  width: 0 !important;
-  height: 0 !important;
-}
+// /* Chrome, Edge, Safari */
+// html::-webkit-scrollbar,
+// body::-webkit-scrollbar,
+// *::-webkit-scrollbar {
+//   width: 0 !important;
+//   height: 0 !important;
+// }
 
-/* Firefox */
-html,
-body {
-  scrollbar-width: none;      // masque la scrollbar
-  -ms-overflow-style: none;   // pour IE/Edge legacy
-}
+// /* Firefox */
+// html,
+// body {
+//   scrollbar-width: none;      // masque la scrollbar
+//   -ms-overflow-style: none;   // pour IE/Edge legacy
+// }
