@@ -1,0 +1,215 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use 'sass:color';
+
+
+/* === HERO === */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  color: #ffffff;
+
+  background-image:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0.35),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url('/images/HeroPc.webp');
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inner {
+  @include container;
+  padding-block: 5rem 6rem;
+  display: flex;
+  justify-content: center;
+}
+
+.textBlock {
+  max-width: 720px;
+  text-align: center;
+}
+
+/* === TITLE === */
+
+.title {
+  @include fluid-type(5.5rem, 5rem);
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+  color: $color-bg-alt;
+}
+
+/* === SUBTITLE === */
+
+.subtitle {
+  @include fluid-type(1.3rem, 1.6rem);
+  color: rgba(#ffffff, 0.95);
+  margin-bottom: 2.5rem;
+}
+
+/* === CTA : TARIFS + FLÈCHE === */
+
+.pricesLink {
+  text-decoration: none;
+  color: $color-accent;
+  cursor: pointer;
+}
+
+.pricesInner {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  padding: 0.6rem 1.2rem;
+
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+
+  &:hover {
+    color: color.adjust($color-accent, $lightness: 8%);
+    transform: translateY(-2px);
+  }
+
+  /* === Encadré animé autour du texte === */
+    &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 6px;
+    opacity: 0.85;
+    pointer-events: none;
+
+    /* 4 côtés complets*/
+    background:
+      linear-gradient(to right, $color-accent, $color-accent) 0 0,          // haut
+      linear-gradient(to right, $color-accent, $color-accent) 100% 100%,    // bas
+      linear-gradient(to bottom, $color-accent, $color-accent) 0 0,         // gauche
+      linear-gradient(to bottom, $color-accent, $color-accent) 100% 0;      // droite
+
+    background-repeat: no-repeat;
+    background-size: 0 2px, 0 2px, 2px 0, 2px 0;   // départ : rien visible
+
+    transition: background-size 0.8s linear;
+  }
+
+  &:hover::before {
+    background-size: 95% 3px, 95% 3px, 2px 95%, 2px 95%;  // tout le tour sauf petit mm
+  }
+
+}
+
+.pricesText {
+  text-transform: uppercase;
+}
+
+.arrow {
+  font-size: 1.5rem;
+  line-height: 1;
+  animation: arrow-bounce 1.4s infinite;
+}
+
+@keyframes arrow-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(4px);
+  }
+}
+
+/* === RESPONSIVE === */
+
+/* TABLETTE : fond fixe désactivé + un peu plus de respi */
+@include down($bp-tablet) {
+  .hero {
+    background-attachment: scroll;
+    padding-block: 6rem 4rem;
+  }
+
+  .heroContent {
+    max-width: 560px;
+  }
+}
+
+/* MOBILE : tout plus gros et centré */
+@include down($bp-mobile) {
+  .hero {
+    padding-block: 5.5rem 3.5rem;
+    text-align: center;
+  }
+
+  .heroContent {
+    margin-inline: auto;
+  }
+
+  .title {
+    // plus grand et compact
+    @include fluid-type(3.3rem, 3.7rem);
+    line-height: 1.15;
+  }
+
+  .subtitle {
+    @include fluid-type(1.7rem, 1.5rem);
+    line-height: 1.5;
+    max-width: 30rem;
+    margin-inline: auto;
+    margin-top: 1rem;
+ 
+  }
+
+  @include down($bp-mobile) {
+  .title,
+  .subtitle,
+  .tagline {
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8);
+  }
+}
+
+
+  .tagline {
+    // si tu as un petit texte sous le sous-titre
+    @include fluid-type(1.1rem, 1.2rem);
+    margin-top: 0.75rem;
+  }
+
+  .ctaGroup {
+    // groupe de boutons / lien
+    margin-top: 1.8rem;
+    gap: 0.9rem;
+
+    button,
+    a {
+      font-size: 1.1rem;
+      padding: 0.9rem 1.6rem;
+    }
+  }
+
+  .pricesInner {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+
+  .arrow {
+    font-size: 1.6rem;
+    margin-top: 1.8rem;
+  }
+}

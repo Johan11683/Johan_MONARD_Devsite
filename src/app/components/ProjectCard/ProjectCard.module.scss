@@ -1,0 +1,124 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.card {
+  @include container;
+}
+
+.cardLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-decoration: none;
+}
+
+/* === IMAGE LARGE, CENTRÉE === */
+
+.imageWrapper {
+  position: relative;
+
+  /* largeur quasi full écran, mais limitée */
+  width: 90vw;
+  max-width: 1400px;
+  max-height: 50vh;
+  margin-inline: auto;
+
+  aspect-ratio: 16 / 9;     // bannière
+  overflow: hidden;
+  border-radius: 0.8rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+  background: #000;
+
+  transform-origin: center;
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.03);
+  transition: transform 0.6s ease;
+}
+
+/* léger dégradé pour dramatiser l'image */
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0.45)
+  );
+  opacity: 0.15;
+  transition: opacity 0.4s ease;
+}
+
+/* Hover global de la carte */
+.cardLink:hover .imageWrapper {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+.cardLink:hover .image {
+  transform: scale(1.08);
+}
+
+.cardLink:hover .imageOverlay {
+  opacity: 0.3;
+}
+
+/* === TEXTE === */
+
+.text {
+  text-align: center;
+}
+
+.kicker {
+  font-size: 0.95rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: $color-text-muted;
+  margin-bottom: 0.3rem;
+}
+
+.title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: $color-primary;
+  margin-bottom: 0.4rem;
+
+  @include down($bp-mobile) {
+    font-size: 2rem;
+  }
+}
+
+.subtitle {
+  font-size: 1.4rem;
+  color: $color-text-muted;
+
+  @include down($bp-mobile) {
+    font-size: 1.15rem;
+  }
+}
+
+/* === RESPONSIVE === */
+
+/* Tablette : un peu plus haut */
+@include down($bp-tablet) {
+  .imageWrapper {
+    width: 94vw;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* Mobile : encore un peu plus vertical mais toujours large */
+@include down($bp-mobile) {
+  .imageWrapper {
+    width: 94vw;
+    aspect-ratio: 4 / 3;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+  }
+}
