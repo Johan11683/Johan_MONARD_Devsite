@@ -65,10 +65,12 @@
   }
 }
 
-/* Chaque projet = bloc vertical aéré mais sans 100vh */
+/* Chaque projet = bloc centré dans le même container que l'intro */
 .projectSection {
-  padding-block: 1rem;
+  @include container;              // ← même largeur que .intro
+  padding-block: 3rem 3.5rem;
   display: flex;
+  justify-content: center;         // ← centre la card dans le container
   align-items: center;
 
   @include down($bp-tablet) {

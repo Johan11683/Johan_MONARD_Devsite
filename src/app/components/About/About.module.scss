@@ -149,4 +149,8 @@
   background: $color-accent;
   clip-path: polygon(0 0, 100% 60%, 100% 100%, 0 100%);
   margin-top: 6.7rem;
+  @include down($bp-mobile) {
+    margin-top: 1rem;
+    margin-bottom: -4rem;
+  }
 }
