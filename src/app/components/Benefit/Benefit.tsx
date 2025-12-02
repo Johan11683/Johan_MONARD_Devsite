@@ -70,7 +70,6 @@ export default function Benefit() {
             <p className={styles.cardText}>
               Tout est posé noir sur blanc dès le départ : tarif, délais, étapes. Pas de frais cachés, 
               pas de surprise en cours de route. Une fois le design validé ensemble, vous n’avez presque rien à gérer. Votre temps est précieux.
-              <br /><br />
               
             </p>
           </article>
@@ -94,6 +93,28 @@ export default function Benefit() {
               Je vous accompagne pas à pas pour tout mettre en place.
             </p>
           </article>
+
+          <article className={styles.card}>
+            <h3 className={styles.cardTitle}>
+                <Image
+                src="/images/free-lance.png"
+                alt=""
+                width={32}
+                height={32}
+                className={styles.icon}
+                aria-hidden="true"
+                />
+                Sans contrat de maintenance
+            </h3>
+
+            <p className={styles.cardText}>
+                Vous restez propriétaire de votre site à 100%, sans aucun abonnement ni
+                engagement. Une fois le site livré, vous êtes totalement autonome.
+                Besoin d’évolutions par la suite ? Je vous accompagne sur devis, uniquement
+                lorsque vous en avez besoin.
+            </p>
+            </article>
+
 
         </div>
 

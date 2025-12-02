@@ -73,10 +73,17 @@ export default function Prices() {
 
         {/* Texte additionnel */}
         <div className={styles.custom}>
-  Vous avez un besoin particulier ?
-  <strong> Je réalise aussi des devis sur mesure </strong>
-  pour s’adapter à votre activité.
-</div>
+        <p>
+            Vous avez un besoin spécifique ? 
+            Nous en parlons ensemble et je vous propose un devis adapté à votre activité.
+        </p>
+
+        <p>
+            Toutes les prestations incluent un mois de suivi et de petits ajustements après la mise en ligne. 
+            Au-delà, les interventions ponctuelles sont facturées <strong>40&nbsp;€/heure</strong>.
+        </p>
+        </div>
+
         {/* Mention légale */}
         <footer className={styles.note}>
           *Tarifs non soumis à la TVA selon l’article 293 B du CGI

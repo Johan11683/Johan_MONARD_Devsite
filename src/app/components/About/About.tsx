@@ -43,7 +43,7 @@ export default function About() {
             J&apos;ai appris à écouter, comprendre un métier rapidement, expliquer simplement
             des choses techniques et gérer des relations sur la durée. Aujourd&apos;hui,
             j&apos;utilise ces compétences pour traduire votre activité en un site clair,
-            rassurant et crédible pour tes clients.
+            rassurant et crédible pour vos clients.
           </p>
 
           <p className={styles.text}>
