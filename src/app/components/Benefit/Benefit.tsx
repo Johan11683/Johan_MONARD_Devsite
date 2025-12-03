@@ -1,130 +1,136 @@
 'use client';
+
 import Image from 'next/image';
+import { useTranslation } from 'react-i18next';
 
 import styles from './Benefit.module.scss';
 
 export default function Benefit() {
+  const { t } = useTranslation('benefit');
+
   return (
     <section id="benefit" className={styles.benefit} aria-labelledby="benefit-title">
       <div className={styles.inner}>
         <header className={styles.intro}>
-          <p className={styles.kicker}>Ce que je fais pour vous</p>
+          <p className={styles.kicker}>{t('kicker')}</p>
           <h2 id="benefit-title" className={styles.title}>
-            Un site simple, clair, qui vous aide vraiment à vendre
+            {t('title')}
           </h2>
           <p className={styles.subtitle}>
-            Mon rôle : transformer vos idées en une présence en ligne nette et rassurante,
-            que vos clients comprennent en quelques secondes.
+            {t('subtitle')}
           </p>
         </header>
 
         <div className={styles.grid}>
+          {/* Carte 1 */}
           <article className={styles.card}>
             <h3 className={styles.cardTitle}>
-                <Image
+              <Image
                 src="/images/recherche.png"
                 alt=""
                 width={32}
                 height={32}
                 className={styles.icon}
                 aria-hidden="true"
-                />
-                Compréhensible en un coup d&apos;œil
+              />
+              {t('cards.overview.title')}
             </h3>
 
-  <p className={styles.cardText}>
-    On va droit au but : qui vous êtes, ce que vous proposez, comment vous contacter.
-    En un coup d&apos;œil votre client trouve l&apos;essentiel.
-  </p>
-</article>
+            <p className={styles.cardText}>
+              {t('cards.overview.text')}
+            </p>
+          </article>
 
-
+          {/* Carte 2 */}
           <article className={styles.card}>
             <h3 className={styles.cardTitle}>
-                <Image
+              <Image
                 src="/images/supporter.png"
                 alt=""
                 width={32}
                 height={32}
                 className={styles.icon}
                 aria-hidden="true"
-                />
-                Pensé pour vos clients</h3>
+              />
+              {t('cards.clients.title')}
+            </h3>
             <p className={styles.cardText}>
-              J&apos;écris vos textes avec des mots simples, des titres clairs et une mise en page
-              qui donne envie de lire. L&apos;objectif : inspirer confiance et donner envie de passer à l&apos;action.
+              {t('cards.clients.text')}
             </p>
           </article>
 
+          {/* Carte 3 */}
           <article className={styles.card}>
             <h3 className={styles.cardTitle}>
-                <Image
+              <Image
                 src="/images/contracter.png"
                 alt=""
                 width={32}
                 height={32}
                 className={styles.icon}
                 aria-hidden="true"
-                />
-                Une prestation transparente</h3>
+              />
+              {t('cards.transparent.title')}
+            </h3>
             <p className={styles.cardText}>
-              Tout est posé noir sur blanc dès le départ : tarif, délais, étapes. Pas de frais cachés, 
-              pas de surprise en cours de route. Une fois le design validé ensemble, vous n’avez presque rien à gérer. Votre temps est précieux.
-              
+              {t('cards.transparent.text')}
             </p>
           </article>
 
+          {/* Carte 4 */}
           <article className={styles.card}>
             <h3 className={styles.cardTitle}>
-                <Image
+              <Image
                 src="/images/proprietaire.png"
                 alt=""
                 width={32}
                 height={32}
                 className={styles.icon}
                 aria-hidden="true"
-                />
-                Vous êtes propriétaire du site</h3>
+              />
+              {t('cards.ownership.title')}
+            </h3>
             <p className={styles.cardText}>
-              Votre site est hébergé gratuitement sur 
-              <a href="https://vercel.com" target="_blank" rel="noopener noreferrer"> Vercel</a>,
-              et vous gardez la propriété de votre nom de domaine acheté sur 
-              <a href="https://ovh.com" target="_blank" rel="noopener noreferrer"> OVH</a>. 
-              Je vous accompagne pas à pas pour tout mettre en place.
+              {t('cards.ownership.textPart1')}{' '}
+              <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">
+                Vercel
+              </a>
+              {t('cards.ownership.textPart2')}{' '}
+              <a href="https://ovh.com" target="_blank" rel="noopener noreferrer">
+                OVH
+              </a>
+              {t('cards.ownership.textPart3')}
             </p>
           </article>
 
+          {/* Carte 5 */}
           <article className={styles.card}>
             <h3 className={styles.cardTitle}>
-                <Image
+              <Image
                 src="/images/free-lance.png"
                 alt=""
                 width={32}
                 height={32}
                 className={styles.icon}
                 aria-hidden="true"
-                />
-                Sans contrat de maintenance
+              />
+              {t('cards.noMaintenance.title')}
             </h3>
 
             <p className={styles.cardText}>
-                Vous restez propriétaire de votre site à 100%, sans aucun abonnement ni
-                engagement. Une fois le site livré, vous êtes totalement autonome.
-                Besoin d’évolutions par la suite ? Je vous accompagne sur devis, uniquement
-                lorsque vous en avez besoin.
+              {t('cards.noMaintenance.text')}
             </p>
-            </article>
-
-
+          </article>
         </div>
 
         <footer className={styles.footer}>
           <p className={styles.footerText}>
-            Concrètement, on part de votre réalité : votre métier, vos clients, vos mots. 
-            Je m&apos;occupe de traduire tout ça en un site propre, rapide et professionnel. <br/> Un site qui travaille pour vous.
+            {t('footer.line1')}
+            <br />
+            {t('footer.line2')}
           </p>
           <a href="#contact" className={styles.footerLink}>
-            Discuter de votre projet
+            {t('footer.cta')}
           </a>
         </footer>
       </div>

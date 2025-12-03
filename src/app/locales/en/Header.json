@@ -1,0 +1,21 @@
+{
+  "logoAlt": "Devhook logo",
+  "mainNavAria": "Main navigation",
+  "mainNavMobileAria": "Main mobile navigation",
+  "langSwitchAria": "Change language",
+  "nav": {
+    "benefit": "Service",
+    "projects": "Projects",
+    "prices": "Pricing",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "phone": {
+    "button": "Call",
+    "srLabel": "Call +33 7 77 84 26 12"
+  },
+  "burger": {
+    "open": "Open menu",
+    "close": "Close menu"
+  }
+}

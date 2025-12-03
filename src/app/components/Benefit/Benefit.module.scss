@@ -23,7 +23,7 @@
 .inner {
   @include container;
   position: relative;
-  z-index: 1;                 // le contenu passe devant le separator
+  z-index: 1;
 }
 
 

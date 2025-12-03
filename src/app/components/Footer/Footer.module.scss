@@ -4,7 +4,7 @@
 .footer {
   background: rgba($color-primary, 0.98);
   color: rgba($color-bg, 0.75);
-  margin-top: 20px; // au cas où
+  margin-top: 20px;
 }
 
 /* fine barre d’accent, comme la topBar du header */
@@ -31,7 +31,7 @@
   }
 }
 
-/* bloc gauche : “marque” très discret */
+/* bloc gauche : marque */
 .brandBlock {
   display: flex;
   flex-direction: column;

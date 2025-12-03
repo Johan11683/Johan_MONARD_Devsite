@@ -1,0 +1,36 @@
+{
+  "kicker": "What I do for you",
+  "title": "A simple, clear website that really helps you sell",
+  "subtitle": "My role is to turn your ideas into a clean, reassuring online presence that your clients understand in just a few seconds.",
+
+  "cards": {
+    "overview": {
+      "title": "Clear at a glance",
+      "text": "We go straight to the point: who you are, what you offer, how to contact you. In one glance, your client finds the essentials."
+    },
+    "clients": {
+      "title": "Designed for your clients",
+      "text": "I write your content with simple words, clear headings and a layout that makes people want to read. The goal: inspire trust and encourage them to take action."
+    },
+    "transparent": {
+      "title": "A transparent service",
+      "text": "Everything is laid out from the start: price, timeline, steps. No hidden fees, no nasty surprises along the way. Once the design is validated together, you have almost nothing left to manage. Your time is valuable."
+    },
+    "ownership": {
+      "title": "You own your website",
+      "textPart1": "Your site is hosted for free on",
+      "textPart2": ", and you keep full ownership of your domain name, purchased on",
+      "textPart3": ". I guide you step by step to set everything up."
+    },
+    "noMaintenance": {
+      "title": "No maintenance contract",
+      "text": "You remain 100% owner of your website, with no subscription and no long-term commitment. Once the site is delivered, you stay fully autonomous. Need new features later on? I help you on a quote basis, only when you need it."
+    }
+  },
+
+  "footer": {
+    "line1": "In practice, we start from your reality: your business, your clients, your own words. I turn all of that into a clean, fast and professional website.",
+    "line2": "A website that works for you.",
+    "cta": "Talk about your project"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "kicker": "Tarifs",
+  "title": "Mes prestations",
+  "subtitle": "Trois offres simples et transparentes. Si vos besoins sortent du cadre, je propose aussi des devis sur mesure.",
+
+  "cards": {
+    "simple": {
+      "title": "Site vitrine simple",
+      "price": "700 €*",
+      "description": "L'essentiel pour présenter votre activité proprement et inspirer confiance.",
+      "features": {
+        "item1": "Design moderne et responsive",
+        "item2": "Optimisation SEO local",
+        "item3": "Site en une ou plusieurs pages : Accueil, À propos, Contact",
+        "item4": "Hébergement gratuit sur Vercel",
+        "item5": "Accompagnement nom de domaine (OVH)",
+        "item6": "Petites animations + perfectionnement du rendu"
+      }
+    },
+
+    "form": {
+      "title": "Site vitrine + Formulaire email",
+      "price": "900 €*",
+      "description": "La version idéale pour les petites entreprises : un site complet + un vrai formulaire de contact qui envoie des emails.",
+      "features": {
+        "item1": "Toutes les fonctionnalités de l’offre précédente",
+        "item2": "Formulaire de contact",
+        "item3": "Vous recevez des mails de la part de vos clients via le site",
+        "item4": "Anti-spam"
+      }
+    },
+
+    "bilingual": {
+      "title": "Site vitrine bilingue",
+      "price": "1100 €*",
+      "description": "Une version bilingue avec bouton de switch",
+      "features": {
+        "item1": "Toutes les fonctionnalités précédentes",
+        "item2": "Version bilingue (i18n) avec bouton de switch",
+        "item3": "Support étendu pendant 1 mois"
+      }
+    }
+  },
+
+  "custom": {
+    "paragraph1": "Vous avez un besoin spécifique ? Nous en parlons ensemble et je vous propose un devis adapté à votre activité.",
+    "paragraph2": {
+      "before": "Toutes les prestations incluent un mois de suivi et de petits ajustements après la mise en ligne. Au-delà, les interventions ponctuelles sont facturées",
+      "after": "."
+    }
+  },
+
+  "legalNote": "*Tarifs non soumis à la TVA selon l’article 293 B du CGI"
+}

@@ -3,22 +3,22 @@
 
 .separator {
   position: absolute;
-  bottom: -50px;         // chevauche proprement la section suivante
+  bottom: -50px;
   left: 0;
   width: 100%;
   height: 90px;
   background: $color-accent;
   clip-path: polygon(0 0, 100% 55%, 100% 100%, 0 100%);
   margin-bottom: 3rem;
-  pointer-events: none;  // évite tout bug de clic
+  pointer-events: none;
 }
 
 /* IMPORTANT : Projects doit être positionné en relatif */
 .projects {
-  position: relative;  // ok !
+  position: relative;
   background: $color-bg;
   color: $color-text;
-  padding-block: 5rem 6rem; // on ajoute de la marge en haut
+  padding-block: 5rem 6rem;
 }
 
 .kicker {
@@ -67,10 +67,10 @@
 
 /* Chaque projet = bloc centré dans le même container que l'intro */
 .projectSection {
-  @include container;              // ← même largeur que .intro
+  @include container;
   padding-block: 3rem 3.5rem;
   display: flex;
-  justify-content: center;         // ← centre la card dans le container
+  justify-content: center;
   align-items: center;
 
   @include down($bp-tablet) {

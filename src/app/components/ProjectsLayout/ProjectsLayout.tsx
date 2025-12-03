@@ -1,8 +1,13 @@
+'use client';
+
+import { useTranslation } from 'react-i18next';
 import ProjectCard from '../ProjectCard/ProjectCard';
-import { projects } from '../../data/projects.datas';
+import { projectsBase } from '../../data/projects.datas';
 import styles from './ProjectsLayout.module.scss';
 
 export default function ProjectsLayout() {
+  const { t } = useTranslation(['ProjectsLayout', 'ProjectsData']);
+
   return (
     <section
       id="projects"
@@ -10,21 +15,41 @@ export default function ProjectsLayout() {
       aria-labelledby="projects-title"
     >
       <header className={styles.intro}>
-        <p className={styles.kicker}>Ils me font confiance</p>
+        <p className={styles.kicker}>{t('kicker', { ns: 'ProjectsLayout' })}</p>
         <h2 id="projects-title" className={styles.title}>
-          Mes réalisations
+          {t('title', { ns: 'ProjectsLayout' })}
         </h2>
         <p className={styles.subtitle}>
-          Mes réalisations sont faîtes sur mesure, en échangeant avec vous.<br/>
-          Mieux je vous connais, mieux vos clients vous connaîtront.
+          {t('subtitle.line1', { ns: 'ProjectsLayout' })}
+          <br />
+          {t('subtitle.line2', { ns: 'ProjectsLayout' })}
         </p>
       </header>
 
-      {projects.map((project) => (
-        <div key={project.id} className={styles.projectSection}>
-          <ProjectCard {...project} />
-        </div>
-      ))}
+      {projectsBase.map((proj) => {
+        const data = t(proj.id, {
+          ns: 'ProjectsData',
+          returnObjects: true,
+        }) as {
+          title: string;
+          subtitle: string;
+          imageAlt: string;
+        };
+
+        return (
+          <div key={proj.id} className={styles.projectSection}>
+            <ProjectCard
+              id={proj.id}
+              title={data.title}
+              subtitle={data.subtitle}
+              imageAlt={data.imageAlt}
+              imageSrc={proj.imageSrc}
+              URL={proj.URL}
+            />
+          </div>
+        );
+      })}
+
       <div className={styles.separator} />
     </section>
   );

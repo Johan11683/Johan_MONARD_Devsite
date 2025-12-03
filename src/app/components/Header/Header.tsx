@@ -3,18 +3,22 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 import styles from './Header.module.scss';
 
 const navItems = [
-  { href: '#benefit', label: 'Prestation' },
-  { href: '#projects', label: 'Réalisations' },
-  { href: '#prices', label: 'Tarifs' },
-  { href: '#about', label: 'À propos' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#benefit', key: 'benefit' },
+  { href: '#projects', key: 'projects' },
+  { href: '#prices', key: 'prices' },
+  { href: '#about', key: 'about' },
+  { href: '#contact', key: 'contact' },
 ];
 
 export default function Header() {
+  const { t, i18n } = useTranslation('header');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const currentLang = (i18n.language || 'fr').slice(0, 2) as 'fr' | 'en';
 
   function toggleMenu() {
     setIsMenuOpen((prev) => !prev);
@@ -22,6 +26,11 @@ export default function Header() {
 
   function handleNavClick() {
     setIsMenuOpen(false);
+  }
+
+  function handleChangeLang(lang: 'fr' | 'en') {
+    if (lang === currentLang) return;
+    i18n.changeLanguage(lang);
   }
 
   return (
@@ -35,7 +44,7 @@ export default function Header() {
           <Link href="#hero" className={styles.brand} onClick={handleNavClick}>
             <Image
               src="/logoGold.webp"
-              alt="Logo Devhook"
+              alt={t('logoAlt')}
               width={50}
               height={15}
               className={styles.logo}
@@ -44,15 +53,15 @@ export default function Header() {
           </Link>
 
           {/* NAV DESKTOP */}
-          <nav className={styles.navDesktop} aria-label="Navigation principale">
+          <nav className={styles.navDesktop} aria-label={t('mainNavAria')}>
             {navItems.map((item) => (
               <a key={item.href} href={item.href} className={styles.navLink}>
-                {item.label}
+                {t(`nav.${item.key}`)}
               </a>
             ))}
           </nav>
 
-          {/* Zone actions : téléphone + burger (sur mobile) */}
+          {/* Zone actions : téléphone + switch langue desktop + burger (mobile) */}
           <div className={styles.actions}>
             {/* Tel au milieu (centré sur mobile via le layout CSS) */}
             <a href="tel:+33777842612" className={styles.phoneButton}>
@@ -61,16 +70,43 @@ export default function Header() {
                   <path d="M6.6 10.8c1.3 2.6 3.5 4.8 6.1 6.1l2-2c.3-.3.7-.4 1.1-.3l3.1.8c.6.1 1 .7 1 1.3v3.2c0 .8-.6 1.4-1.4 1.4C9.9 21.3 2.7 14.1 2.7 4.9c0-.8.6-1.4 1.4-1.4H7c.6 0 1.1.4 1.3 1l.8 3.1c.1.4 0 .8-.3 1.1l-2.2 2.1z" />
                 </svg>
               </span>
-              <span className={styles.phoneLabel}>Appeler</span>
-              <span className={styles.srOnly}>Appeler le 07 77 84 26 12</span>
+              <span className={styles.phoneLabel}>{t('phone.button')}</span>
+              <span className={styles.srOnly}>{t('phone.srLabel')}</span>
             </a>
+
+            {/* Switch langue DESKTOP (tout à droite du header) */}
+            <div
+              className={styles.langSwitchDesktop}
+              aria-label={t('langSwitchAria')}
+            >
+              <button
+                type="button"
+                className={`${styles.langButton} ${
+                  currentLang === 'fr' ? styles.langButtonActive : ''
+                }`}
+                onClick={() => handleChangeLang('fr')}
+                aria-pressed={currentLang === 'fr'}
+              >
+                FR
+              </button>
+              <button
+                type="button"
+                className={`${styles.langButton} ${
+                  currentLang === 'en' ? styles.langButtonActive : ''
+                }`}
+                onClick={() => handleChangeLang('en')}
+                aria-pressed={currentLang === 'en'}
+              >
+                EN
+              </button>
+            </div>
 
             {/* Burger à droite (mobile) */}
             <button
               type="button"
               className={styles.burger}
               onClick={toggleMenu}
-              aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+              aria-label={isMenuOpen ? t('burger.close') : t('burger.open')}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
             >
@@ -86,9 +122,11 @@ export default function Header() {
         {/* NAV MOBILE */}
         <div
           id="mobile-menu"
-          className={`${styles.navMobile} ${isMenuOpen ? styles.navMobileOpen : ''}`}
+          className={`${styles.navMobile} ${
+            isMenuOpen ? styles.navMobileOpen : ''
+          }`}
         >
-          <nav aria-label="Navigation principale mobile">
+          <nav aria-label={t('mainNavMobileAria')}>
             <ul className={styles.navMobileList}>
               {navItems.map((item) => (
                 <li key={item.href} className={styles.navMobileItem}>
@@ -97,7 +135,7 @@ export default function Header() {
                     className={styles.navMobileLink}
                     onClick={handleNavClick}
                   >
-                    {item.label}
+                    {t(`nav.${item.key}`)}
                   </a>
                 </li>
               ))}
@@ -105,16 +143,24 @@ export default function Header() {
 
             <div className={styles.navMobileFooter}>
               <div className={styles.langSwitch}>
-                {/* Préparé pour i18n : FR actif par défaut */}
+                {/* Lang switch i18n MOBILE */}
                 <button
                   type="button"
-                  className={`${styles.langButton} ${styles.langButtonActive}`}
+                  className={`${styles.langButton} ${
+                    currentLang === 'fr' ? styles.langButtonActive : ''
+                  }`}
+                  onClick={() => handleChangeLang('fr')}
+                  aria-pressed={currentLang === 'fr'}
                 >
                   FR
                 </button>
                 <button
                   type="button"
-                  className={styles.langButton}
+                  className={`${styles.langButton} ${
+                    currentLang === 'en' ? styles.langButtonActive : ''
+                  }`}
+                  onClick={() => handleChangeLang('en')}
+                  aria-pressed={currentLang === 'en'}
                 >
                   EN
                 </button>

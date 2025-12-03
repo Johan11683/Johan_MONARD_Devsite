@@ -1,7 +1,13 @@
 'use client';
 
-import "@/i18n.config";
+import type { ReactNode } from 'react';
+import '../i18n';
 
-export default function I18nProvider({ children }: { children: React.ReactNode }) {
+type Props = {
+  children: ReactNode;
+};
+
+export default function I18nProvider({ children }: Props) {
+
   return <>{children}</>;
 }

@@ -1,0 +1,17 @@
+{
+  "pascal": {
+    "title": "La Cave de Pascal",
+    "subtitle": "Caviste premium",
+    "imageAlt": "Aperçu du site La Cave de Pascal"
+  },
+  "nectar": {
+    "title": "Nectar Wine Merchant",
+    "subtitle": "Négociant de grands vins",
+    "imageAlt": "Aperçu du site Nectar Wine Merchant"
+  },
+  "brunch": {
+    "title": "Cannelle Brunch",
+    "subtitle": "Livraison de Brunch faits maison à domicile",
+    "imageAlt": "Aperçu du site Cannelle Brunch"
+  }
+}

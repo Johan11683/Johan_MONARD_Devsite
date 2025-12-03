@@ -1,0 +1,31 @@
+{
+  "kicker": "About",
+
+  "title": "A developer who comes from the world of sales",
+
+  "photoAlt": "Profile picture of Johan, web developer",
+  "photoCaption": "Johan – former wine merchant, now web developer.",
+
+  "lead": "Before building websites, I spent several years working in wine: first in a wine shop, dealing directly with retail customers (B2C), then at a fine wine merchant, working with demanding professionals (B2B).",
+
+  "text1": "I learned how to listen, quickly understand a business, explain technical things in simple terms and build long-term relationships. Today, I use these skills to turn your activity into a clear, reassuring and credible website for your clients.",
+
+  "text2": "I then trained as a web developer (HTML, CSS, JavaScript, React, Next.js, Node) with a simple goal: to offer small businesses modern, fast and easy-to-understand websites, without technical jargon.",
+
+  "bullets": {
+    "item1": {
+      "strong": "I understand your challenges:",
+      "text": "visibility, a serious image, easy contact and saving time."
+    },
+    "item2": {
+      "strong": "I speak your language:",
+      "text": "wine trade, retail, craftsmanship, small businesses – not jargon."
+    },
+    "item3": {
+      "strong": "I work in a simple way:",
+      "text": "to craft, step by step, a clean website that reflects who you are and reassures your clients."
+    }
+  },
+
+  "outro": "Whether you are a wine shop, a wine merchant, a craftsman or a small business, my goal is that you recognise yourself in your website – and that your clients feel like contacting you or coming to see you."
+}

@@ -1,0 +1,29 @@
+{
+  "kicker": "Contact",
+  "title": "Let's talk about your project",
+  "lead": "A website always starts with a conversation. Send an email, give me a call, and we'll see together what fits your business.",
+
+  "labels": {
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address"
+  },
+
+  "form": {
+    "fullName": "Full name *",
+    "email": "Email address *",
+    "phone": "Phone number (optional)",
+    "message": "Message *"
+  },
+
+  "button": {
+    "idle": "Send message",
+    "loading": "Sending…"
+  },
+
+  "status": {
+    "success": "Thank you, your message has been sent.",
+    "errorPart1": "Something went wrong. You can also write to me directly at",
+    "errorPart2": "."
+  }
+}

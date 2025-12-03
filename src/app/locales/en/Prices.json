@@ -1,0 +1,54 @@
+{
+  "kicker": "Pricing",
+  "title": "My services",
+  "subtitle": "Three simple and transparent offers. If your needs go beyond these, I also provide custom quotes.",
+
+  "cards": {
+    "simple": {
+      "title": "Simple showcase website",
+      "price": "700 €*",
+      "description": "The essentials to present your business clearly and build trust.",
+      "features": {
+        "item1": "Modern, responsive design",
+        "item2": "Local SEO optimisation",
+        "item3": "Single or multi-page website: Home, About, Contact",
+        "item4": "Free hosting on Vercel",
+        "item5": "Support for domain name setup (OVH)",
+        "item6": "Subtle animations and refined visual finish"
+      }
+    },
+
+    "form": {
+      "title": "Showcase website + email form",
+      "price": "900 €*",
+      "description": "The ideal option for small businesses: a complete website + a real contact form that sends emails.",
+      "features": {
+        "item1": "All features from the previous offer",
+        "item2": "Contact form",
+        "item3": "You receive emails from your clients directly via the website",
+        "item4": "Anti-spam protection"
+      }
+    },
+
+    "bilingual": {
+      "title": "Bilingual showcase website",
+      "price": "1100 €*",
+      "description": "A bilingual version with a language switch button.",
+      "features": {
+        "item1": "All previous features included",
+        "item2": "Bilingual version (i18n) with language switch",
+        "item3": "Extended support for 1 month"
+      }
+    }
+  },
+
+  "custom": {
+    "paragraph1": "Do you have specific needs? We talk it through together and I prepare a quote tailored to your activity.",
+    "paragraph2": {
+      "before": "All services include one month of follow-up and small adjustments after the website goes live. After that, one-off changes are billed at",
+      "after": "."
+    }
+  },
+
+  "legalNote": "*Prices not subject to VAT according to article 293 B of the French General Tax Code"
+}

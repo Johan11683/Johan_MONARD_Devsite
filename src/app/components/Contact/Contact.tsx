@@ -1,9 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './Contact.module.scss';
 
 export default function Contact() {
+  const { t } = useTranslation('contact');
+
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>(
     'idle',
   );
@@ -50,26 +53,25 @@ export default function Contact() {
       <div className={styles.inner}>
         {/* Colonne infos */}
         <div className={styles.infoColumn}>
-          <p className={styles.kicker}>Contact</p>
+          <p className={styles.kicker}>{t('kicker')}</p>
           <h2 id="contact-title" className={styles.title}>
-            Discutons de votre projet
+            {t('title')}
           </h2>
 
           <p className={styles.lead}>
-            Un site, c’est avant tout une discussion. Un mail, un appel, et on
-            voit ensemble ce qui est adapté à votre activité.
+            {t('lead')}
           </p>
 
           <ul className={styles.contactList}>
             <li className={styles.contactItem}>
-              <span className={styles.contactLabel}>Téléphone</span>
+              <span className={styles.contactLabel}>{t('labels.phone')}</span>
               <a href="tel:+33777842612" className={styles.contactLink}>
                 07&nbsp;77&nbsp;84&nbsp;26&nbsp;12
               </a>
             </li>
 
             <li className={styles.contactItem}>
-              <span className={styles.contactLabel}>E-mail</span>
+              <span className={styles.contactLabel}>{t('labels.email')}</span>
               <a
                 href="mailto:contact.monard.johan@gmail.com"
                 className={styles.contactLink}
@@ -79,7 +81,7 @@ export default function Contact() {
             </li>
 
             <li className={styles.contactItem}>
-              <span className={styles.contactLabel}>Adresse</span>
+              <span className={styles.contactLabel}>{t('labels.address')}</span>
               <p className={styles.contactText}>
                 230 avenue d&apos;Eysines
                 <br />
@@ -94,7 +96,7 @@ export default function Contact() {
           <form className={styles.form} onSubmit={handleSubmit} noValidate>
             <div className={styles.fieldGroup}>
               <label htmlFor="fullName" className={styles.label}>
-                Nom complet *
+                {t('form.fullName')}
               </label>
               <input
                 id="fullName"
@@ -108,7 +110,7 @@ export default function Contact() {
 
             <div className={styles.fieldGroup}>
               <label htmlFor="email" className={styles.label}>
-                Adresse e-mail *
+                {t('form.email')}
               </label>
               <input
                 id="email"
@@ -122,7 +124,7 @@ export default function Contact() {
 
             <div className={styles.fieldGroup}>
               <label htmlFor="phone" className={styles.label}>
-                Numéro de téléphone (facultatif)
+                {t('form.phone')}
               </label>
               <input
                 id="phone"
@@ -135,7 +137,7 @@ export default function Contact() {
 
             <div className={styles.fieldGroup}>
               <label htmlFor="message" className={styles.label}>
-                Message *
+                {t('form.message')}
               </label>
               <textarea
                 id="message"
@@ -151,25 +153,26 @@ export default function Contact() {
               className={styles.submitButton}
               disabled={status === 'loading'}
             >
-              {status === 'loading' ? 'Envoi en cours…' : 'Envoyer le message'}
+              {status === 'loading'
+                ? t('button.loading')
+                : t('button.idle')}
             </button>
 
             {status === 'success' && (
               <p className={styles.statusSuccess}>
-                Merci, votre message a bien été envoyé.
+                {t('status.success')}
               </p>
             )}
             {status === 'error' && (
               <p className={styles.statusError}>
-                Une erreur est survenue. Vous pouvez aussi m&apos;écrire
-                directement à{' '}
+                {t('status.errorPart1')}{' '}
                 <a
                   href="mailto:contact.monard.johan@gmail.com"
                   className={styles.inlineLink}
                 >
                   contact.monard.johan@gmail.com
                 </a>
-                .
+                {t('status.errorPart2')}
               </p>
             )}
           </form>

@@ -4,7 +4,7 @@
 .about {
   background: $color-bg;
   color: $color-text;
-  padding-block: 5rem 3rem; // on enlève la logique "pour le separator absolute"
+  padding-block: 5rem 3rem;
 }
 
 .inner {
@@ -47,7 +47,7 @@
 
 .photo {
   object-fit: cover;
-  object-position: center 10%; // tu peux jouer avec 15–20% si tu veux encore descendre
+  object-position: center 10%; // pour ajuster la photo de profil
 }
 
 .photoCaption {

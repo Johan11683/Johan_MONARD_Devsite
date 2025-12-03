@@ -1,0 +1,21 @@
+{
+  "logoAlt": "Logo Devhook",
+  "mainNavAria": "Navigation principale",
+  "mainNavMobileAria": "Navigation principale mobile",
+  "langSwitchAria": "Changer de langue",
+  "nav": {
+    "benefit": "Prestation",
+    "projects": "Réalisations",
+    "prices": "Tarifs",
+    "about": "À propos",
+    "contact": "Contact"
+  },
+  "phone": {
+    "button": "Appeler",
+    "srLabel": "Appeler le 07 77 84 26 12"
+  },
+  "burger": {
+    "open": "Ouvrir le menu",
+    "close": "Fermer le menu"
+  }
+}

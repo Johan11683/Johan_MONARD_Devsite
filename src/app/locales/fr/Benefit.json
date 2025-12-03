@@ -1,0 +1,36 @@
+{
+  "kicker": "Ce que je fais pour vous",
+  "title": "Un site simple, clair, qui vous aide vraiment à vendre",
+  "subtitle": "Mon rôle : transformer vos idées en une présence en ligne nette et rassurante, que vos clients comprennent en quelques secondes.",
+
+  "cards": {
+    "overview": {
+      "title": "Compréhensible en un coup d'œil",
+      "text": "On va droit au but : qui vous êtes, ce que vous proposez, comment vous contacter. En un coup d'œil votre client trouve l'essentiel."
+    },
+    "clients": {
+      "title": "Pensé pour vos clients",
+      "text": "J'écris vos textes avec des mots simples, des titres clairs et une mise en page qui donne envie de lire. L'objectif : inspirer confiance et donner envie de passer à l'action."
+    },
+    "transparent": {
+      "title": "Une prestation transparente",
+      "text": "Tout est posé noir sur blanc dès le départ : tarif, délais, étapes. Pas de frais cachés, pas de surprise en cours de route. Une fois le design validé ensemble, vous n'avez presque rien à gérer. Votre temps est précieux."
+    },
+    "ownership": {
+      "title": "Vous êtes propriétaire du site",
+      "textPart1": "Votre site est hébergé gratuitement sur",
+      "textPart2": ", et vous gardez la propriété de votre nom de domaine acheté sur",
+      "textPart3": ". Je vous accompagne pas à pas pour tout mettre en place."
+    },
+    "noMaintenance": {
+      "title": "Sans contrat de maintenance",
+      "text": "Vous restez propriétaire de votre site à 100 %, sans aucun abonnement ni engagement. Une fois le site livré, vous êtes totalement autonome. Besoin d'évolutions par la suite ? Je vous accompagne sur devis, uniquement lorsque vous en avez besoin."
+    }
+  },
+
+  "footer": {
+    "line1": "Concrètement, on part de votre réalité : votre métier, vos clients, vos mots. Je m'occupe de traduire tout ça en un site propre, rapide et professionnel.",
+    "line2": "Un site qui travaille pour vous.",
+    "cta": "Discuter de votre projet"
+  }
+}

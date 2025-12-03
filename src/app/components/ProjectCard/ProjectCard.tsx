@@ -1,5 +1,8 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 import styles from './ProjectCard.module.scss';
 
 export type Project = {
@@ -18,6 +21,8 @@ export default function ProjectCard({
   imageAlt,
   URL,
 }: Project) {
+  const { t } = useTranslation('ProjectCard');
+
   return (
     <article className={styles.card}>
       <Link
@@ -39,7 +44,7 @@ export default function ProjectCard({
         </div>
 
         <div className={styles.text}>
-          <p className={styles.kicker}>Site vitrine réalisé pour</p>
+          <p className={styles.kicker}>{t('kicker')}</p>
           <h3 className={styles.title}>{title}</h3>
           <p className={styles.subtitle}>{subtitle}</p>
         </div>

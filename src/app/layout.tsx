@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import './styles/globals.scss';
 import { Alumni_Sans } from 'next/font/google';
-// import I18nProvider from './I18nProvider';
+import I18nProvider from './I18nProvider';
 
 const alumniSans = Alumni_Sans({
   subsets: ['latin'],
@@ -12,7 +12,6 @@ const alumniSans = Alumni_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://devhook.fr'),
-
   title: 'Création de Sites Vitrines',
   description: 'Johan MONARD Création de sites vitrines pour TPE & PME',
   icons: {
@@ -46,9 +45,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fr">
       <body className={alumniSans.className}>
-        {/* <I18nProvider> */}
-        {children}
-        {/* </I18nProvider> */}
+        <I18nProvider>
+          {children}
+        </I18nProvider>
       </body>
     </html>
   );
