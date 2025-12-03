@@ -18,7 +18,7 @@
     },
     "item2": {
       "strong": "Je parle votre langage :",
-      "text": "cave, négoce, artisanat, TPE, PME, pas du jargon."
+      "text": "commerçant, négoce, artisant, TPE, PME, pas du jargon."
     },
     "item3": {
       "strong": "Je travaille simplement :",
@@ -26,5 +26,5 @@
     }
   },
 
-  "outro": "Que vous soyez une cave, un négociant, un artisan ou une petite entreprise, mon objectif est que vous vous reconnaissiez dans votre site, et que vos clients aient envie de vous contacter ou de venir chez vous."
+  "outro": "Que vous soyez un commerçant, un négociant, un artisan ou une petite entreprise, mon objectif est que vous vous reconnaissiez dans votre site, et que vos clients aient envie de vous contacter ou de venir chez vous."
 }

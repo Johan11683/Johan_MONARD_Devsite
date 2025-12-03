@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
@@ -20,6 +20,9 @@ export default function Header() {
 
   const currentLang = (i18n.language || 'fr').slice(0, 2) as 'fr' | 'en';
 
+  const burgerRef = useRef<HTMLButtonElement | null>(null);
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
+
   function toggleMenu() {
     setIsMenuOpen((prev) => !prev);
   }
@@ -31,7 +34,33 @@ export default function Header() {
   function handleChangeLang(lang: 'fr' | 'en') {
     if (lang === currentLang) return;
     i18n.changeLanguage(lang);
+    // Si on est en mobile avec le menu ouvert, on le referme
+    setIsMenuOpen(false);
   }
+
+  // Fermer le menu si on clique en dehors
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    function handleClickOutside(event: MouseEvent) {
+      const target = event.target as Node;
+
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(target) &&
+        burgerRef.current &&
+        !burgerRef.current.contains(target)
+      ) {
+        setIsMenuOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   return (
     <>
@@ -109,6 +138,7 @@ export default function Header() {
               aria-label={isMenuOpen ? t('burger.close') : t('burger.open')}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
+              ref={burgerRef}
             >
               <span className={styles.burgerBox}>
                 <span className={styles.burgerLine} />
@@ -122,6 +152,7 @@ export default function Header() {
         {/* NAV MOBILE */}
         <div
           id="mobile-menu"
+          ref={mobileMenuRef}
           className={`${styles.navMobile} ${
             isMenuOpen ? styles.navMobileOpen : ''
           }`}
