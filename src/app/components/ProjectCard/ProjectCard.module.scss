@@ -96,8 +96,9 @@
 }
 
 .subtitle {
-  font-size: 1.4rem;
-  color: $color-text-muted;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: $color-primary;
 
   @include down($bp-mobile) {
     font-size: 1.15rem;

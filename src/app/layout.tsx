@@ -13,13 +13,13 @@ const alumniSans = Alumni_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL('https://devhook.fr'),
   title: 'Création de Sites Vitrines',
-  description: 'Johan MONARD Création de sites vitrines pour TPE & PME',
+  description: 'Création de sites vitrines modernes pour TPE et commerçants : design pro, SEO local, formulaire email. Basé à Bordeaux. Devis rapide.',
   icons: {
     icon: '/favicon.ico',
   },
   openGraph: {
     title: 'Johan MONARD',
-    description: 'Johan MONARD Création de sites vitrines pour TPE & PME',
+    description: 'Création de sites vitrines modernes pour TPE et commerçants : design pro, SEO local, formulaire email. Basé à Bordeaux. Devis rapide.',
     url: 'https://devhook.fr',
     siteName: 'devhook.fr',
     images: [
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Johan MONARD création de sites vitrines',
-    description: 'Johan MONARD Création de sites vitrines pour TPE & PME',
+    description: 'Création de sites vitrines modernes pour TPE et commerçants : design pro, SEO local, formulaire email. Basé à Bordeaux. Devis rapide.',
     images: ['/og-image.png'],
   },
 };

@@ -6,6 +6,7 @@ import Prices from './components/Prices/Prices'
 import About from './components/About/About';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
+import Process from './components/Process/Process';
 
 
 
@@ -20,6 +21,7 @@ export default function HomePage() {
          <Benefit />
         <ProjectsLayout />
         <Prices />
+        <Process />
         <About />
         <Contact />
       </main>

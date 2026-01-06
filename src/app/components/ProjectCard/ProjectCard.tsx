@@ -21,7 +21,7 @@ export default function ProjectCard({
   imageAlt,
   URL,
 }: Project) {
-  const { t } = useTranslation('ProjectCard');
+  const { t } = useTranslation('projectCard');
 
   return (
     <article className={styles.card}>

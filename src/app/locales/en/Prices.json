@@ -1,53 +1,57 @@
 {
   "kicker": "Pricing",
   "title": "My services",
-  "subtitle": "Three simple and transparent offers. If your needs go beyond these, I also provide custom quotes.",
+  "subtitle": "Three simple and transparent offers. If your needs go beyond this scope, I also provide custom quotes.",
+  "badgeMostPopular": "Most popular offer",
 
   "cards": {
-    "simple": {
-      "title": "Simple showcase website",
-      "price": "700 €*",
-      "description": "The essentials to present your business clearly and build trust.",
+    "standard": {
+      "title": "Showcase website + contact form",
+      "price": "€2000*",
+      "description": "A complete and professional website, including a contact form to receive emails.",
       "features": {
-        "item1": "Modern, responsive design",
-        "item2": "Local SEO optimisation",
-        "item3": "Single or multi-page website: Home, About, Contact",
-        "item4": "Free hosting on Vercel",
-        "item5": "Support for domain name setup (OVH)",
-        "item6": "Subtle animations and refined visual finish"
-      }
-    },
-
-    "form": {
-      "title": "Showcase website + email form",
-      "price": "900 €*",
-      "description": "The ideal option for small businesses: a complete website + a real contact form that sends emails.",
-      "features": {
-        "item1": "All features from the previous offer",
-        "item2": "Contact form",
-        "item3": "You receive emails from your clients directly via the website",
-        "item4": "Anti-spam protection"
+        "item1": "Modern, responsive design adapted to all screen sizes",
+        "item2": "One or multiple pages (Home, About, Services, Contact, Gallery)",
+        "item3": "Light animations and visual refinements aligned with your brand identity",
+        "item4": "Integrated and secure contact form",
+        "item5": "Deployment and assistance with domain name setup (yourbusiness.com / .fr)",
+        "item6": "Local SEO optimisation to improve your online visibility"
       }
     },
 
     "bilingual": {
-      "title": "Bilingual showcase website",
-      "price": "1100 €*",
-      "description": "A bilingual version with a language switch button.",
+      "title": "Showcase website + maintenance included\nOptional FR / EN translation",
+      "price": "€2200*",
+      "description": "The most popular option: a professional showcase website with included maintenance time for stress-free updates.",
       "features": {
-        "item1": "All previous features included",
-        "item2": "Bilingual version (i18n) with language switch",
-        "item3": "Extended support for 1 month"
+        "item1": "All features from the previous offer",
+        "item2": "Minor updates package: 2 hours included (texts and photos)",
+        "item3": "Internationalisation (FR / EN) available if needed"
+      }
+    },
+
+    "admin": {
+      "title": "Self-managed website (admin access)",
+      "price": "€5000*",
+      "description": "A website designed to be fully managed by you, without any intervention from the provider.",
+      "features": {
+        "item1": "All features from the previous offer",
+        "item2": "Secure admin area with personal access",
+        "item3": "Independent editing of texts and images",
+        "item4": "Customisable promotional banner, toggle on / off",
+        "item5": "Database owned by the client",
+        "item6": "Short onboarding and training session"
       }
     }
   },
 
+  "updatesPolicy": {
+    "title": "Update policy",
+    "text": "For showcase website offers, updates are handled simply by email. Depending on the selected package, some update time may be included. Beyond that, interventions are billed as a package: €100 minimum, then €50/hour."
+  },
+
   "custom": {
-    "paragraph1": "Do you have specific needs? We talk it through together and I prepare a quote tailored to your activity.",
-    "paragraph2": {
-      "before": "All services include one month of follow-up and small adjustments after the website goes live. After that, one-off changes are billed at",
-      "after": "."
-    }
+    "paragraph1": "A redesign of your existing website or a specific need? Let’s discuss it together and I’ll provide a quote tailored to your activity."
   },
 
   "legalNote": "*Prices not subject to VAT according to article 293 B of the French General Tax Code"

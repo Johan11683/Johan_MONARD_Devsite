@@ -1,0 +1,27 @@
+{
+  "kicker": "Étapes",
+  "title": "Comment ça se passe",
+  "subtitle": "Un processus simple, clair, et sans prise de tête. La création du site prend généralement une à deux semaines, selon les éléments transmis et la réactivité de nos échanges.",
+  "steps": {
+    "step1": {
+      "title": "Échange & cadrage",
+      "text": "On échange sur votre activité, vos objectifs, vos pages et l’orientation générale du site."
+    },
+    "step2": {
+      "title": "Structure & maquette",
+      "text": "Je prépare la structure et une maquette du site. Après validation, un acompte de 30 % est demandé pour lancer le projet."
+    },
+    "step3": {
+      "title": "Transmission des contenus",
+      "text": "Une fois la maquette validée, vous m’envoyez vos textes et vos photos (je peux vous guider si besoin)."
+    },
+    "step4": {
+      "title": "Développement & mise en ligne",
+      "text": "Je développe le site, puis je vous accompagne pour l’achat du nom de domaine à votre nom (coût annuel) et je mets le site en ligne sur Vercel, sous votre compte (hébergement gratuit)."
+    },
+    "step5": {
+      "title": "Remise des clés & suivi",
+      "text": "Une fois le site finalisé et le solde réglé, je vous transmets le code et l’ensemble des accès. Vous êtes pleinement propriétaire de votre site, tout en me laissant intervenir si nécessaire."
+    }
+  }
+}

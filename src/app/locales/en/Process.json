@@ -1,0 +1,27 @@
+{
+  "kicker": "Steps",
+  "title": "How it works",
+  "subtitle": "A simple, clear process with no hassle. The website is usually completed within one to two weeks, depending on the content provided and the responsiveness of our exchanges.",
+  "steps": {
+    "step1": {
+      "title": "Discussion & scope",
+      "text": "We discuss your business, your goals, your pages, and the overall direction of the website."
+    },
+    "step2": {
+      "title": "Structure & mockup",
+      "text": "I prepare the website structure and a mockup. Once validated, a 30% deposit is required to start the project."
+    },
+    "step3": {
+      "title": "Content delivery",
+      "text": "Once the mockup is approved, you send me your texts and photos (I can guide you if needed)."
+    },
+    "step4": {
+      "title": "Development & launch",
+      "text": "I develop the website, then assist you with purchasing a domain name in your name (annual cost) and deploy the site on Vercel, under your account (free hosting)."
+    },
+    "step5": {
+      "title": "Handover & follow-up",
+      "text": "Once the website is completed and the balance paid, I provide you with the full source code and all access credentials. You fully own your website, while I remain available if needed."
+    }
+  }
+}

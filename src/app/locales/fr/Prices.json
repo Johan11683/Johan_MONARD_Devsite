@@ -2,52 +2,56 @@
   "kicker": "Tarifs",
   "title": "Mes prestations",
   "subtitle": "Trois offres simples et transparentes. Si vos besoins sortent du cadre, je propose aussi des devis sur mesure.",
+  "badgeMostPopular": "Offre la plus demandée",
 
   "cards": {
-    "simple": {
-      "title": "Site vitrine simple",
-      "price": "700 €*",
-      "description": "L'essentiel pour présenter votre activité proprement et inspirer confiance.",
+    "standard": {
+      "title": "Site vitrine + formulaire email",
+      "price": "2000 €*",
+      "description": "Un site complet et professionnel, incluant un formulaire de contact pour recevoir des emails.",
       "features": {
-        "item1": "Design moderne et responsive",
-        "item2": "Optimisation SEO local",
-        "item3": "Site en une ou plusieurs pages : Accueil, À propos, Contact",
-        "item4": "Hébergement gratuit sur Vercel",
-        "item5": "Accompagnement nom de domaine (OVH)",
-        "item6": "Petites animations + perfectionnement du rendu"
-      }
-    },
-
-    "form": {
-      "title": "Site vitrine + Formulaire email",
-      "price": "900 €*",
-      "description": "La version idéale pour les petites entreprises : un site complet + un vrai formulaire de contact qui envoie des emails.",
-      "features": {
-        "item1": "Toutes les fonctionnalités de l’offre précédente",
-        "item2": "Formulaire de contact",
-        "item3": "Vous recevez des mails de la part de vos clients via le site",
-        "item4": "Anti-spam"
+        "item1": "Design moderne et responsive, adapté à tous les formats d’écran",
+        "item2": "Site en une ou plusieurs pages (Accueil, À propos, Services, Contact, Galerie)",
+        "item3": "Animations légères et perfectionnement du rendu selon votre univers visuel",
+        "item4": "Formulaire de contact intégré et sécurisé",
+        "item5": "Mise en ligne et accompagnement pour le nom de domaine (votreentreprise.com / .fr)",
+        "item6": "Optimisation SEO local pour améliorer votre visibilité en ligne"
       }
     },
 
     "bilingual": {
-      "title": "Site vitrine bilingue",
-      "price": "1100 €*",
-      "description": "Une version bilingue avec bouton de switch",
+      "title": "Site vitrine + maintenance incluse\nOption traduction FR / EN",
+      "price": "2200 €*",
+      "description": "La formule la plus choisie : un site vitrine professionnel avec du temps de maintenance inclus pour gérer sereinement les mises à jour.",
       "features": {
-        "item1": "Toutes les fonctionnalités précédentes",
-        "item2": "Version bilingue (i18n) avec bouton de switch",
-        "item3": "Support étendu pendant 1 mois"
+        "item1": "Toutes les fonctionnalités de l’offre précédente",
+        "item2": "Forfait modifications mineures : 2h offertes (textes et photos)",
+        "item3": "Internationalisation (FR / EN) possible si besoin"
+      }
+    },
+
+    "admin": {
+      "title": "Site administrable (autonome)",
+      "price": "5000 €*",
+      "description": "Un site conçu pour être entièrement administré par vos soins, sans intervention du prestataire.",
+      "features": {
+        "item1": "Toutes les fonctionnalités de l’offre précédente",
+        "item2": "Espace administrateur sécurisé avec accès personnel",
+        "item3": "Modification autonome des textes et des images",
+        "item4": "Bandeau promotionnel personnalisable, activable ou désactivable",
+        "item5": "Base de données au nom du client",
+        "item6": "Formation courte à la prise en main"
       }
     }
   },
 
+  "updatesPolicy": {
+    "title": "Fonctionnement des mises à jour",
+    "text": "Pour les offres Site vitrine, les mises à jour se font simplement par email. Selon la formule choisie, un temps de modification peut être inclus. Au-delà, les interventions sont facturées au forfait : 100€ minimum, puis 50€/h."
+  },
+
   "custom": {
-    "paragraph1": "Vous avez un besoin spécifique ? Nous en parlons ensemble et je vous propose un devis adapté à votre activité.",
-    "paragraph2": {
-      "before": "Toutes les prestations incluent un mois de suivi et de petits ajustements après la mise en ligne. Au-delà, les interventions ponctuelles sont facturées",
-      "after": "."
-    }
+    "paragraph1": "Une refonte de votre site actuel ou un besoin spécifique ? Nous en parlons ensemble et je vous propose un devis adapté à votre activité."
   },
 
   "legalNote": "*Tarifs non soumis à la TVA selon l’article 293 B du CGI"

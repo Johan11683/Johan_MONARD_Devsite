@@ -12,6 +12,7 @@ import enProjectsLayout from './app/locales/en/ProjectsLayout.json';
 import enProjectsData from './app/locales/en/ProjectsData.json';
 import enContact from './app/locales/en/Contact.json';
 import enFooter from './app/locales/en/Footer.json';
+import enProcess from './app/locales/en/Process.json';
 
 // --- FR ---
 import frHeader from './app/locales/fr/Header.json';
@@ -24,39 +25,40 @@ import frProjectsLayout from './app/locales/fr/ProjectsLayout.json';
 import frProjectsData from './app/locales/fr/ProjectsData.json';
 import frContact from './app/locales/fr/Contact.json';
 import frFooter from './app/locales/fr/Footer.json';
+import frProcess from './app/locales/fr/Process.json';
 
-i18n
-  .use(initReactI18next)
-  .init({
-    lng: 'fr',
-    fallbackLng: 'fr',
-    interpolation: { escapeValue: false },
-    resources: {
-      en: {
-        header: enHeader,
-        hero: enHero,
-        about: enAbout,
-        benefit: enBenefit,
-        prices: enPrices,
-        ProjectCard: enProjectCard,
-        ProjectsLayout: enProjectsLayout,
-        ProjectsData: enProjectsData,
-        contact: enContact,
-        footer: enFooter,
-      },
-      fr: {
-        header: frHeader,
-        hero: frHero,
-        about: frAbout,
-        benefit: frBenefit,
-        prices: frPrices,
-        ProjectCard: frProjectCard,
-        ProjectsLayout: frProjectsLayout,
-        ProjectsData: frProjectsData,
-        contact: frContact,
-        footer: frFooter,
-      },
+i18n.use(initReactI18next).init({
+  lng: 'fr',
+  fallbackLng: 'fr',
+  interpolation: { escapeValue: false },
+  resources: {
+    en: {
+      header: enHeader,
+      hero: enHero,
+      about: enAbout,
+      benefit: enBenefit,
+      prices: enPrices,
+      projectCard: enProjectCard,
+      projectsLayout: enProjectsLayout,
+      projectsData: enProjectsData,
+      process: enProcess,
+      contact: enContact,
+      footer: enFooter
     },
-  });
+    fr: {
+      header: frHeader,
+      hero: frHero,
+      about: frAbout,
+      benefit: frBenefit,
+      prices: frPrices,
+      projectCard: frProjectCard,
+      projectsLayout: frProjectsLayout,
+      projectsData: frProjectsData,
+      process: frProcess,
+      contact: frContact,
+      footer: frFooter
+    }
+  }
+});
 
 export default i18n;

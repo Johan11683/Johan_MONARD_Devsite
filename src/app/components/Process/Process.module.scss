@@ -1,0 +1,136 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.process {
+  background: $color-bg;
+  color: $color-text;
+  padding-block: 5rem 3rem;
+
+  /* Tu veux 100vh : sur mobile, 100vh peut être instable, donc on sécurise */
+  min-height: 100vh;
+  min-height: 100svh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.inner {
+  @include container;
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 2.2rem;
+
+  @include down($bp-mobile) {
+    text-align: left;
+  }
+}
+
+/* Reprend ton style About */
+.kicker {
+  display: inline-flex;
+  max-width: 140px;
+  padding: 0.25rem 1rem;
+  border-radius: 999px;
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba($color-accent, 0.18);
+  color: $color-primary;
+  margin-bottom: 0.8rem;
+}
+
+.title {
+  font-family: $font-sans;
+  font-weight: 700;
+  font-size: 2.6rem;
+  line-height: 1.15;
+  color: $color-accent;
+  margin-bottom: 0.5rem;
+
+  @include down($bp-mobile) {
+    font-size: 2.1rem;
+  }
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: $color-primary;
+  max-width: 780px;
+  margin-inline: auto;
+
+  @include down($bp-mobile) {
+    margin-inline: 0;
+    font-size: 1.1rem;
+  }
+}
+
+/* Steps : pas des cards, juste une “timeline” propre */
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 1.2rem;
+  align-items: start;
+
+  padding: 0.9rem 0;
+  border-top: 1px solid $color-border;
+
+  &:first-child {
+    border-top: 0;
+  }
+
+  @include down($bp-mobile) {
+    grid-template-columns: 52px 1fr;
+    gap: 1rem;
+  }
+}
+
+.stepNumber {
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: $color-accent;
+  font-size: 2.5rem;
+  line-height: 1;
+  margin-top: 0.25rem;
+}
+
+.stepTitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: $color-primary;
+  margin-bottom: 0.2rem;
+}
+
+.stepText {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: $color-text-muted;
+}
+
+/* Separator */
+.separator {
+  width: 100%;
+  height: 80px;
+  background: $color-accent;
+  clip-path: polygon(0 0, 100% 60%, 100% 100%, 0 100%);
+  margin-top: 4.5rem;
+
+  @include down($bp-mobile) {
+    margin-top: 0.5rem;
+    margin-bottom: -4rem;
+  }
+}

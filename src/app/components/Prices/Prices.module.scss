@@ -52,9 +52,9 @@
 }
 
 .subtitle {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   line-height: 1.7;
-  color: $color-text-muted;
+  color: $color-primary;
   max-width: 800px;
   margin-inline: auto;
 
@@ -103,7 +103,7 @@
 }
 
 /* ============================
-   CARD HIGHLIGHT (900€)
+   CARD HIGHLIGHT (2200€)
 ============================ */
 .cardHighlight {
   border: 2px solid $color-accent;
@@ -111,33 +111,35 @@
   position: relative;
   padding-top: 2.2rem;
   transform: none;
+}
 
-  &::before {
-    content: 'Offre la plus demandée';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -55%);
-    padding: 0.25rem 0.9rem;
-    border-radius: 999px;
-    font-size: 0.82rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    background: $color-accent;
-    color: $color-primary;
-    white-space: nowrap;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+.badge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  padding: 0.25rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: $color-accent;
+  color: $color-primary;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  z-index: 1;
 
-    @include down($bp-mobile) {
-      font-size: 0.78rem;
-    }
+  @include down($bp-mobile) {
+    font-size: 0.78rem;
   }
 }
+
 
 /* ============================
    TITRES & PRIX
 ============================ */
 .cardTitle {
+  white-space: pre-line;
   font-size: 1.55rem;
   font-weight: 600;
   color: $color-primary;

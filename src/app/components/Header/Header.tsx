@@ -10,8 +10,10 @@ const navItems = [
   { href: '#benefit', key: 'benefit' },
   { href: '#projects', key: 'projects' },
   { href: '#prices', key: 'prices' },
+  { href: '#process', key: 'process' },
   { href: '#about', key: 'about' },
   { href: '#contact', key: 'contact' },
+
 ];
 
 export default function Header() {

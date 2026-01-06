@@ -6,30 +6,26 @@ import { projectsBase } from '../../data/projects.datas';
 import styles from './ProjectsLayout.module.scss';
 
 export default function ProjectsLayout() {
-  const { t } = useTranslation(['ProjectsLayout', 'ProjectsData']);
+  const { t } = useTranslation(['projectsLayout', 'projectsData']);
 
   return (
-    <section
-      id="projects"
-      className={styles.projects}
-      aria-labelledby="projects-title"
-    >
+    <section id="projects" className={styles.projects} aria-labelledby="projects-title">
       <header className={styles.intro}>
-        <p className={styles.kicker}>{t('kicker', { ns: 'ProjectsLayout' })}</p>
+        <p className={styles.kicker}>{t('kicker', { ns: 'projectsLayout' })}</p>
         <h2 id="projects-title" className={styles.title}>
-          {t('title', { ns: 'ProjectsLayout' })}
+          {t('title', { ns: 'projectsLayout' })}
         </h2>
         <p className={styles.subtitle}>
-          {t('subtitle.line1', { ns: 'ProjectsLayout' })}
+          {t('subtitle.line1', { ns: 'projectsLayout' })}
           <br />
-          {t('subtitle.line2', { ns: 'ProjectsLayout' })}
+          {t('subtitle.line2', { ns: 'projectsLayout' })}
         </p>
       </header>
 
       {projectsBase.map((proj) => {
         const data = t(proj.id, {
-          ns: 'ProjectsData',
-          returnObjects: true,
+          ns: 'projectsData',
+          returnObjects: true
         }) as {
           title: string;
           subtitle: string;
