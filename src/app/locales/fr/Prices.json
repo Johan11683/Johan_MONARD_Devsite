@@ -7,7 +7,7 @@
   "cards": {
     "standard": {
       "title": "Site vitrine + formulaire email",
-      "price": "2000 €*",
+      "price": "1400 €*",
       "description": "Un site complet et professionnel, incluant un formulaire de contact pour recevoir des emails.",
       "features": {
         "item1": "Design moderne et responsive, adapté à tous les formats d’écran",
@@ -21,7 +21,7 @@
 
     "bilingual": {
       "title": "Site vitrine + maintenance incluse\nOption traduction FR / EN",
-      "price": "2200 €*",
+      "price": "1600 €*",
       "description": "La formule la plus choisie : un site vitrine professionnel avec du temps de maintenance inclus pour gérer sereinement les mises à jour.",
       "features": {
         "item1": "Toutes les fonctionnalités de l’offre précédente",
@@ -32,7 +32,7 @@
 
     "admin": {
       "title": "Site administrable (autonome)",
-      "price": "5000 €*",
+      "price": "2500 €*",
       "description": "Un site conçu pour être entièrement administré par vos soins, sans intervention du prestataire.",
       "features": {
         "item1": "Toutes les fonctionnalités de l’offre précédente",
