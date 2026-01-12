@@ -7,7 +7,7 @@
   "cards": {
     "standard": {
       "title": "Showcase website + contact form",
-      "price": "€2000*",
+      "price": "€1400*",
       "description": "A complete and professional website, including a contact form to receive emails.",
       "features": {
         "item1": "Modern, responsive design adapted to all screen sizes",
@@ -21,7 +21,7 @@
 
     "bilingual": {
       "title": "Showcase website + maintenance included\nOptional FR / EN translation",
-      "price": "€2200*",
+      "price": "€1600*",
       "description": "The most popular option: a professional showcase website with included maintenance time for stress-free updates.",
       "features": {
         "item1": "All features from the previous offer",
@@ -32,7 +32,7 @@
 
     "admin": {
       "title": "Self-managed website (admin access)",
-      "price": "€5000*",
+      "price": "€2500*",
       "description": "A website designed to be fully managed by you, without any intervention from the provider.",
       "features": {
         "item1": "All features from the previous offer",
