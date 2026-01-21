@@ -2,15 +2,14 @@
 
 .page {
   margin-top: -70px;
-  min-height: 100dvh;          /* ✅ au lieu de height */
+  height: 100dvh;
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 260px 1fr;
 
   background: $color-bg;
   color: $color-text;
   font-family: $font-sans;
 }
-
 
 /* ===== Sidebar ===== */
 
@@ -18,8 +17,7 @@
   padding: 18px;
   border-right: 1px solid $color-border;
   background: $color-bg-alt;
-  overflow: auto; /* ✅ si un jour la sidebar dépasse */
-  min-height: 0;  /* ✅ */
+  overflow: auto;
 }
 
 .brand {
@@ -82,12 +80,9 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-
-  /* ❌ enlève ces 2 lignes */
-  /* overflow: hidden; */
-  /* min-height: 0; */
+  height: 100%;
+  overflow: hidden; /* on garde le dashboard fixe */
 }
-
 
 .topbar {
   margin-bottom: 16px;
@@ -106,15 +101,14 @@
   font-size: 14px;
 }
 
-/* ✅ la grille doit prendre le reste de la hauteur */
+/* ✅ la grille prend le reste de la hauteur */
 .mainGrid {
   display: grid;
-  grid-template-columns: 440px 1fr;
+  grid-template-columns: 460px 1fr;
   gap: 16px;
-
-  align-items: start;  /* ✅ panels à la hauteur de leur contenu */
+  flex: 1 1 auto;
+  min-height: 0; /* crucial pour que les scroll internes fonctionnent */
 }
-
 
 /* ===== Panels ===== */
 
@@ -123,10 +117,9 @@
   padding: 16px;
   background: $color-bg-alt;
   border: 1px solid $color-border;
-
-  overflow: visible; /* ✅ important si l'éditeur est plus grand */
+  min-height: 0;
+  overflow: auto; /* ✅ scroll interne editor + autres sections */
 }
-
 
 .panelTitle {
   margin: 0;
@@ -140,95 +133,14 @@
   font-size: 14px;
 }
 
-.formMock {
-  margin-top: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.label {
-  font-size: 14px;
-  color: $color-text-muted;
-}
-
-.input,
-.textarea {
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid $color-border;
-  background: $color-bg;
-  color: $color-text;
-  outline: none;
-
-  &:focus {
-    border-color: $color-primary;
-    box-shadow: 0 0 0 3px rgba(26, 60, 64, 0.15);
-  }
-}
-
-.textarea {
-  resize: vertical;
-}
-
-.primaryButton {
-  margin-top: 4px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid $color-border;
-  background: $color-primary;
-  color: $color-bg-alt;
-  cursor: pointer;
-
-  &:hover {
-    filter: brightness(1.05);
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-}
-
-/* ===== Mock preview (sections pas encore branchées) ===== */
-
-.previewMock {
-  margin-top: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.previewBlock {
-  height: 110px;
-  border-radius: 14px;
-  background: $color-bg;
-  border: 1px dashed $color-border;
-}
-
-.previewBlockSmall {
-  height: 60px;
-  border-radius: 14px;
-  background: $color-bg;
-  border: 1px dashed $color-border;
-}
-
-/* ===== Preview "vrai écran" miniaturisé ===== */
+/* ===== Preview panel ===== */
 
 .panelPreview {
   display: flex;
   flex-direction: column;
   gap: 12px;
-
-  min-height: 0;     /* ✅ CRUCIAL */
-  overflow: hidden;  /* ✅ CRUCIAL */
+  min-height: 0;
+  overflow: hidden; /* évite que le header se mélange au scroll */
 }
 
 .previewHeader {
@@ -257,62 +169,49 @@
   box-shadow: 0 0 0 2px rgba(26, 60, 64, 0.15);
 }
 
+/**
+ * ✅ PreviewStage = conteneur FIXE
+ * - taille fixe (pas d’auto height)
+ * - scroll vertical interne
+ * - pas de scroll horizontal
+ */
 .previewStage {
-  width: 100%;
-  aspect-ratio: 16 / 10;     /* ✅ zone qui s’auto-dimensionne */
-  position: relative;        /* ✅ pour placer le viewport en absolute */
-  overflow: hidden;
-
+  flex: 1 1 auto;
+  min-height: 0;
   border-radius: 16px;
   background: rgba(0, 0, 0, 0.06);
   border: 1px solid $color-border;
+  padding: 0 ;
+  overflow-y: auto;
+  overflow-x: hidden;
+
 }
 
+/**
+ * Sizer = vraie taille “layout” de la preview (scaled)
+ * => c’est LUI qui donne la bonne hauteur de scroll
+ */
+.previewSizer {
+  padding: 0 px;        /* ✅ on met l’espace ici */
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+
+/**
+ * Viewport = contenu à largeur 1440, scalé visuellement
+ * => transform ne casse plus le scroll car le Sizer fait la taille réelle.
+ */
 .previewViewport {
   width: 1440px;
-  height: 900px;
-
-  position: absolute;
-  left: 50%;
-  top: 50%;
-
-  transform-origin: center;
-  border-radius: 14px;
+  transform-origin: top left;
   overflow: hidden;
-  background: #000;
+
+  background: $color-bg; /* ✅ plus de gros noir moche */
   box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
 }
 
-
-/* ===== Responsive ===== */
-
-@media (max-width: $bp-tablet) {
-  .page {
-    height: auto;
-    min-height: 100vh;
-    grid-template-columns: 1fr;
-    overflow: visible;
-  }
-
-  .sidebar {
-    border-right: none;
-    border-bottom: 1px solid $color-border;
-  }
-
-  .content {
-    overflow: visible;
-  }
-
-  .mainGrid {
-    grid-template-columns: 1fr;
-    flex: unset;
-  }
-
-  .panelPreview {
-    overflow: visible;
-  }
-
-  .previewStage {
-    height: 60vh;
-  }
+/* petit wrapper “neutre” pour mesurer la hauteur réelle du contenu */
+.previewContent {
+  width: 100%;
 }

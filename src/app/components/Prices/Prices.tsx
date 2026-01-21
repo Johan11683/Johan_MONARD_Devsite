@@ -1,84 +1,38 @@
-'use client';
+"use client";
 
-import { useTranslation } from 'react-i18next';
-import styles from './Prices.module.scss';
+import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
+
+import PricesView from "./PricesView";
+import type { PricesContent, LocaleKey } from "@/app/components/Admin/Sections/Prices/prices.types";
+import { PRICES_DEFAULT } from "@/app/components/Admin/Sections/Prices/prices.default";
+import { normalizePrices } from "@/app/components/Admin/Sections/Prices/prices.normalize";
 
 export default function Prices() {
-  const { t } = useTranslation('prices');
+  const { i18n } = useTranslation();
 
-  return (
-    <section id="prices" className={styles.prices} aria-labelledby="prices-title">
-      <div className={styles.inner}>
-        <header className={styles.intro}>
-          <p className={styles.kicker}>{t('kicker')}</p>
-          <h2 id="prices-title" className={styles.title}>
-            {t('title')}
-          </h2>
-          <p className={styles.subtitle}>{t('subtitle')}</p>
-        </header>
+  const locale = useMemo<LocaleKey>(() => {
+    return i18n.language?.startsWith("en") ? "en" : "fr";
+  }, [i18n.language]);
 
-        <div className={styles.grid}>
-          {/* — 2000 € — */}
-          <article className={styles.card}>
-            <h3 className={styles.cardTitle}>{t('cards.standard.title')}</h3>
-            <p className={styles.price}>{t('cards.standard.price')}</p>
-            <p className={styles.cardDescription}>{t('cards.standard.description')}</p>
+  const [draft, setDraft] = useState<PricesContent>(PRICES_DEFAULT);
 
-            <ul className={styles.features}>
-              <li className={styles.featureItem}>{t('cards.standard.features.item1')}</li>
-              <li className={styles.featureItem}>{t('cards.standard.features.item2')}</li>
-              <li className={styles.featureItem}>{t('cards.standard.features.item3')}</li>
-              <li className={styles.featureItem}>{t('cards.standard.features.item4')}</li>
-              <li className={styles.featureItem}>{t('cards.standard.features.item5')}</li>
-              <li className={styles.featureItem}>{t('cards.standard.features.item6')}</li>
-            </ul>
-          </article>
+  useEffect(() => {
+    async function load() {
+      try {
+        const res = await fetch("/api/content/prices", { cache: "no-store" });
+        if (!res.ok) return;
 
-          {/* — 2200 € — Offre mise en avant */}
-          <article className={`${styles.card} ${styles.cardHighlight}`}>
-            <span className={styles.badge}>{t('badgeMostPopular')}</span>
+        const data = (await res.json()) as Partial<PricesContent> | null;
+        setDraft(normalizePrices(data));
+      } catch (e) {
+        // fallback = hardcode
+        console.error("Erreur chargement prices public:", e);
+      }
+    }
 
-            <h3 className={styles.cardTitle}>{t('cards.bilingual.title')}</h3>
-            <p className={styles.price}>{t('cards.bilingual.price')}</p>
-            <p className={styles.cardDescription}>{t('cards.bilingual.description')}</p>
+    load();
+  }, []);
 
-            <ul className={styles.features}>
-              <li className={styles.featureItem}>{t('cards.bilingual.features.item1')}</li>
-              <li className={styles.featureItem}>{t('cards.bilingual.features.item2')}</li>
-              <li className={styles.featureItem}>{t('cards.bilingual.features.item3')}</li>
-            </ul>
-          </article>
-
-          {/* — 4500 € — */}
-          <article className={styles.card}>
-            <h3 className={styles.cardTitle}>{t('cards.admin.title')}</h3>
-            <p className={styles.price}>{t('cards.admin.price')}</p>
-            <p className={styles.cardDescription}>{t('cards.admin.description')}</p>
-
-            <ul className={styles.features}>
-              <li className={styles.featureItem}>{t('cards.admin.features.item1')}</li>
-              <li className={styles.featureItem}>{t('cards.admin.features.item2')}</li>
-              <li className={styles.featureItem}>{t('cards.admin.features.item3')}</li>
-              <li className={styles.featureItem}>{t('cards.admin.features.item4')}</li>
-              <li className={styles.featureItem}>{t('cards.admin.features.item5')}</li>
-              <li className={styles.featureItem}>{t('cards.admin.features.item6')}</li>
-            </ul>
-          </article>
-        </div>
-
-        {/* Texte additionnel */}
-        <div className={styles.custom}>
-          <p>{t('custom.paragraph1')}</p>
-
-          <p><strong>{t('updatesPolicy.title')}</strong></p>
-          <p>{t('updatesPolicy.text')}</p>
-        </div>
-
-        {/* Mention légale */}
-        <footer className={styles.note}>{t('legalNote')}</footer>
-      </div>
-
-      <div className={styles.separator} />
-    </section>
-  );
+  return <PricesView value={draft} locale={locale} />;
 }

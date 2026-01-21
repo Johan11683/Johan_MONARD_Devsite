@@ -15,11 +15,17 @@ import type { BenefitContent } from "../components/Admin/Sections/Benefits/benef
 import { BENEFIT_DEFAULT } from "../components/Admin/Sections/Benefits/benefit.default";
 import { normalizeBenefit } from "../components/Admin/Sections/Benefits/benefit.normalize";
 
+import PricesEditor from "../components/Admin/Sections/Prices/PricesEditor";
+import PricesPreview from "../components/Admin/Sections/Prices/PricesPreview";
+import type { PricesContent } from "../components/Admin/Sections/Prices/prices.types";
+import { PRICES_DEFAULT } from "../components/Admin/Sections/Prices/prices.default";
+import { normalizePrices } from "../components/Admin/Sections/Prices/prices.normalize";
+
 type SectionKey =
   | "hero"
   | "benefit"
-  | "projects"
   | "prices"
+  | "projects"
   | "process"
   | "about"
   | "contact";
@@ -27,69 +33,74 @@ type SectionKey =
 const SECTIONS: { key: SectionKey; label: string }[] = [
   { key: "hero", label: "Hero" },
   { key: "benefit", label: "Bénéfices" },
-  { key: "projects", label: "Projets" },
   { key: "prices", label: "Tarifs" },
+  { key: "projects", label: "Projets" },
   { key: "process", label: "Process" },
   { key: "about", label: "À propos" },
   { key: "contact", label: "Contact" },
 ];
 
+const PREVIEW_WIDTH = 1440;
+
 export default function AdminPage() {
   const [active, setActive] = useState<SectionKey>("hero");
 
-  // ✅ Hero
+  // --- drafts
   const [heroDraft, setHeroDraft] = useState<HeroContent>(HERO_DEFAULT);
-  const [heroLocale, setHeroLocale] = useState<LocaleKey>("fr");
-
-  // ✅ Benefit
   const [benefitDraft, setBenefitDraft] = useState<BenefitContent>(BENEFIT_DEFAULT);
-  const [benefitLocale, setBenefitLocale] = useState<LocaleKey>("fr");
+  const [pricesDraft, setPricesDraft] = useState<PricesContent>(PRICES_DEFAULT);
 
-  // ✅ état commun
+  // --- locale (preview)
+  const [heroLocale, setHeroLocale] = useState<LocaleKey>("fr");
+  const [benefitLocale, setBenefitLocale] = useState<LocaleKey>("fr");
+  const [pricesLocale, setPricesLocale] = useState<LocaleKey>("fr");
+
+  // --- common
   const [isSaving, setIsSaving] = useState(false);
 
-  // ✅ Load Hero
+  // --- load hero
   useEffect(() => {
     async function loadHero() {
       try {
         const res = await fetch("/api/admin/hero", { cache: "no-store" });
-
-        if (!res.ok) {
-          const text = await res.text();
-          console.error("GET hero failed:", res.status, text);
-          return;
-        }
-
+        if (!res.ok) return;
         const data = (await res.json()) as Partial<HeroContent> | null;
         setHeroDraft(normalizeHero(data));
       } catch (err) {
         console.error("Erreur chargement hero:", err);
       }
     }
-
     loadHero();
   }, []);
 
-  // ✅ Load Benefit
+  // --- load benefit
   useEffect(() => {
     async function loadBenefit() {
       try {
         const res = await fetch("/api/admin/benefit", { cache: "no-store" });
-
-        if (!res.ok) {
-          const text = await res.text();
-          console.error("GET benefit failed:", res.status, text);
-          return;
-        }
-
+        if (!res.ok) return;
         const data = (await res.json()) as Partial<BenefitContent> | null;
         setBenefitDraft(normalizeBenefit(data));
       } catch (err) {
         console.error("Erreur chargement benefit:", err);
       }
     }
-
     loadBenefit();
+  }, []);
+
+  // --- load prices
+  useEffect(() => {
+    async function loadPrices() {
+      try {
+        const res = await fetch("/api/admin/prices", { cache: "no-store" });
+        if (!res.ok) return;
+        const data = (await res.json()) as Partial<PricesContent> | null;
+        setPricesDraft(normalizePrices(data));
+      } catch (err) {
+        console.error("Erreur chargement prices:", err);
+      }
+    }
+    loadPrices();
   }, []);
 
   async function handleLogout() {
@@ -103,34 +114,56 @@ export default function AdminPage() {
 
   const isHero = active === "hero";
   const isBenefit = active === "benefit";
+  const isPrices = active === "prices";
 
-  // ✅ Preview scaling (même scaling pour toutes les previews)
+  // =========================
+  // PREVIEW: fixed container + vertical scroll INSIDE + correct scaled size
+  // =========================
   const stageRef = useRef<HTMLDivElement | null>(null);
+  const viewportRef = useRef<HTMLDivElement | null>(null);
+
   const [scale, setScale] = useState(1);
+  const [viewportHeight, setViewportHeight] = useState(900);
 
-  const PREVIEW_WIDTH = 1440;
-  const PREVIEW_HEIGHT = 900;
-
+  // scale based on WIDTH only (you want scrolling vertically like the public site)
   useEffect(() => {
     function computeScale() {
-      const el = stageRef.current;
-      if (!el) return;
+    const stage = stageRef.current;
+      if (!stage) return;
 
-      const availableWidth = el.clientWidth;
-      const availableHeight = el.clientHeight;
+      const cs = window.getComputedStyle(stage);
+      const paddingX =
+        parseFloat(cs.paddingLeft || "0") + parseFloat(cs.paddingRight || "0");
 
-      const widthScale = availableWidth / PREVIEW_WIDTH;
-      const heightScale = availableHeight / PREVIEW_HEIGHT;
+      const w = stage.clientWidth - paddingX;
+      const next = Math.min(1, w / PREVIEW_WIDTH);
 
-      const nextScale = Math.min(widthScale, heightScale);
-      setScale(Number(nextScale.toFixed(3)));
+      // petite marge anti 1px overflow (scrollbar / rounding / subpixel)
+      setScale(Number((next - 0.001).toFixed(3)));
+
+
+      setScale(Number(next.toFixed(3)));
     }
 
     computeScale();
-
     window.addEventListener("resize", computeScale);
     return () => window.removeEventListener("resize", computeScale);
   }, []);
+
+  // track real content height to avoid huge empty scroll zones
+  useEffect(() => {
+    const el = viewportRef.current;
+    if (!el) return;
+
+    const ro = new ResizeObserver(() => {
+      // contentRect.height is reliable here (viewport is not transformed for measurement)
+      const h = el.getBoundingClientRect().height;
+      setViewportHeight(Math.max(200, Math.round(h)));
+    });
+
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [active, heroLocale, benefitLocale, pricesLocale, heroDraft, benefitDraft, pricesDraft]);
 
   return (
     <main className={styles.page}>
@@ -148,9 +181,7 @@ export default function AdminPage() {
             <button
               key={s.key}
               type="button"
-              className={`${styles.navItem} ${
-                active === s.key ? styles.navItemActive : ""
-              }`}
+              className={`${styles.navItem} ${active === s.key ? styles.navItemActive : ""}`}
               onClick={() => setActive(s.key)}
             >
               {s.label}
@@ -176,7 +207,6 @@ export default function AdminPage() {
                 isSaving={isSaving}
                 onSave={async () => {
                   if (isSaving) return;
-
                   setIsSaving(true);
 
                   const res = await fetch("/api/admin/hero", {
@@ -186,12 +216,7 @@ export default function AdminPage() {
                   });
 
                   setIsSaving(false);
-
-                  if (!res.ok) {
-                    const text = await res.text();
-                    console.error("PUT hero failed:", res.status, text);
-                    return;
-                  }
+                  if (!res.ok) console.error("PUT hero failed:", res.status, await res.text());
                 }}
               />
             ) : isBenefit ? (
@@ -201,7 +226,6 @@ export default function AdminPage() {
                 isSaving={isSaving}
                 onSave={async () => {
                   if (isSaving) return;
-
                   setIsSaving(true);
 
                   const res = await fetch("/api/admin/benefit", {
@@ -211,12 +235,26 @@ export default function AdminPage() {
                   });
 
                   setIsSaving(false);
+                  if (!res.ok) console.error("PUT benefit failed:", res.status, await res.text());
+                }}
+              />
+            ) : isPrices ? (
+              <PricesEditor
+                value={pricesDraft}
+                onChange={setPricesDraft}
+                isSaving={isSaving}
+                onSave={async () => {
+                  if (isSaving) return;
+                  setIsSaving(true);
 
-                  if (!res.ok) {
-                    const text = await res.text();
-                    console.error("PUT benefit failed:", res.status, text);
-                    return;
-                  }
+                  const res = await fetch("/api/admin/prices", {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(pricesDraft),
+                  });
+
+                  setIsSaving(false);
+                  if (!res.ok) console.error("PUT prices failed:", res.status, await res.text());
                 }}
               />
             ) : (
@@ -225,121 +263,79 @@ export default function AdminPage() {
                 <p className={styles.panelHint}>
                   Pour l’instant c’est un mock. On branchera chaque section progressivement.
                 </p>
-
-                <div className={styles.formMock}>
-                  <div className={styles.field}>
-                    <label className={styles.label}>Titre</label>
-                    <input className={styles.input} placeholder="Ex: Bienvenue" />
-                  </div>
-
-                  <div className={styles.field}>
-                    <label className={styles.label}>Texte</label>
-                    <textarea
-                      className={styles.textarea}
-                      placeholder="Ex: Développeur web…"
-                      rows={5}
-                    />
-                  </div>
-
-                  <button className={styles.primaryButton} type="button">
-                    Sauvegarder (mock)
-                  </button>
-                </div>
               </>
             )}
           </div>
 
           {/* Preview */}
           <div className={`${styles.panel} ${styles.panelPreview}`}>
-            {isHero ? (
-              <>
-                <div className={styles.previewHeader}>
-                  <h2 className={styles.panelTitle}>Preview</h2>
+            <div className={styles.previewHeader}>
+              <h2 className={styles.panelTitle}>Preview</h2>
 
-                  <div className={styles.localeToggle}>
-                    <button
-                      type="button"
-                      className={`${styles.toggleBtn} ${
-                        heroLocale === "fr" ? styles.toggleActive : ""
-                      }`}
-                      onClick={() => setHeroLocale("fr")}
-                    >
-                      FR
-                    </button>
+              <div className={styles.localeToggle}>
+                <button
+                  type="button"
+                  className={`${styles.toggleBtn} ${
+                    (isHero ? heroLocale : isBenefit ? benefitLocale : pricesLocale) === "fr"
+                      ? styles.toggleActive
+                      : ""
+                  }`}
+                  onClick={() => {
+                    if (isHero) setHeroLocale("fr");
+                    else if (isBenefit) setBenefitLocale("fr");
+                    else if (isPrices) setPricesLocale("fr");
+                  }}
+                >
+                  FR
+                </button>
 
-                    <button
-                      type="button"
-                      className={`${styles.toggleBtn} ${
-                        heroLocale === "en" ? styles.toggleActive : ""
-                      }`}
-                      onClick={() => setHeroLocale("en")}
-                    >
-                      EN
-                    </button>
+                <button
+                  type="button"
+                  className={`${styles.toggleBtn} ${
+                    (isHero ? heroLocale : isBenefit ? benefitLocale : pricesLocale) === "en"
+                      ? styles.toggleActive
+                      : ""
+                  }`}
+                  onClick={() => {
+                    if (isHero) setHeroLocale("en");
+                    else if (isBenefit) setBenefitLocale("en");
+                    else if (isPrices) setPricesLocale("en");
+                  }}
+                >
+                  EN
+                </button>
+              </div>
+            </div>
+
+            <div className={styles.previewStage} ref={stageRef}>
+              {/* Sizer = taille “réelle” de la preview (scaled) => scroll correct, plus de zone noire cheloue */}
+              <div
+                className={styles.previewSizer}
+                style={{
+                  width: `${Math.floor(PREVIEW_WIDTH * scale)}px`,
+                  height: `${Math.ceil(viewportHeight * scale)}px`,
+                }}
+              >
+                {/* Viewport = contenu à taille 1440px, scalé visuellement */}
+                <div
+                  className={styles.previewViewport}
+                  style={{ transform: `scale(${scale})` }}
+                  aria-label="Preview viewport"
+                >
+                  <div ref={viewportRef} className={styles.previewContent}>
+                    {isHero ? (
+                      <HeroPreview value={heroDraft} locale={heroLocale} />
+                    ) : isBenefit ? (
+                      <BenefitPreview value={benefitDraft} locale={benefitLocale} />
+                    ) : isPrices ? (
+                      <PricesPreview value={pricesDraft} locale={pricesLocale} />
+                    ) : null}
                   </div>
                 </div>
-
-                <div className={styles.previewStage} ref={stageRef}>
-                  <div
-                    className={styles.previewViewport}
-                    style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
-                  >
-                    <HeroPreview value={heroDraft} locale={heroLocale} />
-                  </div>
-                </div>
-              </>
-            ) : isBenefit ? (
-              <>
-                <div className={styles.previewHeader}>
-                  <h2 className={styles.panelTitle}>Preview</h2>
-
-                  <div className={styles.localeToggle}>
-                    <button
-                      type="button"
-                      className={`${styles.toggleBtn} ${
-                        benefitLocale === "fr" ? styles.toggleActive : ""
-                      }`}
-                      onClick={() => setBenefitLocale("fr")}
-                    >
-                      FR
-                    </button>
-
-                    <button
-                      type="button"
-                      className={`${styles.toggleBtn} ${
-                        benefitLocale === "en" ? styles.toggleActive : ""
-                      }`}
-                      onClick={() => setBenefitLocale("en")}
-                    >
-                      EN
-                    </button>
-                  </div>
-                </div>
-
-                <div className={styles.previewStage} ref={stageRef}>
-                  <div
-                    className={styles.previewViewport}
-                    style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
-                  >
-                    <BenefitPreview value={benefitDraft} locale={benefitLocale} />
-                  </div>
-                </div>
-              </>
-            ) : (
-              <>
-                <h2 className={styles.panelTitle}>Preview</h2>
-                <p className={styles.panelHint}>
-                  Cette zone affichera la section telle qu’elle apparaît sur le site.
-                </p>
-
-                <div className={styles.previewMock}>
-                  <div className={styles.previewBlock} />
-                  <div className={styles.previewBlock} />
-                  <div className={styles.previewBlockSmall} />
-                </div>
-              </>
-            )}
+              </div>
+            </div>
           </div>
+          {/* /Preview */}
         </div>
       </section>
     </main>
