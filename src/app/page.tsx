@@ -18,7 +18,7 @@ export default function HomePage() {
 
       <main>
         <Hero />
-         <Benefit />
+        <Benefit />
         <ProjectsLayout />
         <Prices />
         <Process />

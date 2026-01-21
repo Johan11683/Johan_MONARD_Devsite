@@ -1,0 +1,318 @@
+@use "../styles/variables" as *;
+
+.page {
+  margin-top: -70px;
+  min-height: 100dvh;          /* ✅ au lieu de height */
+  display: grid;
+  grid-template-columns: 280px 1fr;
+
+  background: $color-bg;
+  color: $color-text;
+  font-family: $font-sans;
+}
+
+
+/* ===== Sidebar ===== */
+
+.sidebar {
+  padding: 18px;
+  border-right: 1px solid $color-border;
+  background: $color-bg-alt;
+  overflow: auto; /* ✅ si un jour la sidebar dépasse */
+  min-height: 0;  /* ✅ */
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.brandTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.logoutButton {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid $color-border;
+  background: $color-accent;
+  color: $color-text;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(0.96);
+  }
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.navItem {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid $color-border;
+  background: $color-bg;
+  color: $color-text;
+  cursor: pointer;
+
+  &:hover {
+    background: $color-bg-alt;
+  }
+}
+
+.navItemActive {
+  border-color: $color-primary;
+  box-shadow: 0 0 0 2px rgba(26, 60, 64, 0.15);
+}
+
+/* ===== Content ===== */
+
+.content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  /* ❌ enlève ces 2 lignes */
+  /* overflow: hidden; */
+  /* min-height: 0; */
+}
+
+
+.topbar {
+  margin-bottom: 16px;
+  flex: 0 0 auto;
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 6px 0 0;
+  color: $color-text-muted;
+  font-size: 14px;
+}
+
+/* ✅ la grille doit prendre le reste de la hauteur */
+.mainGrid {
+  display: grid;
+  grid-template-columns: 440px 1fr;
+  gap: 16px;
+
+  align-items: start;  /* ✅ panels à la hauteur de leur contenu */
+}
+
+
+/* ===== Panels ===== */
+
+.panel {
+  border-radius: 16px;
+  padding: 16px;
+  background: $color-bg-alt;
+  border: 1px solid $color-border;
+
+  overflow: visible; /* ✅ important si l'éditeur est plus grand */
+}
+
+
+.panelTitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.panelHint {
+  margin: 8px 0 0;
+  color: $color-text-muted;
+  font-size: 14px;
+}
+
+.formMock {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 14px;
+  color: $color-text-muted;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid $color-border;
+  background: $color-bg;
+  color: $color-text;
+  outline: none;
+
+  &:focus {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba(26, 60, 64, 0.15);
+  }
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.primaryButton {
+  margin-top: 4px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid $color-border;
+  background: $color-primary;
+  color: $color-bg-alt;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(1.05);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+/* ===== Mock preview (sections pas encore branchées) ===== */
+
+.previewMock {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.previewBlock {
+  height: 110px;
+  border-radius: 14px;
+  background: $color-bg;
+  border: 1px dashed $color-border;
+}
+
+.previewBlockSmall {
+  height: 60px;
+  border-radius: 14px;
+  background: $color-bg;
+  border: 1px dashed $color-border;
+}
+
+/* ===== Preview "vrai écran" miniaturisé ===== */
+
+.panelPreview {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  min-height: 0;     /* ✅ CRUCIAL */
+  overflow: hidden;  /* ✅ CRUCIAL */
+}
+
+.previewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex: 0 0 auto;
+}
+
+.localeToggle {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.toggleBtn {
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid $color-border;
+  background: $color-bg;
+  cursor: pointer;
+}
+
+.toggleActive {
+  border-color: $color-primary;
+  box-shadow: 0 0 0 2px rgba(26, 60, 64, 0.15);
+}
+
+.previewStage {
+  width: 100%;
+  aspect-ratio: 16 / 10;     /* ✅ zone qui s’auto-dimensionne */
+  position: relative;        /* ✅ pour placer le viewport en absolute */
+  overflow: hidden;
+
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid $color-border;
+}
+
+.previewViewport {
+  width: 1440px;
+  height: 900px;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  transform-origin: center;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
+}
+
+
+/* ===== Responsive ===== */
+
+@media (max-width: $bp-tablet) {
+  .page {
+    height: auto;
+    min-height: 100vh;
+    grid-template-columns: 1fr;
+    overflow: visible;
+  }
+
+  .sidebar {
+    border-right: none;
+    border-bottom: 1px solid $color-border;
+  }
+
+  .content {
+    overflow: visible;
+  }
+
+  .mainGrid {
+    grid-template-columns: 1fr;
+    flex: unset;
+  }
+
+  .panelPreview {
+    overflow: visible;
+  }
+
+  .previewStage {
+    height: 60vh;
+  }
+}
