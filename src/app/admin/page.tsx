@@ -5,8 +5,15 @@ import styles from "./admin.module.scss";
 
 import HeroEditor from "../components/Admin/Sections/Hero/HeroEditor";
 import HeroPreview from "../components/Admin/Sections/Hero/HeroPreview";
-import type { HeroContent } from "../components/Admin/Sections/Hero/hero.types";
-import type { LocaleKey } from "../components/Admin/Sections/Hero/hero.types";
+import type { HeroContent, LocaleKey } from "../components/Admin/Sections/Hero/hero.types";
+import { HERO_DEFAULT } from "../components/Admin/Sections/Hero/hero.default";
+import { normalizeHero } from "../components/Admin/Sections/Hero/hero.normalize";
+
+import BenefitEditor from "../components/Admin/Sections/Benefits/BenefitEditor";
+import BenefitPreview from "../components/Admin/Sections/Benefits/BenefitPreview";
+import type { BenefitContent } from "../components/Admin/Sections/Benefits/benefit.types";
+import { BENEFIT_DEFAULT } from "../components/Admin/Sections/Benefits/benefit.default";
+import { normalizeBenefit } from "../components/Admin/Sections/Benefits/benefit.normalize";
 
 type SectionKey =
   | "hero"
@@ -27,40 +34,21 @@ const SECTIONS: { key: SectionKey; label: string }[] = [
   { key: "contact", label: "Contact" },
 ];
 
-const HERO_DEFAULT: HeroContent = {
-  title: { fr: "", en: "" },
-  subtitle: { fr: "", en: "" },
-  ctaText: { fr: "", en: "" },
-  ctaHref: "#prices",
-  imageUrl: "",
-};
-
-function normalizeHero(data: HeroContent | null): HeroContent {
-  return {
-    title: {
-      fr: data?.title?.fr ?? "",
-      en: data?.title?.en ?? "",
-    },
-    subtitle: {
-      fr: data?.subtitle?.fr ?? "",
-      en: data?.subtitle?.en ?? "",
-    },
-    ctaText: {
-      fr: data?.ctaText?.fr ?? "",
-      en: data?.ctaText?.en ?? "",
-    },
-    ctaHref: data?.ctaHref ?? "#prices",
-    imageUrl: data?.imageUrl ?? "",
-  };
-}
-
 export default function AdminPage() {
   const [active, setActive] = useState<SectionKey>("hero");
+
+  // ✅ Hero
   const [heroDraft, setHeroDraft] = useState<HeroContent>(HERO_DEFAULT);
   const [heroLocale, setHeroLocale] = useState<LocaleKey>("fr");
 
+  // ✅ Benefit
+  const [benefitDraft, setBenefitDraft] = useState<BenefitContent>(BENEFIT_DEFAULT);
+  const [benefitLocale, setBenefitLocale] = useState<LocaleKey>("fr");
+
+  // ✅ état commun
   const [isSaving, setIsSaving] = useState(false);
 
+  // ✅ Load Hero
   useEffect(() => {
     async function loadHero() {
       try {
@@ -72,7 +60,7 @@ export default function AdminPage() {
           return;
         }
 
-        const data = (await res.json()) as HeroContent | null;
+        const data = (await res.json()) as Partial<HeroContent> | null;
         setHeroDraft(normalizeHero(data));
       } catch (err) {
         console.error("Erreur chargement hero:", err);
@@ -80,6 +68,28 @@ export default function AdminPage() {
     }
 
     loadHero();
+  }, []);
+
+  // ✅ Load Benefit
+  useEffect(() => {
+    async function loadBenefit() {
+      try {
+        const res = await fetch("/api/admin/benefit", { cache: "no-store" });
+
+        if (!res.ok) {
+          const text = await res.text();
+          console.error("GET benefit failed:", res.status, text);
+          return;
+        }
+
+        const data = (await res.json()) as Partial<BenefitContent> | null;
+        setBenefitDraft(normalizeBenefit(data));
+      } catch (err) {
+        console.error("Erreur chargement benefit:", err);
+      }
+    }
+
+    loadBenefit();
   }, []);
 
   async function handleLogout() {
@@ -92,7 +102,9 @@ export default function AdminPage() {
   }, [active]);
 
   const isHero = active === "hero";
+  const isBenefit = active === "benefit";
 
+  // ✅ Preview scaling (même scaling pour toutes les previews)
   const stageRef = useRef<HTMLDivElement | null>(null);
   const [scale, setScale] = useState(1);
 
@@ -151,9 +163,7 @@ export default function AdminPage() {
       <section className={styles.content}>
         <header className={styles.topbar}>
           <h1 className={styles.title}>{title}</h1>
-          <p className={styles.subtitle}>
-            À gauche tu modifies, à droite tu vois le rendu.
-          </p>
+          <p className={styles.subtitle}>À gauche tu modifies, à droite tu vois le rendu.</p>
         </header>
 
         <div className={styles.mainGrid}>
@@ -184,21 +194,42 @@ export default function AdminPage() {
                   }
                 }}
               />
+            ) : isBenefit ? (
+              <BenefitEditor
+                value={benefitDraft}
+                onChange={setBenefitDraft}
+                isSaving={isSaving}
+                onSave={async () => {
+                  if (isSaving) return;
+
+                  setIsSaving(true);
+
+                  const res = await fetch("/api/admin/benefit", {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(benefitDraft),
+                  });
+
+                  setIsSaving(false);
+
+                  if (!res.ok) {
+                    const text = await res.text();
+                    console.error("PUT benefit failed:", res.status, text);
+                    return;
+                  }
+                }}
+              />
             ) : (
               <>
                 <h2 className={styles.panelTitle}>Éditeur</h2>
                 <p className={styles.panelHint}>
-                  Pour l’instant c’est un mock. On branchera chaque section
-                  progressivement.
+                  Pour l’instant c’est un mock. On branchera chaque section progressivement.
                 </p>
 
                 <div className={styles.formMock}>
                   <div className={styles.field}>
                     <label className={styles.label}>Titre</label>
-                    <input
-                      className={styles.input}
-                      placeholder="Ex: Bienvenue"
-                    />
+                    <input className={styles.input} placeholder="Ex: Bienvenue" />
                   </div>
 
                   <div className={styles.field}>
@@ -251,11 +282,46 @@ export default function AdminPage() {
                 <div className={styles.previewStage} ref={stageRef}>
                   <div
                     className={styles.previewViewport}
-                    style={{
-                      transform: `translate(-50%, -50%) scale(${scale})`,
-                    }}
+                    style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
                   >
                     <HeroPreview value={heroDraft} locale={heroLocale} />
+                  </div>
+                </div>
+              </>
+            ) : isBenefit ? (
+              <>
+                <div className={styles.previewHeader}>
+                  <h2 className={styles.panelTitle}>Preview</h2>
+
+                  <div className={styles.localeToggle}>
+                    <button
+                      type="button"
+                      className={`${styles.toggleBtn} ${
+                        benefitLocale === "fr" ? styles.toggleActive : ""
+                      }`}
+                      onClick={() => setBenefitLocale("fr")}
+                    >
+                      FR
+                    </button>
+
+                    <button
+                      type="button"
+                      className={`${styles.toggleBtn} ${
+                        benefitLocale === "en" ? styles.toggleActive : ""
+                      }`}
+                      onClick={() => setBenefitLocale("en")}
+                    >
+                      EN
+                    </button>
+                  </div>
+                </div>
+
+                <div className={styles.previewStage} ref={stageRef}>
+                  <div
+                    className={styles.previewViewport}
+                    style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
+                  >
+                    <BenefitPreview value={benefitDraft} locale={benefitLocale} />
                   </div>
                 </div>
               </>
@@ -263,8 +329,7 @@ export default function AdminPage() {
               <>
                 <h2 className={styles.panelTitle}>Preview</h2>
                 <p className={styles.panelHint}>
-                  Cette zone affichera la section telle qu’elle apparaît sur le
-                  site.
+                  Cette zone affichera la section telle qu’elle apparaît sur le site.
                 </p>
 
                 <div className={styles.previewMock}>
