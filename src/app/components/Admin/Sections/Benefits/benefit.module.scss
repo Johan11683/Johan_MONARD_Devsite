@@ -1,61 +1,88 @@
 @use "../../../../styles/variables" as *;
 
 /* =========
-   EDITOR
+   EDITOR (nouveau design style Process)
    ========= */
 
 .editor {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
-.row {
+.editorHeader {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-.panelTitle {
+.editorTitle {
   margin: 0;
   font-size: 16px;
   font-weight: 700;
 }
 
-.hint {
-  margin: 0;
-  font-size: 14px;
+.editorHint {
+  margin: 4px 0 0;
+  font-size: 12px;
   color: $color-text-muted;
 }
 
-.section {
-  padding: 12px;
-  border: 1px solid $color-border;
+.saveButton {
+  padding: 10px 12px;
   border-radius: 12px;
-  background: $color-bg-alt;
+  border: 1px solid $color-border;
+  background: $color-accent;
+  color: $color-text;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(0.96);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 }
 
-.sectionTitle {
-  margin: 0 0 10px 0;
+.block {
+  border: 1px solid $color-border;
+  border-radius: 14px;
+  background: $color-bg;
+  padding: 12px;
+}
+
+.blockTitle {
+  margin: 0 0 10px;
   font-size: 14px;
   font-weight: 700;
-  color: $color-text;
+}
+
+.fieldGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
 }
 
 .grid2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 10px;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .field {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 6px;
 }
 
-.label {
-  font-size: 14px;
+.fieldLabel {
+  font-size: 12px;
   color: $color-text-muted;
 }
 
@@ -63,28 +90,37 @@
 .textarea {
   width: 100%;
   padding: 10px 12px;
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px solid $color-border;
-  background: $color-bg;
+  background: $color-bg-alt;
   color: $color-text;
+  font-family: $font-sans;
   outline: none;
 
   &:focus {
     border-color: $color-primary;
-    box-shadow: 0 0 0 3px rgba(26, 60, 64, 0.15);
+    box-shadow: 0 0 0 2px rgba(26, 60, 64, 0.15);
   }
 }
 
 .textarea {
   resize: vertical;
+  min-height: 90px;
+}
+
+/* Cards editor */
+.cardsEditor {
+  display: grid;
+  gap: 10px;
 }
 
 .cardEditor {
-  margin-top: 10px;
-  padding: 12px;
   border: 1px solid $color-border;
-  border-radius: 12px;
-  background: $color-bg;
+  border-radius: 14px;
+  background: $color-bg-alt;
+  padding: 12px;
+  display: grid;
+  gap: 10px;
 }
 
 .cardEditorHeader {
@@ -92,61 +128,47 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 10px;
 }
 
 .cardEditorTitle {
   margin: 0;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
 }
 
 .cardEditorHint {
-  margin: 2px 0 0 0;
-  font-size: 13px;
+  margin: 4px 0 0;
+  font-size: 12px;
   color: $color-text-muted;
 }
 
+/* Switch */
 .switch {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   user-select: none;
 }
 
 .switchLabel {
-  font-size: 13px;
+  font-size: 12px;
   color: $color-text-muted;
 }
 
-.actions {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.primaryButton {
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: none;
-  background: $color-primary;
-  color: $color-bg-alt;
-  cursor: pointer;
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+.note {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: $color-text-muted;
 }
 
 .errorText {
-  margin: 0;
+  margin: 10px 0 0;
   color: $color-error;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 /* =========
-   PREVIEW (section "Bénéfices" rendue)
+   PREVIEW (rendu section Bénéfices)
    ========= */
 
 .benefit {

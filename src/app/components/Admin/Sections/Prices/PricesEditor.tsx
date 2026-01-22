@@ -163,12 +163,10 @@ export default function PricesEditor({
     });
   }
 
-  // ✅ NEW: move feature up/down (FR + EN en même temps)
   function moveFeature(cardKey: PriceCardKey, fromIndex: number, direction: -1 | 1) {
     const fr = value.cards[cardKey].features.fr;
     const en = value.cards[cardKey].features.en;
 
-    // sécurité : on garde FR/EN synchronisés
     if (fr.length !== en.length) return;
 
     const toIndex = fromIndex + direction;
@@ -177,7 +175,6 @@ export default function PricesEditor({
     const nextFr = [...fr];
     const nextEn = [...en];
 
-    // swap d’un cran
     [nextFr[fromIndex], nextFr[toIndex]] = [nextFr[toIndex], nextFr[fromIndex]];
     [nextEn[fromIndex], nextEn[toIndex]] = [nextEn[toIndex], nextEn[fromIndex]];
 
@@ -193,13 +190,7 @@ export default function PricesEditor({
     });
   }
 
-  // ✅ validation :
-  // - header FR/EN
-  // - badge FR/EN
-  // - cards activées : title/price/description FR/EN + features FR/EN (toutes remplies)
-  // - custom paragraph1 FR/EN
-  // - updatesPolicy title/text FR/EN
-  // - legalNote FR/EN
+  // ✅ validation
   const headerOk =
     !!value.kicker.fr.trim() &&
     !!value.kicker.en.trim() &&
@@ -208,11 +199,9 @@ export default function PricesEditor({
     !!value.subtitle.fr.trim() &&
     !!value.subtitle.en.trim();
 
-  const badgeOk =
-    !!value.badgeMostPopular.fr.trim() && !!value.badgeMostPopular.en.trim();
+  const badgeOk = !!value.badgeMostPopular.fr.trim() && !!value.badgeMostPopular.en.trim();
 
-  const customOk =
-    !!value.custom.paragraph1.fr.trim() && !!value.custom.paragraph1.en.trim();
+  const customOk = !!value.custom.paragraph1.fr.trim() && !!value.custom.paragraph1.en.trim();
 
   const updatesOk =
     !!value.updatesPolicy.title.fr.trim() &&
@@ -238,129 +227,107 @@ export default function PricesEditor({
 
     const frList = c.features.fr;
     const enList = c.features.en;
-
-    // on exige même longueur
     if (frList.length !== enList.length) return false;
 
-    // toutes remplies
-    const featuresOk =
-      frList.every((s) => !!s.trim()) && enList.every((s) => !!s.trim());
-
-    return featuresOk;
+    return frList.every((s) => !!s.trim()) && enList.every((s) => !!s.trim());
   });
 
-  const isValid =
-    headerOk && badgeOk && cardsOk && customOk && updatesOk && legalOk;
+  const isValid = headerOk && badgeOk && cardsOk && customOk && updatesOk && legalOk;
 
   return (
     <div className={styles.editor}>
-      <div className={styles.row}>
-        <h2 className={styles.panelTitle}>Tarifs</h2>
-        <p className={styles.hint}>
-          FR + EN obligatoires (cartes activées uniquement). Features illimitées.
+      <header className={styles.editorHeader}>
+        <div>
+          <h2 className={styles.editorTitle}>Tarifs</h2>
+          <p className={styles.hint}>
+            FR + EN obligatoires (cartes activées uniquement). Features illimitées.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          className={styles.saveButton}
+          onClick={() => void onSave()}
+          disabled={!isValid || isSaving}
+        >
+          {isSaving ? "Sauvegarde..." : "Sauvegarder"}
+        </button>
+      </header>
+
+      {!isSaving && !isValid && (
+        <p className={styles.errorText}>
+          Il manque des champs (FR/EN + cartes activées + features).
         </p>
-      </div>
+      )}
 
       {/* Intro */}
-      <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>Intro</h3>
+      <section className={styles.block}>
+        <h3 className={styles.blockTitle}>Intro</h3>
 
-        <div className={styles.grid2}>
-          <div className={styles.field}>
-            <label className={styles.label}>Kicker (FR)</label>
-            <input
-              className={styles.input}
+        <div className={styles.fieldGrid}>
+          <div className={styles.grid2}>
+            <Field
+              label="Kicker (FR)"
               value={value.kicker.fr}
-              onChange={(e) => updateLocalized("kicker", "fr", e.target.value)}
+              onChange={(v) => updateLocalized("kicker", "fr", v)}
             />
-          </div>
-
-          <div className={styles.field}>
-            <label className={styles.label}>Kicker (EN)</label>
-            <input
-              className={styles.input}
+            <Field
+              label="Kicker (EN)"
               value={value.kicker.en}
-              onChange={(e) => updateLocalized("kicker", "en", e.target.value)}
+              onChange={(v) => updateLocalized("kicker", "en", v)}
             />
           </div>
-        </div>
 
-        <div className={styles.grid2}>
-          <div className={styles.field}>
-            <label className={styles.label}>Titre (FR)</label>
-            <input
-              className={styles.input}
+          <div className={styles.grid2}>
+            <Field
+              label="Titre (FR)"
               value={value.title.fr}
-              onChange={(e) => updateLocalized("title", "fr", e.target.value)}
+              onChange={(v) => updateLocalized("title", "fr", v)}
             />
-          </div>
-
-          <div className={styles.field}>
-            <label className={styles.label}>Title (EN)</label>
-            <input
-              className={styles.input}
+            <Field
+              label="Title (EN)"
               value={value.title.en}
-              onChange={(e) => updateLocalized("title", "en", e.target.value)}
+              onChange={(v) => updateLocalized("title", "en", v)}
             />
           </div>
-        </div>
 
-        <div className={styles.grid2}>
-          <div className={styles.field}>
-            <label className={styles.label}>Sous-titre (FR)</label>
-            <textarea
-              className={styles.textarea}
-              rows={3}
+          <div className={styles.grid2}>
+            <TextAreaField
+              label="Sous-titre (FR)"
               value={value.subtitle.fr}
-              onChange={(e) => updateLocalized("subtitle", "fr", e.target.value)}
-            />
-          </div>
-
-          <div className={styles.field}>
-            <label className={styles.label}>Subtitle (EN)</label>
-            <textarea
-              className={styles.textarea}
               rows={3}
+              onChange={(v) => updateLocalized("subtitle", "fr", v)}
+            />
+            <TextAreaField
+              label="Subtitle (EN)"
               value={value.subtitle.en}
-              onChange={(e) => updateLocalized("subtitle", "en", e.target.value)}
+              rows={3}
+              onChange={(v) => updateLocalized("subtitle", "en", v)}
             />
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Badge */}
-      <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>Badge (carte mise en avant)</h3>
+      <section className={styles.block}>
+        <h3 className={styles.blockTitle}>Badge (carte mise en avant)</h3>
 
-        <div className={styles.grid2}>
-          <div className={styles.field}>
-            <label className={styles.label}>Badge (FR)</label>
-            <input
-              className={styles.input}
+        <div className={styles.fieldGrid}>
+          <div className={styles.grid2}>
+            <Field
+              label="Badge (FR)"
               value={value.badgeMostPopular.fr}
-              onChange={(e) =>
-                updateLocalized("badgeMostPopular", "fr", e.target.value)
-              }
+              onChange={(v) => updateLocalized("badgeMostPopular", "fr", v)}
             />
-          </div>
-
-          <div className={styles.field}>
-            <label className={styles.label}>Badge (EN)</label>
-            <input
-              className={styles.input}
+            <Field
+              label="Badge (EN)"
               value={value.badgeMostPopular.en}
-              onChange={(e) =>
-                updateLocalized("badgeMostPopular", "en", e.target.value)
-              }
+              onChange={(v) => updateLocalized("badgeMostPopular", "en", v)}
             />
           </div>
-        </div>
 
-        <div className={styles.field}>
           <label className={styles.switch}>
-            <span className={styles.switchLabel}>
-              Carte “Bilingue” mise en avant
-            </span>
+            <span className={styles.switchLabel}>Carte “Bilingue” mise en avant</span>
             <input
               type="checkbox"
               checked={!!value.cards.bilingual.highlight}
@@ -368,333 +335,272 @@ export default function PricesEditor({
             />
           </label>
         </div>
-      </div>
+      </section>
 
       {/* Cards */}
-      <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>Cartes</h3>
+      <section className={styles.block}>
+        <h3 className={styles.blockTitle}>Cartes</h3>
 
-        {CARD_KEYS.map((key) => {
-          const card = value.cards[key];
-          // ✅ mieux: longueur FR (vu que tu imposes la synchro)
-          const rows = card.features.fr.length;
+        <div className={styles.cardsEditor}>
+          {CARD_KEYS.map((key) => {
+            const card = value.cards[key];
+            const rows = card.features.fr.length;
 
-          return (
-            <div key={key} className={styles.cardEditor}>
-              <div className={styles.cardEditorHeader}>
-                <div>
-                  <p className={styles.cardEditorTitle}>{CARD_LABELS[key]}</p>
-                  <p className={styles.cardEditorHint}>
-                    Features illimitées (FR/EN, mêmes lignes).
-                  </p>
+            return (
+              <div key={key} className={styles.cardEditor}>
+                <div className={styles.cardEditorHeader}>
+                  <div>
+                    <p className={styles.cardEditorTitle}>{CARD_LABELS[key]}</p>
+                    <p className={styles.cardEditorHint}>
+                      Features illimitées (FR/EN, mêmes lignes).
+                    </p>
+                  </div>
+
+                  <label className={styles.switch}>
+                    <span className={styles.switchLabel}>Activée</span>
+                    <input
+                      type="checkbox"
+                      checked={card.enabled}
+                      onChange={(e) => updateCardEnabled(key, e.target.checked)}
+                    />
+                  </label>
                 </div>
 
-                <label className={styles.switch}>
-                  <span className={styles.switchLabel}>Activée</span>
-                  <input
-                    type="checkbox"
-                    checked={card.enabled}
-                    onChange={(e) => updateCardEnabled(key, e.target.checked)}
-                  />
-                </label>
-              </div>
-
-              {card.enabled && (
-                <>
-                  <div className={styles.grid2}>
-                    <div className={styles.field}>
-                      <label className={styles.label}>Titre (FR)</label>
-                      <input
-                        className={styles.input}
+                {card.enabled && (
+                  <div className={styles.fieldGrid}>
+                    <div className={styles.grid2}>
+                      <Field
+                        label="Titre (FR)"
                         value={card.title.fr}
-                        onChange={(e) =>
-                          updateCardLocalized(key, "title", "fr", e.target.value)
-                        }
+                        onChange={(v) => updateCardLocalized(key, "title", "fr", v)}
                       />
-                    </div>
-
-                    <div className={styles.field}>
-                      <label className={styles.label}>Title (EN)</label>
-                      <input
-                        className={styles.input}
+                      <Field
+                        label="Title (EN)"
                         value={card.title.en}
-                        onChange={(e) =>
-                          updateCardLocalized(key, "title", "en", e.target.value)
-                        }
+                        onChange={(v) => updateCardLocalized(key, "title", "en", v)}
                       />
                     </div>
-                  </div>
 
-                  <div className={styles.grid2}>
-                    <div className={styles.field}>
-                      <label className={styles.label}>Prix (FR)</label>
-                      <input
-                        className={styles.input}
+                    <div className={styles.grid2}>
+                      <Field
+                        label="Prix (FR)"
                         value={card.price.fr}
-                        onChange={(e) =>
-                          updateCardLocalized(key, "price", "fr", e.target.value)
-                        }
+                        onChange={(v) => updateCardLocalized(key, "price", "fr", v)}
                       />
-                    </div>
-
-                    <div className={styles.field}>
-                      <label className={styles.label}>Price (EN)</label>
-                      <input
-                        className={styles.input}
+                      <Field
+                        label="Price (EN)"
                         value={card.price.en}
-                        onChange={(e) =>
-                          updateCardLocalized(key, "price", "en", e.target.value)
-                        }
+                        onChange={(v) => updateCardLocalized(key, "price", "en", v)}
                       />
                     </div>
-                  </div>
 
-                  <div className={styles.grid2}>
-                    <div className={styles.field}>
-                      <label className={styles.label}>Description (FR)</label>
-                      <textarea
-                        className={styles.textarea}
-                        rows={3}
+                    <div className={styles.grid2}>
+                      <TextAreaField
+                        label="Description (FR)"
                         value={card.description.fr}
-                        onChange={(e) =>
-                          updateCardLocalized(
-                            key,
-                            "description",
-                            "fr",
-                            e.target.value
-                          )
-                        }
-                      />
-                    </div>
-
-                    <div className={styles.field}>
-                      <label className={styles.label}>Description (EN)</label>
-                      <textarea
-                        className={styles.textarea}
                         rows={3}
+                        onChange={(v) => updateCardLocalized(key, "description", "fr", v)}
+                      />
+                      <TextAreaField
+                        label="Description (EN)"
                         value={card.description.en}
-                        onChange={(e) =>
-                          updateCardLocalized(
-                            key,
-                            "description",
-                            "en",
-                            e.target.value
-                          )
-                        }
+                        rows={3}
+                        onChange={(v) => updateCardLocalized(key, "description", "en", v)}
                       />
                     </div>
-                  </div>
 
-                  {/* Features */}
-                  <div className={styles.featuresBlock}>
-                    <div className={styles.featuresHeader}>
-                      <h4 className={styles.featuresTitle}>Features</h4>
-                      <button
-                        type="button"
-                        className={styles.secondaryButton}
-                        onClick={() => addFeature(key)}
-                      >
-                        + Ajouter une ligne
-                      </button>
-                    </div>
-
-                    {Array.from({ length: rows }).map((_, idx) => {
-                      const frVal = card.features.fr[idx] ?? "";
-                      const enVal = card.features.en[idx] ?? "";
-
-                      return (
-                        <div
-                          key={`${key}-feature-row-${idx}`}
-                          className={styles.featureRow}
+                    <div className={styles.featuresBlock}>
+                      <div className={styles.featuresHeader}>
+                        <h4 className={styles.featuresTitle}>Features</h4>
+                        <button
+                          type="button"
+                          className={styles.secondaryButton}
+                          onClick={() => addFeature(key)}
                         >
-                          <div className={styles.grid2}>
-                            <div className={styles.field}>
-                              <label className={styles.label}>
-                                FR — ligne {idx + 1}
-                              </label>
-                              <input
-                                className={styles.input}
+                          + Ajouter une ligne
+                        </button>
+                      </div>
+
+                      {Array.from({ length: rows }).map((_, idx) => {
+                        const frVal = card.features.fr[idx] ?? "";
+                        const enVal = card.features.en[idx] ?? "";
+
+                        return (
+                          <div key={`${key}-feature-row-${idx}`} className={styles.featureRow}>
+                            <div className={styles.grid2}>
+                              <Field
+                                label={`FR — ligne ${idx + 1}`}
                                 value={frVal}
-                                onChange={(e) =>
-                                  updateFeature(key, "fr", idx, e.target.value)
-                                }
+                                onChange={(v) => updateFeature(key, "fr", idx, v)}
                               />
-                            </div>
-
-                            <div className={styles.field}>
-                              <label className={styles.label}>
-                                EN — line {idx + 1}
-                              </label>
-                              <input
-                                className={styles.input}
+                              <Field
+                                label={`EN — line ${idx + 1}`}
                                 value={enVal}
-                                onChange={(e) =>
-                                  updateFeature(key, "en", idx, e.target.value)
-                                }
+                                onChange={(v) => updateFeature(key, "en", idx, v)}
                               />
                             </div>
+
+                            <div className={styles.featureActions}>
+                              <button
+                                type="button"
+                                className={styles.iconButton}
+                                onClick={() => moveFeature(key, idx, -1)}
+                                disabled={idx === 0}
+                                aria-label={`Monter la feature ${idx + 1}`}
+                                title="Monter"
+                              >
+                                ▲
+                              </button>
+
+                              <button
+                                type="button"
+                                className={styles.iconButton}
+                                onClick={() => moveFeature(key, idx, +1)}
+                                disabled={idx === rows - 1}
+                                aria-label={`Descendre la feature ${idx + 1}`}
+                                title="Descendre"
+                              >
+                                ▼
+                              </button>
+
+                              <button
+                                type="button"
+                                className={styles.dangerButton}
+                                onClick={() => removeFeature(key, idx)}
+                                aria-label={`Supprimer la feature ${idx + 1}`}
+                              >
+                                Supprimer
+                              </button>
+                            </div>
                           </div>
-
-                          {/* ✅ NEW: flèches haut/bas + supprimer */}
-                          <div className={styles.featureActions}>
-                            <button
-                              type="button"
-                              className={styles.iconButton}
-                              onClick={() => moveFeature(key, idx, -1)}
-                              disabled={idx === 0}
-                              aria-label={`Monter la feature ${idx + 1}`}
-                              title="Monter"
-                            >
-                              ▲
-                            </button>
-
-                            <button
-                              type="button"
-                              className={styles.iconButton}
-                              onClick={() => moveFeature(key, idx, +1)}
-                              disabled={idx === rows - 1}
-                              aria-label={`Descendre la feature ${idx + 1}`}
-                              title="Descendre"
-                            >
-                              ▼
-                            </button>
-
-                            <button
-                              type="button"
-                              className={styles.dangerButton}
-                              onClick={() => removeFeature(key, idx)}
-                              aria-label={`Supprimer la feature ${idx + 1}`}
-                            >
-                              Supprimer
-                            </button>
-                          </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
+                    </div>
                   </div>
-                </>
-              )}
-            </div>
-          );
-        })}
-      </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </section>
 
       {/* Custom */}
-      <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>Texte custom</h3>
+      <section className={styles.block}>
+        <h3 className={styles.blockTitle}>Texte custom</h3>
 
-        <div className={styles.grid2}>
-          <div className={styles.field}>
-            <label className={styles.label}>Paragraphe (FR)</label>
-            <textarea
-              className={styles.textarea}
-              rows={3}
+        <div className={styles.fieldGrid}>
+          <div className={styles.grid2}>
+            <TextAreaField
+              label="Paragraphe (FR)"
               value={value.custom.paragraph1.fr}
-              onChange={(e) => updateCustomParagraph("fr", e.target.value)}
-            />
-          </div>
-
-          <div className={styles.field}>
-            <label className={styles.label}>Paragraph (EN)</label>
-            <textarea
-              className={styles.textarea}
               rows={3}
+              onChange={(v) => updateCustomParagraph("fr", v)}
+            />
+            <TextAreaField
+              label="Paragraph (EN)"
               value={value.custom.paragraph1.en}
-              onChange={(e) => updateCustomParagraph("en", e.target.value)}
+              rows={3}
+              onChange={(v) => updateCustomParagraph("en", v)}
             />
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Updates policy */}
-      <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>Politique de mises à jour</h3>
+      <section className={styles.block}>
+        <h3 className={styles.blockTitle}>Politique de mises à jour</h3>
 
-        <div className={styles.grid2}>
-          <div className={styles.field}>
-            <label className={styles.label}>Titre (FR)</label>
-            <input
-              className={styles.input}
+        <div className={styles.fieldGrid}>
+          <div className={styles.grid2}>
+            <Field
+              label="Titre (FR)"
               value={value.updatesPolicy.title.fr}
-              onChange={(e) => updateUpdatesPolicy("title", "fr", e.target.value)}
+              onChange={(v) => updateUpdatesPolicy("title", "fr", v)}
             />
-          </div>
-
-          <div className={styles.field}>
-            <label className={styles.label}>Title (EN)</label>
-            <input
-              className={styles.input}
+            <Field
+              label="Title (EN)"
               value={value.updatesPolicy.title.en}
-              onChange={(e) => updateUpdatesPolicy("title", "en", e.target.value)}
+              onChange={(v) => updateUpdatesPolicy("title", "en", v)}
             />
           </div>
-        </div>
 
-        <div className={styles.grid2}>
-          <div className={styles.field}>
-            <label className={styles.label}>Texte (FR)</label>
-            <textarea
-              className={styles.textarea}
-              rows={4}
+          <div className={styles.grid2}>
+            <TextAreaField
+              label="Texte (FR)"
               value={value.updatesPolicy.text.fr}
-              onChange={(e) => updateUpdatesPolicy("text", "fr", e.target.value)}
-            />
-          </div>
-
-          <div className={styles.field}>
-            <label className={styles.label}>Text (EN)</label>
-            <textarea
-              className={styles.textarea}
               rows={4}
+              onChange={(v) => updateUpdatesPolicy("text", "fr", v)}
+            />
+            <TextAreaField
+              label="Text (EN)"
               value={value.updatesPolicy.text.en}
-              onChange={(e) => updateUpdatesPolicy("text", "en", e.target.value)}
+              rows={4}
+              onChange={(v) => updateUpdatesPolicy("text", "en", v)}
             />
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Legal note */}
-      <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>Mention légale</h3>
+      <section className={styles.block}>
+        <h3 className={styles.blockTitle}>Mention légale</h3>
 
-        <div className={styles.grid2}>
-          <div className={styles.field}>
-            <label className={styles.label}>Legal note (FR)</label>
-            <input
-              className={styles.input}
+        <div className={styles.fieldGrid}>
+          <div className={styles.grid2}>
+            <Field
+              label="Legal note (FR)"
               value={value.legalNote.fr}
-              onChange={(e) => updateLocalized("legalNote", "fr", e.target.value)}
+              onChange={(v) => updateLocalized("legalNote", "fr", v)}
             />
-          </div>
-
-          <div className={styles.field}>
-            <label className={styles.label}>Legal note (EN)</label>
-            <input
-              className={styles.input}
+            <Field
+              label="Legal note (EN)"
               value={value.legalNote.en}
-              onChange={(e) => updateLocalized("legalNote", "en", e.target.value)}
+              onChange={(v) => updateLocalized("legalNote", "en", v)}
             />
           </div>
         </div>
-      </div>
-
-      {/* Actions */}
-      <div className={styles.actions}>
-        <button
-          className={styles.primaryButton}
-          type="button"
-          disabled={!isValid || isSaving}
-          onClick={onSave}
-        >
-          {isSaving ? "Sauvegarde..." : "Sauvegarder"}
-        </button>
-
-        {!isValid && (
-          <p className={styles.errorText}>
-            Il manque des champs (FR/EN + cartes activées + features).
-          </p>
-        )}
-      </div>
+      </section>
     </div>
+  );
+}
+
+type FieldProps = {
+  label: string;
+  value: string;
+  onChange: (next: string) => void;
+};
+
+function Field({ label, value, onChange }: FieldProps) {
+  return (
+    <label className={styles.field}>
+      <span className={styles.fieldLabel}>{label}</span>
+      <input
+        className={styles.input}
+        type="text"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      />
+    </label>
+  );
+}
+
+type TextAreaFieldProps = {
+  label: string;
+  value: string;
+  onChange: (next: string) => void;
+  rows?: number;
+};
+
+function TextAreaField({ label, value, onChange, rows = 4 }: TextAreaFieldProps) {
+  return (
+    <label className={styles.field}>
+      <span className={styles.fieldLabel}>{label}</span>
+      <textarea
+        className={styles.textarea}
+        value={value}
+        rows={rows}
+        onChange={(e) => onChange(e.target.value)}
+      />
+    </label>
   );
 }

@@ -1,3 +1,4 @@
+// app/admin/page.tsx (ou ton fichier AdminPage)
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -5,7 +6,7 @@ import styles from "./admin.module.scss";
 
 import HeroEditor from "../components/Admin/Sections/Hero/HeroEditor";
 import HeroPreview from "../components/Admin/Sections/Hero/HeroPreview";
-import type { HeroContent, LocaleKey } from "../components/Admin/Sections/Hero/hero.types";
+import type { HeroContent } from "../components/Admin/Sections/Hero/hero.types";
 import { HERO_DEFAULT } from "../components/Admin/Sections/Hero/hero.default";
 import { normalizeHero } from "../components/Admin/Sections/Hero/hero.normalize";
 
@@ -20,6 +21,26 @@ import PricesPreview from "../components/Admin/Sections/Prices/PricesPreview";
 import type { PricesContent } from "../components/Admin/Sections/Prices/prices.types";
 import { PRICES_DEFAULT } from "../components/Admin/Sections/Prices/prices.default";
 import { normalizePrices } from "../components/Admin/Sections/Prices/prices.normalize";
+
+import ProcessEditor from "../components/Admin/Sections/Process/ProcessEditor";
+import ProcessPreview from "../components/Admin/Sections/Process/ProcessPreview";
+import type { ProcessContent } from "../components/Admin/Sections/Process/process.types";
+import { PROCESS_DEFAULT } from "../components/Admin/Sections/Process/process.default";
+import { normalizeProcessContent } from "../components/Admin/Sections/Process/process.normalize";
+
+// ✅ ABOUT
+import AboutEditor from "../components/Admin/Sections/About/AboutEditor";
+import AboutPreview from "../components/Admin/Sections/About/AboutPreview";
+import type { AboutContent } from "../components/Admin/Sections/About/about.types";
+import { ABOUT_DEFAULT } from "../components/Admin/Sections/About/about.default";
+import { normalizeAbout } from "../components/Admin/Sections/About/about.normalize";
+
+// ✅ CONTACT
+import ContactEditor from "../components/Admin/Sections/Contact/ContactEditor";
+import ContactPreview from "../components/Admin/Sections/Contact/ContactPreview";
+import type { ContactContent, LocaleKey } from "../components/Admin/Sections/Contact/contact.types";
+import { CONTACT_DEFAULT } from "../components/Admin/Sections/Contact/contact.default";
+import { normalizeContact } from "../components/Admin/Sections/Contact/contact.normalize";
 
 type SectionKey =
   | "hero"
@@ -49,11 +70,17 @@ export default function AdminPage() {
   const [heroDraft, setHeroDraft] = useState<HeroContent>(HERO_DEFAULT);
   const [benefitDraft, setBenefitDraft] = useState<BenefitContent>(BENEFIT_DEFAULT);
   const [pricesDraft, setPricesDraft] = useState<PricesContent>(PRICES_DEFAULT);
+  const [processDraft, setProcessDraft] = useState<ProcessContent>(PROCESS_DEFAULT);
+  const [aboutDraft, setAboutDraft] = useState<AboutContent>(ABOUT_DEFAULT);
+  const [contactDraft, setContactDraft] = useState<ContactContent>(CONTACT_DEFAULT);
 
   // --- locale (preview)
   const [heroLocale, setHeroLocale] = useState<LocaleKey>("fr");
   const [benefitLocale, setBenefitLocale] = useState<LocaleKey>("fr");
   const [pricesLocale, setPricesLocale] = useState<LocaleKey>("fr");
+  const [processLocale, setProcessLocale] = useState<LocaleKey>("fr");
+  const [aboutLocale, setAboutLocale] = useState<LocaleKey>("fr");
+  const [contactLocale, setContactLocale] = useState<LocaleKey>("fr");
 
   // --- common
   const [isSaving, setIsSaving] = useState(false);
@@ -103,6 +130,51 @@ export default function AdminPage() {
     loadPrices();
   }, []);
 
+  // --- load process
+  useEffect(() => {
+    async function loadProcess() {
+      try {
+        const res = await fetch("/api/admin/process", { cache: "no-store" });
+        if (!res.ok) return;
+        const data = (await res.json()) as Partial<ProcessContent> | null;
+        setProcessDraft(normalizeProcessContent(data));
+      } catch (err) {
+        console.error("Erreur chargement process:", err);
+      }
+    }
+    loadProcess();
+  }, []);
+
+  // --- load about ✅
+  useEffect(() => {
+    async function loadAbout() {
+      try {
+        const res = await fetch("/api/admin/about", { cache: "no-store" });
+        if (!res.ok) return;
+        const data = (await res.json()) as Partial<AboutContent> | null;
+        setAboutDraft(normalizeAbout(data));
+      } catch (err) {
+        console.error("Erreur chargement about:", err);
+      }
+    }
+    loadAbout();
+  }, []);
+
+  // --- load contact ✅ (FIX: normalizeContact)
+  useEffect(() => {
+    async function loadContact() {
+      try {
+        const res = await fetch("/api/admin/contact", { cache: "no-store" });
+        if (!res.ok) return;
+        const data = (await res.json()) as Partial<ContactContent> | null;
+        setContactDraft(normalizeContact(data));
+      } catch (err) {
+        console.error("Erreur chargement contact:", err);
+      }
+    }
+    loadContact();
+  }, []);
+
   async function handleLogout() {
     await fetch("/api/auth/logout", { method: "POST" });
     window.location.href = "/admin";
@@ -115,9 +187,12 @@ export default function AdminPage() {
   const isHero = active === "hero";
   const isBenefit = active === "benefit";
   const isPrices = active === "prices";
+  const isProcess = active === "process";
+  const isAbout = active === "about";
+  const isContact = active === "contact";
 
   // =========================
-  // PREVIEW: fixed container + vertical scroll INSIDE + correct scaled size
+  // PREVIEW
   // =========================
   const stageRef = useRef<HTMLDivElement | null>(null);
   const viewportRef = useRef<HTMLDivElement | null>(null);
@@ -125,10 +200,9 @@ export default function AdminPage() {
   const [scale, setScale] = useState(1);
   const [viewportHeight, setViewportHeight] = useState(900);
 
-  // scale based on WIDTH only (you want scrolling vertically like the public site)
   useEffect(() => {
     function computeScale() {
-    const stage = stageRef.current;
+      const stage = stageRef.current;
       if (!stage) return;
 
       const cs = window.getComputedStyle(stage);
@@ -138,11 +212,7 @@ export default function AdminPage() {
       const w = stage.clientWidth - paddingX;
       const next = Math.min(1, w / PREVIEW_WIDTH);
 
-      // petite marge anti 1px overflow (scrollbar / rounding / subpixel)
       setScale(Number((next - 0.001).toFixed(3)));
-
-
-      setScale(Number(next.toFixed(3)));
     }
 
     computeScale();
@@ -150,24 +220,58 @@ export default function AdminPage() {
     return () => window.removeEventListener("resize", computeScale);
   }, []);
 
-  // track real content height to avoid huge empty scroll zones
   useEffect(() => {
     const el = viewportRef.current;
     if (!el) return;
 
     const ro = new ResizeObserver(() => {
-      // contentRect.height is reliable here (viewport is not transformed for measurement)
       const h = el.getBoundingClientRect().height;
       setViewportHeight(Math.max(200, Math.round(h)));
     });
 
     ro.observe(el);
     return () => ro.disconnect();
-  }, [active, heroLocale, benefitLocale, pricesLocale, heroDraft, benefitDraft, pricesDraft]);
+  }, [
+    active,
+    heroLocale,
+    benefitLocale,
+    pricesLocale,
+    processLocale,
+    aboutLocale,
+    contactLocale,
+    heroDraft,
+    benefitDraft,
+    pricesDraft,
+    processDraft,
+    aboutDraft,
+    contactDraft,
+  ]);
+
+  const currentLocale: LocaleKey = isHero
+    ? heroLocale
+    : isBenefit
+    ? benefitLocale
+    : isPrices
+    ? pricesLocale
+    : isProcess
+    ? processLocale
+    : isAbout
+    ? aboutLocale
+    : isContact
+    ? contactLocale
+    : "fr";
+
+  function setCurrentLocale(next: LocaleKey) {
+    if (isHero) setHeroLocale(next);
+    else if (isBenefit) setBenefitLocale(next);
+    else if (isPrices) setPricesLocale(next);
+    else if (isProcess) setProcessLocale(next);
+    else if (isAbout) setAboutLocale(next);
+    else if (isContact) setContactLocale(next);
+  }
 
   return (
     <main className={styles.page}>
-      {/* Sidebar */}
       <aside className={styles.sidebar}>
         <div className={styles.brand}>
           <p className={styles.brandTitle}>Admin</p>
@@ -190,7 +294,6 @@ export default function AdminPage() {
         </nav>
       </aside>
 
-      {/* Content */}
       <section className={styles.content}>
         <header className={styles.topbar}>
           <h1 className={styles.title}>{title}</h1>
@@ -257,6 +360,63 @@ export default function AdminPage() {
                   if (!res.ok) console.error("PUT prices failed:", res.status, await res.text());
                 }}
               />
+            ) : isProcess ? (
+              <ProcessEditor
+                value={processDraft}
+                onChange={setProcessDraft}
+                isSaving={isSaving}
+                onSave={async () => {
+                  if (isSaving) return;
+                  setIsSaving(true);
+
+                  const res = await fetch("/api/admin/process", {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(processDraft),
+                  });
+
+                  setIsSaving(false);
+                  if (!res.ok) console.error("PUT process failed:", res.status, await res.text());
+                }}
+              />
+            ) : isAbout ? (
+              <AboutEditor
+                value={aboutDraft}
+                onChange={setAboutDraft}
+                isSaving={isSaving}
+                onSave={async () => {
+                  if (isSaving) return;
+                  setIsSaving(true);
+
+                  const res = await fetch("/api/admin/about", {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(aboutDraft),
+                  });
+
+                  setIsSaving(false);
+                  if (!res.ok) console.error("PUT about failed:", res.status, await res.text());
+                }}
+              />
+            ) : isContact ? (
+              <ContactEditor
+                value={contactDraft}
+                onChange={setContactDraft}
+                isSaving={isSaving}
+                onSave={async () => {
+                  if (isSaving) return;
+                  setIsSaving(true);
+
+                  const res = await fetch("/api/admin/contact", {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(contactDraft),
+                  });
+
+                  setIsSaving(false);
+                  if (!res.ok) console.error("PUT contact failed:", res.status, await res.text());
+                }}
+              />
             ) : (
               <>
                 <h2 className={styles.panelTitle}>Éditeur</h2>
@@ -275,32 +435,16 @@ export default function AdminPage() {
               <div className={styles.localeToggle}>
                 <button
                   type="button"
-                  className={`${styles.toggleBtn} ${
-                    (isHero ? heroLocale : isBenefit ? benefitLocale : pricesLocale) === "fr"
-                      ? styles.toggleActive
-                      : ""
-                  }`}
-                  onClick={() => {
-                    if (isHero) setHeroLocale("fr");
-                    else if (isBenefit) setBenefitLocale("fr");
-                    else if (isPrices) setPricesLocale("fr");
-                  }}
+                  className={`${styles.toggleBtn} ${currentLocale === "fr" ? styles.toggleActive : ""}`}
+                  onClick={() => setCurrentLocale("fr")}
                 >
                   FR
                 </button>
 
                 <button
                   type="button"
-                  className={`${styles.toggleBtn} ${
-                    (isHero ? heroLocale : isBenefit ? benefitLocale : pricesLocale) === "en"
-                      ? styles.toggleActive
-                      : ""
-                  }`}
-                  onClick={() => {
-                    if (isHero) setHeroLocale("en");
-                    else if (isBenefit) setBenefitLocale("en");
-                    else if (isPrices) setPricesLocale("en");
-                  }}
+                  className={`${styles.toggleBtn} ${currentLocale === "en" ? styles.toggleActive : ""}`}
+                  onClick={() => setCurrentLocale("en")}
                 >
                   EN
                 </button>
@@ -308,7 +452,6 @@ export default function AdminPage() {
             </div>
 
             <div className={styles.previewStage} ref={stageRef}>
-              {/* Sizer = taille “réelle” de la preview (scaled) => scroll correct, plus de zone noire cheloue */}
               <div
                 className={styles.previewSizer}
                 style={{
@@ -316,7 +459,6 @@ export default function AdminPage() {
                   height: `${Math.ceil(viewportHeight * scale)}px`,
                 }}
               >
-                {/* Viewport = contenu à taille 1440px, scalé visuellement */}
                 <div
                   className={styles.previewViewport}
                   style={{ transform: `scale(${scale})` }}
@@ -329,6 +471,12 @@ export default function AdminPage() {
                       <BenefitPreview value={benefitDraft} locale={benefitLocale} />
                     ) : isPrices ? (
                       <PricesPreview value={pricesDraft} locale={pricesLocale} />
+                    ) : isProcess ? (
+                      <ProcessPreview value={processDraft} locale={processLocale} />
+                    ) : isAbout ? (
+                      <AboutPreview value={aboutDraft} locale={aboutLocale} />
+                    ) : isContact ? (
+                      <ContactPreview value={contactDraft} locale={contactLocale} />
                     ) : null}
                   </div>
                 </div>

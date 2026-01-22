@@ -3,40 +3,71 @@
 .editor {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
-.row {
+.editorHeader {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-.panelTitle {
+.editorTitle {
   margin: 0;
   font-size: 16px;
   font-weight: 700;
 }
 
 .hint {
-  margin: 0;
+  margin: 4px 0 0;
   font-size: 14px;
   color: $color-text-muted;
 }
 
-.section {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding-top: 10px;
-  border-top: 1px solid $color-border;
+.saveButton {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid $color-border;
+  background: $color-accent;
+  color: $color-text;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(0.96);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 }
 
-.sectionTitle {
+.errorText {
   margin: 0;
+  color: $color-error;
+  font-size: 14px;
+}
+
+/* ===== blocks ===== */
+
+.block {
+  border: 1px solid $color-border;
+  border-radius: 14px;
+  background: $color-bg;
+  padding: 12px;
+}
+
+.blockTitle {
+  margin: 0 0 10px;
   font-size: 14px;
   font-weight: 700;
-  color: $color-text;
+}
+
+.fieldGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
 }
 
 .grid2 {
@@ -46,13 +77,12 @@
 }
 
 .field {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 6px;
 }
 
-.label {
-  font-size: 14px;
+.fieldLabel {
+  font-size: 12px;
   color: $color-text-muted;
 }
 
@@ -60,42 +90,94 @@
 .textarea {
   width: 100%;
   padding: 10px 12px;
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px solid $color-border;
-  background: $color-bg;
+  background: $color-bg-alt;
   color: $color-text;
+  font-family: $font-sans;
   outline: none;
 
   &:focus {
     border-color: $color-primary;
-    box-shadow: 0 0 0 3px rgba(26, 60, 64, 0.15);
+    box-shadow: 0 0 0 2px rgba(26, 60, 64, 0.15);
   }
 }
 
 .textarea {
   resize: vertical;
+  min-height: 90px;
 }
 
-.actions {
+/* ===== switch ===== */
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+}
+
+.switchLabel {
+  font-size: 13px;
+  color: $color-text-muted;
+}
+
+/* ===== cards editor ===== */
+
+.cardsEditor {
+  display: grid;
+  gap: 10px;
+}
+
+.cardEditor {
+  border: 1px solid $color-border;
+  border-radius: 14px;
+  background: $color-bg-alt;
+  padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding-top: 10px;
-  border-top: 1px solid $color-border;
+  gap: 12px;
 }
 
-.primaryButton {
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: none;
-  background: $color-primary;
-  color: $color-bg-alt;
-  cursor: pointer;
+.cardEditorHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
 
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+.cardEditorTitle {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.cardEditorHint {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: $color-text-muted;
+}
+
+/* ===== features ===== */
+
+.featuresBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 6px;
+}
+
+.featuresHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.featuresTitle {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .secondaryButton {
@@ -124,79 +206,6 @@
   }
 }
 
-.errorText {
-  margin: 0;
-  color: $color-error;
-  font-size: 14px;
-}
-
-/* ===== cards editor ===== */
-
-.cardEditor {
-  border: 1px solid $color-border;
-  border-radius: 12px;
-  padding: 12px;
-  background: $color-bg-alt;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.cardEditorHeader {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.cardEditorTitle {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.cardEditorHint {
-  margin: 0;
-  font-size: 13px;
-  color: $color-text-muted;
-}
-
-/* ===== switch ===== */
-
-.switch {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  user-select: none;
-}
-
-.switchLabel {
-  font-size: 13px;
-  color: $color-text-muted;
-}
-
-/* ===== features ===== */
-
-.featuresBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding-top: 6px;
-}
-
-.featuresHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.featuresTitle {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 700;
-}
-
 .featureRow {
   display: flex;
   flex-direction: column;
@@ -206,7 +215,6 @@
   border-radius: 12px;
   background: $color-bg;
 }
-/* à ajouter dans prices.module.scss */
 
 .featureActions {
   display: flex;

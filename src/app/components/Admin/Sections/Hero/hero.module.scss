@@ -6,6 +6,14 @@
   gap: 12px;
 }
 
+/* ✅ header like Process */
+.editorHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 .row {
   display: flex;
   flex-direction: column;
@@ -22,6 +30,26 @@
   margin: 0;
   font-size: 14px;
   color: $color-text-muted;
+}
+
+/* ✅ orange button */
+.saveButton {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid $color-border;
+  background: $color-accent;
+  color: $color-text;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    filter: brightness(0.96);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 }
 
 .grid2 {
@@ -50,6 +78,7 @@
   background: $color-bg;
   color: $color-text;
   outline: none;
+  font-family: $font-sans;
 
   &:focus {
     border-color: $color-primary;
@@ -65,8 +94,11 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid $color-border;
 }
 
+/* (optionnel) si tu gardes un 2e bouton en bas */
 .primaryButton {
   padding: 10px 12px;
   border-radius: 10px;
@@ -90,11 +122,4 @@
 /* Preview = rendu du vrai composant (HeroView), pas de fake layout */
 .preview {
   height: 100%;
-}
-
-/* responsive */
-@media (max-width: $bp-tablet) {
-  .grid2 {
-    grid-template-columns: 1fr;
-  }
 }

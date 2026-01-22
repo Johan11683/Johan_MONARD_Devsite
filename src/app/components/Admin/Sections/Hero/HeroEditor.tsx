@@ -40,10 +40,21 @@ export default function HeroEditor({
 
   return (
     <div className={styles.editor}>
-      <div className={styles.row}>
-        <h2 className={styles.panelTitle}>Hero</h2>
-        <p className={styles.hint}>Champs FR + EN obligatoires</p>
-      </div>
+      <header className={styles.editorHeader}>
+        <div className={styles.row}>
+          <h2 className={styles.panelTitle}>Hero</h2>
+          <p className={styles.hint}>Champs FR + EN obligatoires</p>
+        </div>
+
+        <button
+          type="button"
+          className={styles.saveButton}
+          disabled={!isValid || isSaving}
+          onClick={() => void onSave()}
+        >
+          {isSaving ? "Sauvegarde..." : "Sauvegarder"}
+        </button>
+      </header>
 
       <div className={styles.grid2}>
         <div className={styles.field}>
@@ -136,15 +147,6 @@ export default function HeroEditor({
       </div>
 
       <div className={styles.actions}>
-        <button
-          className={styles.primaryButton}
-          type="button"
-          disabled={!isValid || isSaving}
-          onClick={onSave}
-        >
-          {isSaving ? "Sauvegarde..." : "Sauvegarder"}
-        </button>
-
         {!isSaving && !isValid && (
           <p className={styles.errorText}>
             Il manque des champs (FR + EN + lien + image obligatoires).
