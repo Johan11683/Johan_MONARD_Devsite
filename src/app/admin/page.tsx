@@ -1,41 +1,52 @@
-// app/admin/page.tsx (ou ton fichier AdminPage)
+// src/app/admin/page.tsx
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./admin.module.scss";
 
+// ===== HERO
 import HeroEditor from "../components/Admin/Sections/Hero/HeroEditor";
 import HeroPreview from "../components/Admin/Sections/Hero/HeroPreview";
 import type { HeroContent } from "../components/Admin/Sections/Hero/hero.types";
 import { HERO_DEFAULT } from "../components/Admin/Sections/Hero/hero.default";
 import { normalizeHero } from "../components/Admin/Sections/Hero/hero.normalize";
 
+// ===== BENEFITS
 import BenefitEditor from "../components/Admin/Sections/Benefits/BenefitEditor";
 import BenefitPreview from "../components/Admin/Sections/Benefits/BenefitPreview";
 import type { BenefitContent } from "../components/Admin/Sections/Benefits/benefit.types";
 import { BENEFIT_DEFAULT } from "../components/Admin/Sections/Benefits/benefit.default";
 import { normalizeBenefit } from "../components/Admin/Sections/Benefits/benefit.normalize";
 
+// ===== PRICES
 import PricesEditor from "../components/Admin/Sections/Prices/PricesEditor";
 import PricesPreview from "../components/Admin/Sections/Prices/PricesPreview";
 import type { PricesContent } from "../components/Admin/Sections/Prices/prices.types";
 import { PRICES_DEFAULT } from "../components/Admin/Sections/Prices/prices.default";
 import { normalizePrices } from "../components/Admin/Sections/Prices/prices.normalize";
 
+// ===== PROJECTS
+import ProjectsEditor from "../components/Admin/Sections/Projects/ProjectsEditor";
+import ProjectsPreview from "../components/Admin/Sections/Projects/ProjectsPreview";
+import type { ProjectsContent } from "../components/Admin/Sections/Projects/projects.types";
+import { PROJECTS_DEFAULT } from "../components/Admin/Sections/Projects/projects.default";
+import { normalizeProjects } from "../components/Admin/Sections/Projects/projects.normalize";
+
+// ===== PROCESS
 import ProcessEditor from "../components/Admin/Sections/Process/ProcessEditor";
 import ProcessPreview from "../components/Admin/Sections/Process/ProcessPreview";
 import type { ProcessContent } from "../components/Admin/Sections/Process/process.types";
 import { PROCESS_DEFAULT } from "../components/Admin/Sections/Process/process.default";
 import { normalizeProcessContent } from "../components/Admin/Sections/Process/process.normalize";
 
-// ✅ ABOUT
+// ===== ABOUT
 import AboutEditor from "../components/Admin/Sections/About/AboutEditor";
 import AboutPreview from "../components/Admin/Sections/About/AboutPreview";
 import type { AboutContent } from "../components/Admin/Sections/About/about.types";
 import { ABOUT_DEFAULT } from "../components/Admin/Sections/About/about.default";
 import { normalizeAbout } from "../components/Admin/Sections/About/about.normalize";
 
-// ✅ CONTACT
+// ===== CONTACT
 import ContactEditor from "../components/Admin/Sections/Contact/ContactEditor";
 import ContactPreview from "../components/Admin/Sections/Contact/ContactPreview";
 import type { ContactContent, LocaleKey } from "../components/Admin/Sections/Contact/contact.types";
@@ -63,6 +74,29 @@ const SECTIONS: { key: SectionKey; label: string }[] = [
 
 const PREVIEW_WIDTH = 1440;
 
+async function safeLoad<T>(url: string): Promise<Partial<T> | null> {
+  try {
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) return null;
+    return (await res.json()) as Partial<T> | null;
+  } catch (e) {
+    console.error(`Erreur chargement ${url}:`, e);
+    return null;
+  }
+}
+
+async function safeSave(url: string, payload: unknown): Promise<void> {
+  const res = await fetch(url, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    console.error(`PUT ${url} failed:`, res.status, await res.text());
+  }
+}
+
 export default function AdminPage() {
   const [active, setActive] = useState<SectionKey>("hero");
 
@@ -70,6 +104,7 @@ export default function AdminPage() {
   const [heroDraft, setHeroDraft] = useState<HeroContent>(HERO_DEFAULT);
   const [benefitDraft, setBenefitDraft] = useState<BenefitContent>(BENEFIT_DEFAULT);
   const [pricesDraft, setPricesDraft] = useState<PricesContent>(PRICES_DEFAULT);
+  const [projectsDraft, setProjectsDraft] = useState<ProjectsContent>(PROJECTS_DEFAULT);
   const [processDraft, setProcessDraft] = useState<ProcessContent>(PROCESS_DEFAULT);
   const [aboutDraft, setAboutDraft] = useState<AboutContent>(ABOUT_DEFAULT);
   const [contactDraft, setContactDraft] = useState<ContactContent>(CONTACT_DEFAULT);
@@ -78,6 +113,7 @@ export default function AdminPage() {
   const [heroLocale, setHeroLocale] = useState<LocaleKey>("fr");
   const [benefitLocale, setBenefitLocale] = useState<LocaleKey>("fr");
   const [pricesLocale, setPricesLocale] = useState<LocaleKey>("fr");
+  const [projectsLocale, setProjectsLocale] = useState<LocaleKey>("fr");
   const [processLocale, setProcessLocale] = useState<LocaleKey>("fr");
   const [aboutLocale, setAboutLocale] = useState<LocaleKey>("fr");
   const [contactLocale, setContactLocale] = useState<LocaleKey>("fr");
@@ -85,94 +121,54 @@ export default function AdminPage() {
   // --- common
   const [isSaving, setIsSaving] = useState(false);
 
-  // --- load hero
+  // ===== load all sections
   useEffect(() => {
-    async function loadHero() {
-      try {
-        const res = await fetch("/api/admin/hero", { cache: "no-store" });
-        if (!res.ok) return;
-        const data = (await res.json()) as Partial<HeroContent> | null;
-        setHeroDraft(normalizeHero(data));
-      } catch (err) {
-        console.error("Erreur chargement hero:", err);
-      }
-    }
-    loadHero();
+    void (async () => {
+      const data = await safeLoad<HeroContent>("/api/admin/hero");
+      setHeroDraft(normalizeHero(data));
+    })();
   }, []);
 
-  // --- load benefit
   useEffect(() => {
-    async function loadBenefit() {
-      try {
-        const res = await fetch("/api/admin/benefit", { cache: "no-store" });
-        if (!res.ok) return;
-        const data = (await res.json()) as Partial<BenefitContent> | null;
-        setBenefitDraft(normalizeBenefit(data));
-      } catch (err) {
-        console.error("Erreur chargement benefit:", err);
-      }
-    }
-    loadBenefit();
+    void (async () => {
+      const data = await safeLoad<BenefitContent>("/api/admin/benefit");
+      setBenefitDraft(normalizeBenefit(data));
+    })();
   }, []);
 
-  // --- load prices
   useEffect(() => {
-    async function loadPrices() {
-      try {
-        const res = await fetch("/api/admin/prices", { cache: "no-store" });
-        if (!res.ok) return;
-        const data = (await res.json()) as Partial<PricesContent> | null;
-        setPricesDraft(normalizePrices(data));
-      } catch (err) {
-        console.error("Erreur chargement prices:", err);
-      }
-    }
-    loadPrices();
+    void (async () => {
+      const data = await safeLoad<PricesContent>("/api/admin/prices");
+      setPricesDraft(normalizePrices(data));
+    })();
   }, []);
 
-  // --- load process
   useEffect(() => {
-    async function loadProcess() {
-      try {
-        const res = await fetch("/api/admin/process", { cache: "no-store" });
-        if (!res.ok) return;
-        const data = (await res.json()) as Partial<ProcessContent> | null;
-        setProcessDraft(normalizeProcessContent(data));
-      } catch (err) {
-        console.error("Erreur chargement process:", err);
-      }
-    }
-    loadProcess();
+    void (async () => {
+      const data = await safeLoad<ProjectsContent>("/api/admin/projects");
+      setProjectsDraft(normalizeProjects(data));
+    })();
   }, []);
 
-  // --- load about ✅
   useEffect(() => {
-    async function loadAbout() {
-      try {
-        const res = await fetch("/api/admin/about", { cache: "no-store" });
-        if (!res.ok) return;
-        const data = (await res.json()) as Partial<AboutContent> | null;
-        setAboutDraft(normalizeAbout(data));
-      } catch (err) {
-        console.error("Erreur chargement about:", err);
-      }
-    }
-    loadAbout();
+    void (async () => {
+      const data = await safeLoad<ProcessContent>("/api/admin/process");
+      setProcessDraft(normalizeProcessContent(data));
+    })();
   }, []);
 
-  // --- load contact ✅ (FIX: normalizeContact)
   useEffect(() => {
-    async function loadContact() {
-      try {
-        const res = await fetch("/api/admin/contact", { cache: "no-store" });
-        if (!res.ok) return;
-        const data = (await res.json()) as Partial<ContactContent> | null;
-        setContactDraft(normalizeContact(data));
-      } catch (err) {
-        console.error("Erreur chargement contact:", err);
-      }
-    }
-    loadContact();
+    void (async () => {
+      const data = await safeLoad<AboutContent>("/api/admin/about");
+      setAboutDraft(normalizeAbout(data));
+    })();
+  }, []);
+
+  useEffect(() => {
+    void (async () => {
+      const data = await safeLoad<ContactContent>("/api/admin/contact");
+      setContactDraft(normalizeContact(data));
+    })();
   }, []);
 
   async function handleLogout() {
@@ -187,6 +183,7 @@ export default function AdminPage() {
   const isHero = active === "hero";
   const isBenefit = active === "benefit";
   const isPrices = active === "prices";
+  const isProjects = active === "projects";
   const isProcess = active === "process";
   const isAbout = active === "about";
   const isContact = active === "contact";
@@ -236,12 +233,14 @@ export default function AdminPage() {
     heroLocale,
     benefitLocale,
     pricesLocale,
+    projectsLocale,
     processLocale,
     aboutLocale,
     contactLocale,
     heroDraft,
     benefitDraft,
     pricesDraft,
+    projectsDraft,
     processDraft,
     aboutDraft,
     contactDraft,
@@ -253,6 +252,8 @@ export default function AdminPage() {
     ? benefitLocale
     : isPrices
     ? pricesLocale
+    : isProjects
+    ? projectsLocale
     : isProcess
     ? processLocale
     : isAbout
@@ -265,9 +266,17 @@ export default function AdminPage() {
     if (isHero) setHeroLocale(next);
     else if (isBenefit) setBenefitLocale(next);
     else if (isPrices) setPricesLocale(next);
+    else if (isProjects) setProjectsLocale(next);
     else if (isProcess) setProcessLocale(next);
     else if (isAbout) setAboutLocale(next);
     else if (isContact) setContactLocale(next);
+  }
+
+  async function guardedSave(url: string, payload: unknown) {
+    if (isSaving) return;
+    setIsSaving(true);
+    await safeSave(url, payload);
+    setIsSaving(false);
   }
 
   return (
@@ -308,123 +317,51 @@ export default function AdminPage() {
                 value={heroDraft}
                 onChange={setHeroDraft}
                 isSaving={isSaving}
-                onSave={async () => {
-                  if (isSaving) return;
-                  setIsSaving(true);
-
-                  const res = await fetch("/api/admin/hero", {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(heroDraft),
-                  });
-
-                  setIsSaving(false);
-                  if (!res.ok) console.error("PUT hero failed:", res.status, await res.text());
-                }}
+                onSave={() => guardedSave("/api/admin/hero", heroDraft)}
               />
             ) : isBenefit ? (
               <BenefitEditor
                 value={benefitDraft}
                 onChange={setBenefitDraft}
                 isSaving={isSaving}
-                onSave={async () => {
-                  if (isSaving) return;
-                  setIsSaving(true);
-
-                  const res = await fetch("/api/admin/benefit", {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(benefitDraft),
-                  });
-
-                  setIsSaving(false);
-                  if (!res.ok) console.error("PUT benefit failed:", res.status, await res.text());
-                }}
+                onSave={() => guardedSave("/api/admin/benefit", benefitDraft)}
               />
             ) : isPrices ? (
               <PricesEditor
                 value={pricesDraft}
                 onChange={setPricesDraft}
                 isSaving={isSaving}
-                onSave={async () => {
-                  if (isSaving) return;
-                  setIsSaving(true);
-
-                  const res = await fetch("/api/admin/prices", {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(pricesDraft),
-                  });
-
-                  setIsSaving(false);
-                  if (!res.ok) console.error("PUT prices failed:", res.status, await res.text());
-                }}
+                onSave={() => guardedSave("/api/admin/prices", pricesDraft)}
+              />
+            ) : isProjects ? (
+              <ProjectsEditor
+                value={projectsDraft}
+                onChange={setProjectsDraft}
+                isSaving={isSaving}
+                onSave={() => guardedSave("/api/admin/projects", projectsDraft)}
               />
             ) : isProcess ? (
               <ProcessEditor
                 value={processDraft}
                 onChange={setProcessDraft}
                 isSaving={isSaving}
-                onSave={async () => {
-                  if (isSaving) return;
-                  setIsSaving(true);
-
-                  const res = await fetch("/api/admin/process", {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(processDraft),
-                  });
-
-                  setIsSaving(false);
-                  if (!res.ok) console.error("PUT process failed:", res.status, await res.text());
-                }}
+                onSave={() => guardedSave("/api/admin/process", processDraft)}
               />
             ) : isAbout ? (
               <AboutEditor
                 value={aboutDraft}
                 onChange={setAboutDraft}
                 isSaving={isSaving}
-                onSave={async () => {
-                  if (isSaving) return;
-                  setIsSaving(true);
-
-                  const res = await fetch("/api/admin/about", {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(aboutDraft),
-                  });
-
-                  setIsSaving(false);
-                  if (!res.ok) console.error("PUT about failed:", res.status, await res.text());
-                }}
+                onSave={() => guardedSave("/api/admin/about", aboutDraft)}
               />
             ) : isContact ? (
               <ContactEditor
                 value={contactDraft}
                 onChange={setContactDraft}
                 isSaving={isSaving}
-                onSave={async () => {
-                  if (isSaving) return;
-                  setIsSaving(true);
-
-                  const res = await fetch("/api/admin/contact", {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(contactDraft),
-                  });
-
-                  setIsSaving(false);
-                  if (!res.ok) console.error("PUT contact failed:", res.status, await res.text());
-                }}
+                onSave={() => guardedSave("/api/admin/contact", contactDraft)}
               />
-            ) : (
-              <>
-                <h2 className={styles.panelTitle}>Éditeur</h2>
-                <p className={styles.panelHint}>
-                  Pour l’instant c’est un mock. On branchera chaque section progressivement.
-                </p>
-              </>
-            )}
+            ) : null}
           </div>
 
           {/* Preview */}
@@ -471,6 +408,8 @@ export default function AdminPage() {
                       <BenefitPreview value={benefitDraft} locale={benefitLocale} />
                     ) : isPrices ? (
                       <PricesPreview value={pricesDraft} locale={pricesLocale} />
+                    ) : isProjects ? (
+                      <ProjectsPreview value={projectsDraft} locale={projectsLocale} />
                     ) : isProcess ? (
                       <ProcessPreview value={processDraft} locale={processLocale} />
                     ) : isAbout ? (
