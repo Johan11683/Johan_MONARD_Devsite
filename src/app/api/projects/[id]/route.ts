@@ -1,3 +1,4 @@
+// src/app/api/projects/[id]/route.ts
 import type { NextRequest } from "next/server";
 import { requireAdmin } from "@/server/middlewares/requireAdmin";
 import {
@@ -6,20 +7,25 @@ import {
   deleteProjectController,
 } from "@/server/controllers/project.controller";
 
-export async function GET(_: NextRequest, ctx: { params: { id: string } }) {
-  return getProjectController(ctx.params.id);
+type RouteCtx = { params: Promise<{ id: string }> };
+
+export async function GET(_: NextRequest, { params }: RouteCtx) {
+  const { id } = await params;
+  return getProjectController(id);
 }
 
-export async function PUT(req: NextRequest, ctx: { params: { id: string } }) {
+export async function PUT(req: NextRequest, { params }: RouteCtx) {
   const block = requireAdmin(req);
   if (block) return block;
 
-  return updateProjectController(req, ctx.params.id);
+  const { id } = await params;
+  return updateProjectController(req, id);
 }
 
-export async function DELETE(req: NextRequest, ctx: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, { params }: RouteCtx) {
   const block = requireAdmin(req);
   if (block) return block;
 
-  return deleteProjectController(ctx.params.id);
+  const { id } = await params;
+  return deleteProjectController(id);
 }
