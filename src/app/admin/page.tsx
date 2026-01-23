@@ -118,10 +118,8 @@ export default function AdminPage() {
   const [aboutLocale, setAboutLocale] = useState<LocaleKey>("fr");
   const [contactLocale, setContactLocale] = useState<LocaleKey>("fr");
 
-  // --- common
   const [isSaving, setIsSaving] = useState(false);
 
-  // ===== load all sections
   useEffect(() => {
     void (async () => {
       const data = await safeLoad<HeroContent>("/api/admin/hero");
@@ -203,12 +201,10 @@ export default function AdminPage() {
       if (!stage) return;
 
       const cs = window.getComputedStyle(stage);
-      const paddingX =
-        parseFloat(cs.paddingLeft || "0") + parseFloat(cs.paddingRight || "0");
+      const paddingX = parseFloat(cs.paddingLeft || "0") + parseFloat(cs.paddingRight || "0");
 
       const w = stage.clientWidth - paddingX;
       const next = Math.min(1, w / PREVIEW_WIDTH);
-
       setScale(Number((next - 0.001).toFixed(3)));
     }
 
@@ -310,7 +306,6 @@ export default function AdminPage() {
         </header>
 
         <div className={styles.mainGrid}>
-          {/* Editor */}
           <div className={styles.panel}>
             {isHero ? (
               <HeroEditor
@@ -364,7 +359,6 @@ export default function AdminPage() {
             ) : null}
           </div>
 
-          {/* Preview */}
           <div className={`${styles.panel} ${styles.panelPreview}`}>
             <div className={styles.previewHeader}>
               <h2 className={styles.panelTitle}>Preview</h2>
