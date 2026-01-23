@@ -4,6 +4,10 @@ import clientPromise from "@/lib/mongodb";
 
 type LocaleText = { fr: string; en: string };
 
+function bad(path: string) {
+  return NextResponse.json({ error: "Payload invalide", path }, { status: 400 });
+}
+
 function isLocaleText(v: unknown): v is LocaleText {
   if (!v || typeof v !== "object") return false;
   const o = v as Record<string, unknown>;
@@ -50,91 +54,70 @@ export async function PUT(req: Request) {
   try {
     const payload = (await req.json()) as unknown;
 
-    if (!payload || typeof payload !== "object") {
-      return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
-    }
+    if (!payload || typeof payload !== "object") return bad("$");
 
     const p = payload as Record<string, unknown>;
 
     // header
-    if (!nonEmptyLocaleText(p.kicker)) return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
-    if (!nonEmptyLocaleText(p.title)) return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
-    if (!nonEmptyLocaleText(p.subtitle)) return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
+    if (!nonEmptyLocaleText(p.kicker)) return bad("kicker");
+    if (!nonEmptyLocaleText(p.title)) return bad("title");
+    if (!nonEmptyLocaleText(p.subtitle)) return bad("subtitle");
 
     // items
-    if (!Array.isArray(p.items)) {
-      return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
-    }
+    if (!Array.isArray(p.items)) return bad("items");
 
-    for (const item of p.items) {
-      if (!item || typeof item !== "object") {
-        return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
-      }
+    for (let i = 0; i < p.items.length; i++) {
+      const item = p.items[i];
+
+      if (!item || typeof item !== "object") return bad(`items[${i}]`);
 
       const it = item as Record<string, unknown>;
 
-      if (typeof it.id !== "string" || !it.id.trim()) {
-        return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
-      }
-
-      if (typeof it.enabled !== "boolean") {
-        return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
-      }
+      if (typeof it.id !== "string" || !it.id.trim()) return bad(`items[${i}].id`);
+      if (typeof it.enabled !== "boolean") return bad(`items[${i}].enabled`);
 
       // ✅ si disabled: on valide juste le minimum structurel
-      if (!it.enabled) {
-        continue;
-      }
+      if (!it.enabled) continue;
 
-      if (!nonEmptyLocaleText(it.title)) return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
-      if (!nonEmptyLocaleText(it.description)) return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
+      if (!nonEmptyLocaleText(it.title)) return bad(`items[${i}].title`);
+      if (!nonEmptyLocaleText(it.description)) return bad(`items[${i}].description`);
 
       // image
-      if (!it.image || typeof it.image !== "object") {
-        return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
-      }
+      if (!it.image || typeof it.image !== "object") return bad(`items[${i}].image`);
       const img = it.image as Record<string, unknown>;
-      if (!isUrlOrPath(img.src)) return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
-      if (!img.alt || typeof img.alt !== "object") return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
-      if (!nonEmptyLocaleText(img.alt)) return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
+
+      if (!isUrlOrPath(img.src)) return bad(`items[${i}].image.src`);
+      if (!img.alt || typeof img.alt !== "object") return bad(`items[${i}].image.alt`);
+      if (!nonEmptyLocaleText(img.alt)) return bad(`items[${i}].image.alt`);
 
       // link
-      if (!it.link || typeof it.link !== "object") {
-        return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
-      }
+      if (!it.link || typeof it.link !== "object") return bad(`items[${i}].link`);
       const link = it.link as Record<string, unknown>;
-      if (!isUrlOrPath(link.href)) return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
-      if (!nonEmptyLocaleText(link.label)) return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
-      if (typeof link.newTab !== "boolean") return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
 
-      // tags (optionnels)
+      if (!isUrlOrPath(link.href)) return bad(`items[${i}].link.href`);
+      if (!nonEmptyLocaleText(link.label)) return bad(`items[${i}].link.label`);
+      if (typeof link.newTab !== "boolean") return bad(`items[${i}].link.newTab`);
+
+      // tags (optionnels, mais si présents => on veut fr+en arrays)
       if (it.tags !== undefined) {
-        if (!it.tags || typeof it.tags !== "object") {
-          return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
-        }
+        if (!it.tags || typeof it.tags !== "object") return bad(`items[${i}].tags`);
         const tags = it.tags as Record<string, unknown>;
-        if (tags.fr !== undefined && !isStringArray(tags.fr)) {
-          return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
-        }
-        if (tags.en !== undefined && !isStringArray(tags.en)) {
-          return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
-        }
+
+        if (!("fr" in tags) || !("en" in tags)) return bad(`items[${i}].tags.(fr|en)`);
+        if (!isStringArray(tags.fr)) return bad(`items[${i}].tags.fr`);
+        if (!isStringArray(tags.en)) return bad(`items[${i}].tags.en`);
+        // optionnel : même longueur si tu veux “miroir” FR/EN
+        // if ((tags.fr as string[]).length !== (tags.en as string[]).length) return bad(`items[${i}].tags.(len)`);
       }
 
       // github (optionnel)
       if (it.github !== undefined) {
         if (it.github === null) continue;
-        if (typeof it.github !== "object") {
-          return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
-        }
+        if (typeof it.github !== "object") return bad(`items[${i}].github`);
         const gh = it.github as Record<string, unknown>;
-        if (typeof gh.href !== "string") {
-          return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
-        }
-        // ici on autorise vide => côté editor on le met à undefined. Mais si ça arrive, pas grave.
-        if (gh.href.trim() && !isUrlOrPath(gh.href)) {
-          return NextResponse.json({ error: "Payload invalide" }, { status: 400 });
-        }
+
+        if (typeof gh.href !== "string") return bad(`items[${i}].github.href`);
+        if (gh.href.trim() && !isUrlOrPath(gh.href)) return bad(`items[${i}].github.href`);
       }
     }
 

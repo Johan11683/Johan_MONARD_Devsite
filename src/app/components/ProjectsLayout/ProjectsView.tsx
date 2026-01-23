@@ -1,7 +1,12 @@
-// src/app/components/ProjectsLayout/ProjectsView.tsx
 "use client";
 
-import type { LocaleKey, ProjectsContent } from "@/app/components/Admin/Sections/Projects/projects.types";
+import Image from "next/image";
+import { useTranslation } from "react-i18next";
+
+import type {
+  LocaleKey,
+  ProjectsContent,
+} from "@/app/components/Admin/Sections/Projects/projects.types";
 
 import layout from "./ProjectsLayout.module.scss";
 import card from "../ProjectCard/ProjectCard.module.scss";
@@ -16,7 +21,11 @@ function hasText(v: unknown): v is string {
 }
 
 function renderMultiline(text: string) {
-  const lines = text.split("\n").map((s) => s.trim()).filter(Boolean);
+  const lines = text
+    .split("\n")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
   if (lines.length <= 1) return text;
 
   return (
@@ -32,10 +41,16 @@ function renderMultiline(text: string) {
 }
 
 export default function ProjectsView({ value, locale }: ProjectsViewProps) {
+  const { t } = useTranslation("projectCard");
+
   const enabled = value.items.filter((p) => p.enabled);
 
   return (
-    <section id="projects" className={layout.projects} aria-labelledby="projects-title">
+    <section
+      id="projects"
+      className={layout.projects}
+      aria-labelledby="projects-title"
+    >
       {/* Intro (ProjectsLayout) */}
       <header className={layout.intro}>
         <p className={layout.kicker}>{value.kicker[locale]}</p>
@@ -58,22 +73,29 @@ export default function ProjectsView({ value, locale }: ProjectsViewProps) {
         const hasLink = hasText(href);
         const hasImg = hasText(src);
 
-        // ✅ Jamais <img src="">
-        const ImageEl = hasImg ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img className={card.image} src={src} alt={hasText(alt) ? alt : ""} />
-        ) : (
-          <div className={card.image} aria-hidden="true" />
-        );
-
         const content = (
           <>
             <div className={card.imageWrapper}>
-              {ImageEl}
+              {hasImg ? (
+                <Image
+                  src={src}
+                  alt={hasText(alt) ? alt : ""}
+                  fill
+                  className={card.image}
+                  sizes="(max-width: 768px) 94vw, (max-width: 1200px) 90vw, 1400px"
+                  priority={false}
+                />
+              ) : (
+                <div className={card.image} aria-hidden="true" />
+              )}
+
               <div className={card.imageOverlay} aria-hidden="true" />
             </div>
 
             <div className={card.text}>
+              {/* ✅ kicker i18n comme le public */}
+              <p className={card.kicker}>{t("kicker")}</p>
+
               <h3 className={card.title}>{p.title[locale]}</h3>
               <p className={card.subtitle}>{p.description[locale]}</p>
             </div>

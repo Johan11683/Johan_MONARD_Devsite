@@ -1,41 +1,40 @@
 // src/app/components/Admin/Sections/Projects/projects.types.ts
 
 export type LocaleKey = "fr" | "en";
+
 export type LocalizedText = Record<LocaleKey, string>;
+export type LocalizedTags = Record<LocaleKey, string[]>;
 
 export type ProjectItem = {
-  id: string; // stable (sert au reorder + keys React)
+  id: string;
   enabled: boolean;
 
   title: LocalizedText;
   description: LocalizedText;
 
   image: {
-    src: string; // URL (Cloudinary/Vercel/public/...).
-    alt: LocalizedText; // accessible + trad
+    src: string;
+    publicId?: string;
+    alt: LocalizedText;
   };
 
   link: {
-    href: string; // URL vers le site / demo / repo
-    label: LocalizedText; // ex: "Voir le site" / "Open project"
+    href: string;
+    label: LocalizedText;
     newTab: boolean;
   };
 
-  tags: {
-    fr: string[];
-    en: string[];
-  };
-
-  // optionnel mais utile : si tu veux afficher GitHub séparément
-  github?: {
-    href: string;
-  };
+  tags: LocalizedTags;
+  github?: { href: string } | null;
 };
 
 export type ProjectsContent = {
   kicker: LocalizedText;
   title: LocalizedText;
   subtitle: LocalizedText;
+
+  // ✅ le “Site vitrine réalisé pour” (si tu veux l’éditer ensuite)
+  // cardKicker: LocalizedText;
 
   items: ProjectItem[];
 };
