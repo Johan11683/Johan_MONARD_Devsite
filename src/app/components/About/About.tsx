@@ -1,76 +1,38 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { useTranslation } from 'react-i18next';
-import styles from './About.module.scss';
+import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
+
+import AboutView from "./AboutView";
+import type { LocaleKey } from "@/app/components/Admin/Sections/Hero/hero.types";
+import type { AboutContent } from "@/app/components/Admin/Sections/About/about.types";
+import { ABOUT_DEFAULT } from "@/app/components/Admin/Sections/About/about.default";
+import { normalizeAbout } from "@/app/components/Admin/Sections/About/about.normalize";
 
 export default function About() {
-  const { t } = useTranslation('about');
+  const { i18n } = useTranslation();
 
-  return (
-    <section
-      id="about"
-      className={styles.about}
-      aria-labelledby="about-title"
-    >
-      <div className={styles.inner}>
-        {/* Colonne photo */}
-        <div className={styles.photoColumn}>
-          <div className={styles.photoWrapper}>
-            <Image
-              src="/images/profil.png"
-              alt={t('photoAlt')}
-              fill
-              className={styles.photo}
-              sizes="(min-width: 1024px) 320px, 220px"
-              priority
-            />
-          </div>
-          <p className={styles.photoCaption}>
-            {t('photoCaption')}
-          </p>
-        </div>
+  const locale = useMemo<LocaleKey>(() => {
+    return i18n.language?.startsWith("en") ? "en" : "fr";
+  }, [i18n.language]);
 
-        {/* Colonne texte */}
-        <div className={styles.textColumn}>
-          <p className={styles.kicker}>{t('kicker')}</p>
+  const [draft, setDraft] = useState<AboutContent>(ABOUT_DEFAULT);
 
-          <h2 id="about-title" className={styles.title}>
-            {t('title')}
-          </h2>
+  useEffect(() => {
+    async function load() {
+      try {
+        const res = await fetch("/api/content/about", { cache: "no-store" });
+        if (!res.ok) return;
 
-          <p className={styles.lead}>
-            {t('lead')}
-          </p>
+        const data = (await res.json()) as Partial<AboutContent> | null;
+        setDraft(normalizeAbout(data));
+      } catch (e) {
+        console.error("Erreur chargement about public:", e);
+      }
+    }
 
-          <p className={styles.text}>
-            {t('text1')}
-          </p>
+    load();
+  }, []);
 
-          <p className={styles.text}>
-            {t('text2')}
-          </p>
-
-          <ul className={styles.list}>
-            <li className={styles.listItem}>
-              <strong>{t('bullets.item1.strong')}</strong> {t('bullets.item1.text')}
-            </li>
-            <li className={styles.listItem}>
-              <strong>{t('bullets.item2.strong')}</strong> {t('bullets.item2.text')}
-            </li>
-            <li className={styles.listItem}>
-              <strong>{t('bullets.item3.strong')}</strong> {t('bullets.item3.text')}
-            </li>
-          </ul>
-
-          <p className={styles.text}>
-            {t('outro')}
-          </p>
-        </div>
-      </div>
-
-      {/* Séparateur bas de section */}
-      <div className={styles.separator} />
-    </section>
-  );
+  return <AboutView value={draft} locale={locale} />;
 }

@@ -1,0 +1,241 @@
+@use "../../../../styles/variables" as *;
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.editorHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.editorTitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.hint {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: $color-text-muted;
+}
+
+.saveButton {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid $color-border;
+  background: $color-accent;
+  color: $color-text;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(0.96);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.errorText {
+  margin: 0;
+  color: $color-error;
+  font-size: 14px;
+}
+
+/* ===== blocks ===== */
+
+.block {
+  border: 1px solid $color-border;
+  border-radius: 14px;
+  background: $color-bg;
+  padding: 12px;
+}
+
+.blockTitle {
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.fieldGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.fieldLabel {
+  font-size: 12px;
+  color: $color-text-muted;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid $color-border;
+  background: $color-bg-alt;
+  color: $color-text;
+  font-family: $font-sans;
+  outline: none;
+
+  &:focus {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 2px rgba(26, 60, 64, 0.15);
+  }
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+/* ===== switch ===== */
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+}
+
+.switchLabel {
+  font-size: 13px;
+  color: $color-text-muted;
+}
+
+/* ===== cards editor ===== */
+
+.cardsEditor {
+  display: grid;
+  gap: 10px;
+}
+
+.cardEditor {
+  border: 1px solid $color-border;
+  border-radius: 14px;
+  background: $color-bg-alt;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cardEditorHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cardEditorTitle {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.cardEditorHint {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: $color-text-muted;
+}
+
+/* ===== features ===== */
+
+.featuresBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 6px;
+}
+
+.featuresHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.featuresTitle {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.secondaryButton {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid $color-border;
+  background: $color-bg;
+  color: $color-text;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $color-primary;
+  }
+}
+
+.dangerButton {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid $color-border;
+  background: transparent;
+  color: $color-error;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $color-error;
+  }
+}
+
+.featureRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  background: $color-bg;
+}
+
+.featureActions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid currentColor;
+  background: transparent;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}

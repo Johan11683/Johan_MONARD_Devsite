@@ -1,15 +1,12 @@
-import Header from './components/Header/Header'
-import Hero from './components/Hero/Hero';
-import Benefit from './components/Benefit/Benefit';
-import ProjectsLayout from './components/ProjectsLayout/ProjectsLayout'
-import Prices from './components/Prices/Prices'
-import About from './components/About/About';
-import Contact from './components/Contact/Contact';
-import Footer from './components/Footer/Footer';
-import Process from './components/Process/Process';
-
-
-
+import Header from "./components/Header/Header";
+import Hero from "./components/Hero/Hero";
+import Benefit from "./components/Benefit/Benefit";
+import Projects from "./components/ProjectsLayout/Projects";
+import Prices from "./components/Prices/Prices";
+import Process from "./components/Process/Process";
+import About from "./components/About/About";
+import Contact from "./components/Contact/Contact";
+import Footer from "./components/Footer/Footer";
 
 export default function HomePage() {
   return (
@@ -18,13 +15,14 @@ export default function HomePage() {
 
       <main>
         <Hero />
-         <Benefit />
-        <ProjectsLayout />
+        <Benefit />
+        <Projects />
         <Prices />
         <Process />
         <About />
         <Contact />
       </main>
+
       <Footer />
     </>
   );

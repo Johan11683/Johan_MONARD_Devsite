@@ -1,0 +1,300 @@
+@use "../../../../styles/variables" as *;
+
+/* =========
+   EDITOR (nouveau design style Process)
+   ========= */
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.editorHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.editorTitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.editorHint {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: $color-text-muted;
+}
+
+.saveButton {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid $color-border;
+  background: $color-accent;
+  color: $color-text;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(0.96);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.block {
+  border: 1px solid $color-border;
+  border-radius: 14px;
+  background: $color-bg;
+  padding: 12px;
+}
+
+.blockTitle {
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.fieldGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.fieldLabel {
+  font-size: 12px;
+  color: $color-text-muted;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid $color-border;
+  background: $color-bg-alt;
+  color: $color-text;
+  font-family: $font-sans;
+  outline: none;
+
+  &:focus {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 2px rgba(26, 60, 64, 0.15);
+  }
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+/* Cards editor */
+.cardsEditor {
+  display: grid;
+  gap: 10px;
+}
+
+.cardEditor {
+  border: 1px solid $color-border;
+  border-radius: 14px;
+  background: $color-bg-alt;
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.cardEditorHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cardEditorTitle {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.cardEditorHint {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: $color-text-muted;
+}
+
+/* Switch */
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+}
+
+.switchLabel {
+  font-size: 12px;
+  color: $color-text-muted;
+}
+
+.note {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: $color-text-muted;
+}
+
+.errorText {
+  margin: 10px 0 0;
+  color: $color-error;
+  font-size: 12px;
+}
+
+/* =========
+   PREVIEW (rendu section Bénéfices)
+   ========= */
+
+.benefit {
+  width: 100%;
+  background: transparent;
+}
+
+.inner {
+  width: 100%;
+  padding: 64px 80px;
+}
+
+.intro {
+  max-width: 900px;
+  margin: 0 auto 32px auto;
+  text-align: center;
+}
+
+.kicker {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $color-text-muted;
+}
+
+.title {
+  margin: 0 0 12px 0;
+  font-size: 42px;
+  line-height: 1.1;
+  font-weight: 800;
+  color: $color-text;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.5;
+  color: $color-text-muted;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.card {
+  padding: 18px;
+  border: 1px solid $color-border;
+  border-radius: 16px;
+  background: $color-bg-alt;
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: $color-text;
+}
+
+.icon {
+  flex: 0 0 auto;
+  display: block;
+}
+
+.cardText {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: $color-text-muted;
+
+  a {
+    color: $color-primary;
+    font-weight: 700;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.footer {
+  margin-top: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid $color-border;
+  border-radius: 16px;
+  background: $color-bg-alt;
+}
+
+.footerText {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: $color-text-muted;
+}
+
+.footerLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: $color-primary;
+  color: $color-bg-alt;
+  font-weight: 700;
+  text-decoration: none;
+
+  &:hover {
+    filter: brightness(1.05);
+  }
+}
+
+.separator {
+  margin-top: 48px;
+  height: 1px;
+  background: $color-border;
+  width: 100%;
+}

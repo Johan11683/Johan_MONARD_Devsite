@@ -1,39 +1,38 @@
-'use client';
+"use client";
 
-import { useTranslation } from 'react-i18next';
-import styles from './Process.module.scss';
+import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
+
+import ProcessView from "./ProcessView";
+import type { LocaleKey } from "@/app/components/Admin/Sections/Hero/hero.types";
+import type { ProcessContent } from "@/app/components/Admin/Sections/Process/process.types";
+import { PROCESS_DEFAULT } from "@/app/components/Admin/Sections/Process/process.default";
+import { normalizeProcessContent } from "@/app/components/Admin/Sections/Process/process.normalize";
 
 export default function Process() {
-  const { t } = useTranslation('process');
+  const { i18n } = useTranslation();
 
-  return (
-    <section id="process" className={styles.process} aria-labelledby="process-title">
-      <div className={styles.inner}>
-        <header className={styles.header}>
-          <p className={styles.kicker}>{t('kicker')}</p>
-          <h2 id="process-title" className={styles.title}>
-            {t('title')}
-          </h2>
-          <p className={styles.subtitle}>{t('subtitle')}</p>
-        </header>
+  const locale = useMemo<LocaleKey>(() => {
+    return i18n.language?.startsWith("en") ? "en" : "fr";
+  }, [i18n.language]);
 
-        <ol className={styles.steps}>
-          {[1, 2, 3, 4, 5].map((n) => (
-            <li key={n} className={styles.step}>
-              <span className={styles.stepNumber} aria-hidden="true">
-                {String(n).padStart(2, '0')}
-              </span>
+  const [draft, setDraft] = useState<ProcessContent>(PROCESS_DEFAULT);
 
-              <div className={styles.stepContent}>
-                <h3 className={styles.stepTitle}>{t(`steps.step${n}.title`)}</h3>
-                <p className={styles.stepText}>{t(`steps.step${n}.text`)}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </div>
+  useEffect(() => {
+    async function load() {
+      try {
+        const res = await fetch("/api/content/process", { cache: "no-store" });
+        if (!res.ok) return;
 
-      <div className={styles.separator} />
-    </section>
-  );
+        const data = (await res.json()) as Partial<ProcessContent> | null;
+        setDraft(normalizeProcessContent(data));
+      } catch (e) {
+        console.error("Erreur chargement process public:", e);
+      }
+    }
+
+    load();
+  }, []);
+
+  return <ProcessView value={draft} locale={locale} />;
 }

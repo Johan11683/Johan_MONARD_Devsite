@@ -1,0 +1,125 @@
+@use "../../../../styles/variables" as *;
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ✅ header like Process */
+.editorHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.panelTitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.hint {
+  margin: 0;
+  font-size: 14px;
+  color: $color-text-muted;
+}
+
+/* ✅ orange button */
+.saveButton {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid $color-border;
+  background: $color-accent;
+  color: $color-text;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    filter: brightness(0.96);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 14px;
+  color: $color-text-muted;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid $color-border;
+  background: $color-bg;
+  color: $color-text;
+  outline: none;
+  font-family: $font-sans;
+
+  &:focus {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba(26, 60, 64, 0.15);
+  }
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid $color-border;
+}
+
+/* (optionnel) si tu gardes un 2e bouton en bas */
+.primaryButton {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  background: $color-primary;
+  color: $color-bg-alt;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.errorText {
+  margin: 0;
+  color: $color-error;
+  font-size: 14px;
+}
+
+/* Preview = rendu du vrai composant (HeroView), pas de fake layout */
+.preview {
+  height: 100%;
+}

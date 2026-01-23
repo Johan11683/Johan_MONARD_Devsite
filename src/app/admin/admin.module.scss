@@ -1,0 +1,217 @@
+@use "../styles/variables" as *;
+
+.page {
+  margin-top: -70px;
+  height: 100dvh;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+
+  background: $color-bg;
+  color: $color-text;
+  font-family: $font-sans;
+}
+
+/* ===== Sidebar ===== */
+
+.sidebar {
+  padding: 18px;
+  border-right: 1px solid $color-border;
+  background: $color-bg-alt;
+  overflow: auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.brandTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.logoutButton {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid $color-border;
+  background: $color-accent;
+  color: $color-text;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(0.96);
+  }
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.navItem {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid $color-border;
+  background: $color-bg;
+  color: $color-text;
+  cursor: pointer;
+
+  &:hover {
+    background: $color-bg-alt;
+  }
+}
+
+.navItemActive {
+  border-color: $color-primary;
+  box-shadow: 0 0 0 2px rgba(26, 60, 64, 0.15);
+}
+
+/* ===== Content ===== */
+
+.content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden; /* on garde le dashboard fixe */
+}
+
+.topbar {
+  margin-bottom: 16px;
+  flex: 0 0 auto;
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 6px 0 0;
+  color: $color-text-muted;
+  font-size: 14px;
+}
+
+/* ✅ la grille prend le reste de la hauteur */
+.mainGrid {
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  gap: 16px;
+  flex: 1 1 auto;
+  min-height: 0; /* crucial pour que les scroll internes fonctionnent */
+}
+
+/* ===== Panels ===== */
+
+.panel {
+  border-radius: 16px;
+  padding: 16px;
+  background: $color-bg-alt;
+  border: 1px solid $color-border;
+  min-height: 0;
+  overflow: auto; /* ✅ scroll interne editor + autres sections */
+}
+
+.panelTitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.panelHint {
+  margin: 8px 0 0;
+  color: $color-text-muted;
+  font-size: 14px;
+}
+
+/* ===== Preview panel ===== */
+
+.panelPreview {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+  overflow: hidden; /* évite que le header se mélange au scroll */
+}
+
+.previewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex: 0 0 auto;
+}
+
+.localeToggle {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.toggleBtn {
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid $color-border;
+  background: $color-bg;
+  cursor: pointer;
+}
+
+.toggleActive {
+  border-color: $color-primary;
+  box-shadow: 0 0 0 2px rgba(26, 60, 64, 0.15);
+}
+
+/**
+ * ✅ PreviewStage = conteneur FIXE
+ * - taille fixe (pas d’auto height)
+ * - scroll vertical interne
+ * - pas de scroll horizontal
+ */
+.previewStage {
+  flex: 1 1 auto;
+  min-height: 0;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid $color-border;
+  padding: 0 ;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+}
+
+/**
+ * Sizer = vraie taille “layout” de la preview (scaled)
+ * => c’est LUI qui donne la bonne hauteur de scroll
+ */
+.previewSizer {
+  padding: 0 px;        /* ✅ on met l’espace ici */
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+
+/**
+ * Viewport = contenu à largeur 1440, scalé visuellement
+ * => transform ne casse plus le scroll car le Sizer fait la taille réelle.
+ */
+.previewViewport {
+  width: 1440px;
+  transform-origin: top left;
+  overflow: hidden;
+
+  background: $color-bg; /* ✅ plus de gros noir moche */
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* petit wrapper “neutre” pour mesurer la hauteur réelle du contenu */
+.previewContent {
+  width: 100%;
+}
